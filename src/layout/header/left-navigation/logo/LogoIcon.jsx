@@ -1,17 +1,28 @@
 import React from "react";
-import { Avatar, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import ROUTES from "../../../../routes/routesModel";
 import { Link } from "react-router-dom";
-import DiamondIcon from "@mui/icons-material/Diamond";
 
 export default function LogoIcon() {
 	return (
-		<Link to={ROUTES.ROOT} style={{textDecoration:"none"}}>
-			<IconButton>
-				<Avatar>
-					<DiamondIcon/>
-				</Avatar>
-			</IconButton>
-		</Link>
+		<Box sx={{display:"flex", alignItems:"center"}}>
+			<Link to={ROUTES.ROOT}>
+				<IconButton>
+					<img src="/images/logo.png" />
+				</IconButton>
+			</Link>
+			<Link to={ROUTES.ROOT} style={{ textDecoration: "none" }}>
+				<Typography
+					variant="h4"
+					sx={{
+						fontFamily: "fantasy, arial, sans-serif",
+						display: { md: "inline-flex", xs: "none" },
+					}}
+					color="text.primary"
+				>
+					RentMate
+				</Typography>
+			</Link>
+		</Box>
 	);
 }

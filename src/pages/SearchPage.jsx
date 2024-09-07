@@ -1,96 +1,46 @@
-import { Box, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import { Box, Container, Typography } from "@mui/material";
+import React from "react";
+import SearchBar from "../components/SearchBar";
 
 export default function SearchPage() {
-	const [search, setSearch] = useState({
-		location: "",
-		date_from: "",
-		date_to: "",
-		guests: 1,
-	});
-
-	function handleChange(e) {
-		if (e.target.type == "number") {
-			setSearch((prev) => ({
-				...prev,
-				[e.target.name]: Number(e.target.value),
-			}));
-		} else {
-			setSearch((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-		}
-	}
-
-	console.log(search);
-
 	return (
 		<>
 			<Box
-				sx={{ 
+				sx={{
 					backgroundImage: "url('/images/searchBackground1.jpg')",
-					backgroundSize:"cover",
-					backgroundRepeat:"no-repeat",
-					backgroundPosition:"center",
-					height:"90vh",
-					overflow:"hidden",
-					display:"flex",
-					alignItems:"center"
+					backgroundSize: "cover",
+					backgroundRepeat: "no-repeat",
+					backgroundPosition: "center",
+					height: "75vh",
+					display: "flex",
+					alignItems: "center",
 				}}
 			>
-				<Box
-					component="form"
-					sx={{
-						display: "flex",
-						justifyContent: "center",
-						padding: "10px 20px",
-						borderRadius: "50px",
-						gap: "7px",
-						border: "1px solid gray",
-						width: "fit-content",
-						margin: "0 auto",
-					}}
-				>
-					<TextField
-						required
-						sx={{ backgroundColor: "white", borderRadius: "5px" }}
-						name="location"
-						value={search.location}
-						label={"Location"}
-						onChange={handleChange}
-					/>
-					<TextField
-						required
-						sx={{ backgroundColor: "white", borderRadius: "5px" }}
-						type="date"
-						name="date_from"
-						value={search.date_from}
-						onChange={handleChange}
-					/>
-					<TextField
-						required
-						sx={{ backgroundColor: "white", borderRadius: "5px" }}
-						type="date"
-						name="date_to"
-						value={search.date_to}
-						onChange={handleChange}
-					/>
-					<TextField
-						sx={{
-							backgroundColor: "white",
-							borderRadius: "5px",
-							width: "70px",
-						}}
-						type="number"
-						name="guests"
-						label="Guests"
-						value={search.guests}
-						onChange={handleChange}
-					/>
-					<Button variant="contained">
-						<SearchIcon />
-					</Button>
-				</Box>
+				<SearchBar />
 			</Box>
+			<Container sx={{ my: 5, width: "80vw" }}>
+				<Typography variant="h2" sx={{ my: 2 }}>
+					About us
+				</Typography>
+				<Typography variant="body1">
+					Welcome to RentMate, the trusted platform that connects
+					apartment owners with renters looking for their perfect
+					home. Whether you're offering a cozy city loft or searching
+					for the ideal place to settle down, we make it easy to find
+					the perfect match. Our mission is to simplify the rental
+					process by creating a seamless experience for both property
+					owners and renters. With RentMate, you can easily list,
+					discover, and rent apartments with confidence. We provide a
+					secure, user-friendly platform where landlords can showcase
+					their properties and renters can search by location, budget,
+					and preferences. At RentMate, we believe in fostering a
+					community where everyone can find their next home,
+					hassle-free. With our advanced search tools and personalized
+					recommendations, you're just a few clicks away from your new
+					space. Start your journey today and discover a new way to
+					rent, with RentMate!
+				</Typography>
+			</Container>
 		</>
 	);
 }

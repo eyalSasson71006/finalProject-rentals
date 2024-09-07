@@ -4,7 +4,8 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import InfoIcon from "@mui/icons-material/Info";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 import { Divider } from "@mui/material";
 
 export default function Footer() {
@@ -12,24 +13,21 @@ export default function Footer() {
 		<Box
 			sx={{
 				width: "100%",
-				position: "fixed",
+				position: "sticky",
 				bottom: "0",
 				zIndex: "999",
 			}}
 		>
-            <Divider/>
+			<Divider />
 			<BottomNavigation showLabels>
-				<BottomNavigationAction
-					label="Recents"
-					icon={<RestoreIcon />}
-				/>
+				<BottomNavigationAction label="About" icon={<InfoIcon />} />
 				<BottomNavigationAction
 					label="Favorites"
 					icon={<FavoriteIcon />}
 				/>
 				<BottomNavigationAction
-					label="Nearby"
-					icon={<LocationOnIcon />}
+					label="My Apartments"
+					icon={<ApartmentIcon />}
 				/>
 			</BottomNavigation>
 		</Box>
