@@ -1,6 +1,5 @@
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
-
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Typography } from "@mui/material";
 
