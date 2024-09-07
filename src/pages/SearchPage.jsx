@@ -31,7 +31,7 @@ export default function SearchPage() {
 					backgroundSize:"cover",
 					backgroundRepeat:"no-repeat",
 					backgroundPosition:"center",
-					height:"100vh",
+					height:"90vh",
 					overflow:"hidden",
 					display:"flex",
 					alignItems:"center"

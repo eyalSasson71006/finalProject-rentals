@@ -7,10 +7,10 @@ export default function CustomThemeProvider({ children }) {
 	const [isDark, setIsDark] = useState(false);
 
 	const theme = createTheme({
-		// #708871,
+		// #577158
 		palette: {
 			primary: {
-				main: "#1B4B4D",
+				main: "#708871",
 			},
 			mode: isDark ? "dark" : "light",
 		},

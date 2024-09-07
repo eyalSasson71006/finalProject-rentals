@@ -1,18 +1,19 @@
-import SearchResults from "./pages/SearchResults";
 import "./index.css";
 import Layout from "./layout/Layout";
-import SearchPage from "./pages/SearchPage";
 import ProvidersComponent from "./providers/ProvidersComponent";
+import Router from "./routes/Router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
 	return (
 		<>
-			<ProvidersComponent>
-				<Layout>
-					{/* <SearchResults /> */}
-					<SearchPage />
-				</Layout>
-			</ProvidersComponent>
+			<BrowserRouter>
+				<ProvidersComponent>
+					<Layout>
+						<Router />
+					</Layout>
+				</ProvidersComponent>
+			</BrowserRouter>
 		</>
 	);
 }
