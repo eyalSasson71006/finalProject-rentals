@@ -1,19 +1,24 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import React from 'react'
 
-export default function PageHeadline({title, subtitle, children}) {
+export default function PageHeadline({title, subtitle}) {
   return (
-		<Box
-			sx={{
-				padding: "40px",
-				color: "white",
-				textAlign: "center",
-				backgroundColor: "#8b8b8b",
-			}}
-		>
-			<Typography variant="h4">{title}</Typography>
-			<Typography variant="h5">{subtitle}</Typography>
-			{children}
+		<Box sx={{my:4}}>
+			<Typography
+				sx={{ textAlign: "center" }}
+				variant="h2"
+				component="h1"
+			>
+				{title}
+			</Typography>
+			<Typography
+				sx={{ textAlign: "center" }}
+				variant="h5"
+				component="h2"
+			>
+				{subtitle}
+			</Typography>
+			<Divider sx={{ my: 2 }} />
 		</Box>
   );
 }
