@@ -1,11 +1,10 @@
 import React from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarIcon from "@mui/icons-material/Star";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-export default function CardFooterComponent() {
+export default function CardFooterComponent({ apartment }) {
 	return (
 		<Box
 			sx={{
@@ -23,10 +22,10 @@ export default function CardFooterComponent() {
 				<Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
 					<LocationOnIcon sx={{ width: "0.9rem" }} />
 					<Typography sx={{ fontSize: "0.8rem" }}>
-						Tel-Aviv
+						{apartment.location}
 					</Typography>
 				</Box>
-				<Typography>Luxury House</Typography>
+				<Typography>{apartment.title}</Typography>
 			</Box>
 			<Box
 				sx={{
@@ -39,7 +38,7 @@ export default function CardFooterComponent() {
 			>
 				<StarIcon sx={{ color: "white", width: "20px" }} />
 				<Typography sx={{ color: "white", fontSize: "1.1rem" }}>
-					4.9
+					{apartment.rating}
 				</Typography>
 			</Box>
 		</Box>

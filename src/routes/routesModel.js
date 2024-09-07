@@ -1,6 +1,5 @@
 const ROUTES = {
     ROOT: "/",
-    SEARCH: "/search-page",
     SEARCH_RESULTS: "/search-results",
     MY_APARTMENTS: "/my-apartments",
     FAV_APARTMENTS: "/fav-apartments",

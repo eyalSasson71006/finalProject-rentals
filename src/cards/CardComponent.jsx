@@ -3,11 +3,11 @@ import React from "react";
 import CardHeaderComponent from "./components/CardHeaderComponent";
 import CardFooterComponent from "./components/CardFooterComponent";
 
-export default function CardComponent() {
+export default function CardComponent({ apartment }) {
 	return (
 		<Card
 			sx={{
-                margin:"8px",
+				margin: "8px",
 				width: "250px",
 				height: "250px",
 				borderRadius: "50px",
@@ -18,8 +18,7 @@ export default function CardComponent() {
 			<CardActionArea>
 				<Box
 					component="img"
-					src="/images/apartmentStockImage.jpg"
-					// src="/images/searchBackground2.jpg"
+					src={apartment.src}
 					sx={{
 						width: "250px",
 						height: "250px",
@@ -38,8 +37,8 @@ export default function CardComponent() {
 					}}
 				/>
 			</CardActionArea>
-			<CardHeaderComponent />
-			<CardFooterComponent />
+			<CardHeaderComponent apartment={apartment} />
+			<CardFooterComponent apartment={apartment} />
 		</Card>
 	);
 }

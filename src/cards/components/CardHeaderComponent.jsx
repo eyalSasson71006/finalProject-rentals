@@ -1,10 +1,9 @@
 import React from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Box, IconButton } from "@mui/material";
 
-import StarIcon from "@mui/icons-material/Star";
-import { Box, IconButton, Typography } from "@mui/material";
-
-export default function CardHeaderComponent() {
+export default function CardHeaderComponent({ apartment }) {
 	return (
 		<Box sx={{ padding: "15px 20px" }}>
 			<IconButton
@@ -18,7 +17,11 @@ export default function CardHeaderComponent() {
 					},
 				}}
 			>
-				<FavoriteBorderIcon fontSize="large" />
+				{apartment.favorite ? (
+					<FavoriteIcon fontSize="large" color="error" />
+				) : (
+					<FavoriteBorderIcon fontSize="large" />
+				)}
 			</IconButton>
 		</Box>
 	);

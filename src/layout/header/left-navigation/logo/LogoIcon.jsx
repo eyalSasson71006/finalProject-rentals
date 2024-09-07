@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function LogoIcon() {
 	return (
-		<Box sx={{display:"flex", alignItems:"center"}}>
+		<Box sx={{ display: "flex", alignItems: "center" }}>
 			<Link to={ROUTES.ROOT}>
 				<IconButton>
 					<img src="/images/logo.png" />
@@ -18,7 +18,7 @@ export default function LogoIcon() {
 						fontFamily: "fantasy, arial, sans-serif",
 						display: { md: "inline-flex", xs: "none" },
 					}}
-					color="text.primary"
+					color="#2f2f2f"
 				>
 					RentMate
 				</Typography>

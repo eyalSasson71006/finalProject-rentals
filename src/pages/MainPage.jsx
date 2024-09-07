@@ -1,8 +1,9 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import SearchBar from "../components/SearchBar";
+import CardsListComponent from "../components/CardsListComponent";
 
-export default function SearchPage() {
+export default function MainPage() {
 	return (
 		<>
 			<Box
@@ -22,7 +23,7 @@ export default function SearchPage() {
 				<Typography variant="h2" sx={{ my: 2 }}>
 					About us
 				</Typography>
-				<Typography variant="body1">
+				<Typography variant="body1" fontSize={20}>
 					Welcome to RentMate, the trusted platform that connects
 					apartment owners with renters looking for their perfect
 					home. Whether you're offering a cozy city loft or searching
@@ -41,6 +42,14 @@ export default function SearchPage() {
 					rent, with RentMate!
 				</Typography>
 			</Container>
+			<Box
+				sx={{ py: 5, backgroundColor: "#eee" }}
+			>
+				<Typography variant="h2" sx={{ my: 2,textAlign:"center" }}>
+					Recommended Apartments
+				</Typography>
+				<CardsListComponent />
+			</Box>
 		</>
 	);
 }

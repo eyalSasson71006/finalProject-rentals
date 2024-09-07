@@ -6,7 +6,7 @@ import ROUTES from "../../../routes/routesModel";
 
 const linkStyle = {
 	textDecoration: "none",
-	color: "black",
+	color: "white",
 	fontSize: " 1.1rem",
 };
 
