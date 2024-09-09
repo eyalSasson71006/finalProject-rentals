@@ -1,8 +1,9 @@
-import { Box, Button, Container, Grid, Grid2, Typography } from "@mui/material";
+import { Box, Button, Container, Grid2, Typography } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
+import Comment from "../cards/components/Comment";
 
 
 const apartment = {
@@ -22,24 +23,28 @@ const apartment = {
 	},
 	reviews: [
 		{
+			id:1,
 			username: "Sarah Levi",
 			img: "/images/avatar.png",
 			text: "Amazing house, very spacious and well-maintained. Had a great experience staying here!",
 			rating: 5,
 		},
 		{
+			id:2,
 			username: "Oren Shalev",
 			img: "/images/avatar.png",
 			text: "Great location and modern amenities. Would definitely stay again!",
 			rating: 4.7,
 		},
 		{
+			id:3,
 			username: "Liat Bar",
 			img: "/images/avatar.png",
 			text: "Beautiful place, very clean and close to everything in Tel-Aviv.",
 			rating: 4.9,
 		},
 		{
+			id:4,
 			username: "Yossi Amit",
 			img: "/images/avatar.png",
 			text: "Perfect for a family vacation! We loved the rooftop terrace.",
@@ -82,9 +87,14 @@ export default function ApartmentInfoPage() {
 						Location: {apartment.location} <br />
 						price: {apartment.price} <br />
 					</Typography>
-					<Typography variant="body1" sx={{fontSize:18, lineHeight:1.7}}>
+					<Typography
+						variant="body1"
+						sx={{ fontSize: 18, lineHeight: 1.7 }}
+						mb={8}
+					>
 						{apartment.description}
 					</Typography>
+					{apartment.reviews.map((review)=><Comment key={review.id} reviewObj={review}/>)}
 				</Grid2>
 				<Grid2 size={"auto"}>
 					<img
@@ -107,7 +117,12 @@ export default function ApartmentInfoPage() {
 						</Typography>
 						<StarIcon />
 					</Box>
-					<Button variant="contained" sx={{width:"100%", my:2, fontSize:22}}>RESERVE</Button>
+					<Button
+						variant="contained"
+						sx={{ width: "100%", my: 2, fontSize: 22 }}
+					>
+						RESERVE
+					</Button>
 				</Grid2>
 			</Grid2>
 		</>
