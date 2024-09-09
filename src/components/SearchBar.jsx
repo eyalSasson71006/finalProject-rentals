@@ -1,8 +1,11 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import ROUTES from "../routes/routesModel";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
+	const navigate = useNavigate()
 	const [search, setSearch] = useState({
 		location: "",
 		date_from: "",
@@ -76,7 +79,7 @@ export default function SearchBar() {
 				value={search.guests}
 				onChange={handleChange}
 			/>
-			<Button variant="contained">
+			<Button variant="contained" onClick={()=>navigate(ROUTES.SEARCH_RESULTS)}>
 				<SearchIcon />
 			</Button>
 		</Box>

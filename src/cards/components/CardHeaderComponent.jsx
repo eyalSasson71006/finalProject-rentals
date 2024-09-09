@@ -18,7 +18,7 @@ export default function CardHeaderComponent({ apartment }) {
 				}}
 			>
 				{apartment.favorite ? (
-					<FavoriteIcon fontSize="large" color="error" />
+					<FavoriteIcon fontSize="large" sx={{color:"red"}} />
 				) : (
 					<FavoriteBorderIcon fontSize="large" />
 				)}

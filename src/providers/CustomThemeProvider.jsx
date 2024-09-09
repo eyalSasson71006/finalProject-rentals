@@ -13,8 +13,7 @@ export default function CustomThemeProvider({ children }) {
 			},
 			mode: isDark ? "dark" : "light",
 		},
-		bgc: isDark ? "#4f4f4f" : "#e3f2fd",
-		headerText: isDark ? "#fff" : "#6482AD",
+		bgc: isDark ? "#4f4f4f" : "#fff",
 	});
 
 	return (

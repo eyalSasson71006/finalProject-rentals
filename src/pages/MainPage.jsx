@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import SearchBar from "../components/SearchBar";
-import CardsListComponent from "../components/CardsListComponent";
+import CardsListComponent from "../cards/CardsListComponent";
 
 export default function MainPage() {
 	return (

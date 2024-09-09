@@ -1,13 +1,21 @@
-import React from 'react'
-import CardComponent from '../cards/CardComponent';
-import PageHeadline from '../components/PageHeadline';
-import CardsListComponent from '../components/CardsListComponent';
+import React from "react";
+import SearchBar from "../components/SearchBar";
+import { Box } from "@mui/material";
+import CardsListComponent from "../cards/CardsListComponent";
+import FilterResults from "../components/resultsFilter/FilterResults";
 
 export default function SearchResults() {
-  return (
-    <div>
-      {/* <PageHeadline title={"Search results"} subtitle={"Here you can find all the apartments in Tel aviv"}/> */}
-        <CardsListComponent/>
-    </div>
-  )
+	return (
+		<Box py={5}>
+			<SearchBar />
+			<Box sx={{ display: "flex" }}>
+				<Box sx={{ position: "sticky", top: "100px" }}>
+					<FilterResults />
+				</Box>
+				<Box sx={{ flexGrow: "0" }}>
+					<CardsListComponent />
+				</Box>
+			</Box>
+		</Box>
+	);
 }

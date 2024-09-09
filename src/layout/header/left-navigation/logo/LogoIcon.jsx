@@ -15,7 +15,6 @@ export default function LogoIcon() {
 				<Typography
 					variant="h4"
 					sx={{
-						fontFamily: "fantasy, arial, sans-serif",
 						display: { md: "inline-flex", xs: "none" },
 					}}
 					color="#2f2f2f"
