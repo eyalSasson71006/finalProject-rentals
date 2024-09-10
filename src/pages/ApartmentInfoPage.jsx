@@ -6,6 +6,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Review from "../cards/components/Review";
 import apartment from "../models/apartment";
 import AddReview from "../cards/components/addReview";
+import AmenitiesComponent from "../components/AmenitiesComponent";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -46,7 +47,8 @@ export default function ApartmentInfoPage() {
 					>
 						{apartment.description}
 					</Typography>
-					<AddReview/>
+					<AmenitiesComponent/>
+					<AddReview />
 					{apartment.reviews.map((review) => (
 						<Review key={review.id} reviewObj={review} />
 					))}
