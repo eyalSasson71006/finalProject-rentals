@@ -3,8 +3,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
-import Comment from "../cards/components/Comment";
+import Review from "../cards/components/Review";
 import apartment from "../models/apartment";
+import AddReview from "../cards/components/addReview";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -45,8 +46,9 @@ export default function ApartmentInfoPage() {
 					>
 						{apartment.description}
 					</Typography>
+					<AddReview/>
 					{apartment.reviews.map((review) => (
-						<Comment key={review.id} reviewObj={review} />
+						<Review key={review.id} reviewObj={review} />
 					))}
 				</Grid2>
 				<Grid2 size={"auto"}>

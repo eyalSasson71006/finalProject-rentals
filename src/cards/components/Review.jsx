@@ -2,7 +2,7 @@ import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 
-export default function Comment({ reviewObj }) {
+export default function Review({ reviewObj }) {
 	return (
 		<Box
 			sx={{
