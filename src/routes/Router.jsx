@@ -4,8 +4,8 @@ import ROUTES from "./routesModel";
 import MainPage from "../pages/MainPage";
 import SearchResults from "../pages/SearchResults";
 import ErrorPage from "../pages/ErrorPage";
-import { Apartment } from "@mui/icons-material";
 import ApartmentInfoPage from "../pages/ApartmentInfoPage";
+import UserInfoPage from "../pages/UserInfoPage";
 
 export default function Router() {
 	return (
@@ -15,6 +15,10 @@ export default function Router() {
 			<Route
 				path={ROUTES.APARTMENT_INFO + "/:id"}
 				element={<ApartmentInfoPage />}
+			/>
+			<Route
+				path={ROUTES.USER_PROFILE + "/:id"}
+				element={<UserInfoPage />}
 			/>
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>

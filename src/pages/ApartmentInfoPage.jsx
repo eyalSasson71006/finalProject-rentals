@@ -1,12 +1,13 @@
 import { Box, Button, Container, Grid2, Typography } from "@mui/material";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
 import Review from "../cards/components/Review";
 import apartment from "../models/apartment";
 import AddReview from "../cards/components/addReview";
 import AmenitiesComponent from "../components/AmenitiesComponent";
+import ROUTES from "../routes/routesModel";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -47,11 +48,13 @@ export default function ApartmentInfoPage() {
 					>
 						{apartment.description}
 					</Typography>
-					<AmenitiesComponent/>
-					<AddReview />
-					{apartment.reviews.map((review) => (
-						<Review key={review.id} reviewObj={review} />
-					))}
+					<AmenitiesComponent />
+					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
+						<AddReview />
+						{apartment.reviews.map((review) => (
+							<Review key={review.id} reviewObj={review} />
+						))}
+					</Box>
 				</Grid2>
 				<Grid2 size={"auto"}>
 					<Box sx={{ position: "sticky", top: "100px" }}>
@@ -59,9 +62,14 @@ export default function ApartmentInfoPage() {
 							src={apartment.owner.img}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
-						<Typography variant="h5">
-							{apartment.owner.fullName}
-						</Typography>
+						<Link
+							style={{ textDecoration: "none", color: "inherit" }}
+							to={ROUTES.USER_PROFILE + "/" + apartment.owner.id}
+						>
+							<Typography variant="h5">
+								{apartment.owner.fullName}
+							</Typography>
+						</Link>
 						<Box
 							sx={{
 								display: "flex",
