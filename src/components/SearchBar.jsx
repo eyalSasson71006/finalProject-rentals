@@ -5,7 +5,7 @@ import ROUTES from "../routes/routesModel";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [search, setSearch] = useState({
 		location: "",
 		date_from: "",
@@ -27,6 +27,27 @@ export default function SearchBar() {
 		}
 	}
 
+	const textFieldSx = {
+		color: "black",
+		"& .MuiInputLabel-root": {
+			color: "black",
+		},
+		"& .MuiOutlinedInput-root": {
+			"& fieldset": {
+				borderColor: "gray",
+			},
+			"&:hover fieldset": {
+				borderColor: "black",
+			},
+			"&.Mui-focused fieldset": {
+				borderColor: "black",
+			},
+			backgroundColor: "white",
+			borderRadius: "5px",
+			color: "black"
+		},
+	};
+
 	console.log(search);
 
 	return (
@@ -45,7 +66,7 @@ export default function SearchBar() {
 		>
 			<TextField
 				required
-				sx={{ backgroundColor: "white", borderRadius: "5px" }}
+				sx={textFieldSx}
 				name="location"
 				value={search.location}
 				label={"Location"}
@@ -53,7 +74,7 @@ export default function SearchBar() {
 			/>
 			<TextField
 				required
-				sx={{ backgroundColor: "white", borderRadius: "5px" }}
+				sx={textFieldSx}
 				type="date"
 				name="date_from"
 				value={search.date_from}
@@ -61,7 +82,7 @@ export default function SearchBar() {
 			/>
 			<TextField
 				required
-				sx={{ backgroundColor: "white", borderRadius: "5px" }}
+				sx={textFieldSx}
 				type="date"
 				name="date_to"
 				value={search.date_to}
@@ -69,8 +90,7 @@ export default function SearchBar() {
 			/>
 			<TextField
 				sx={{
-					backgroundColor: "white",
-					borderRadius: "5px",
+					...textFieldSx,
 					width: "70px",
 				}}
 				type="number"
@@ -79,7 +99,10 @@ export default function SearchBar() {
 				value={search.guests}
 				onChange={handleChange}
 			/>
-			<Button variant="contained" onClick={()=>navigate(ROUTES.SEARCH_RESULTS)}>
+			<Button
+				variant="contained"
+				onClick={() => navigate(ROUTES.SEARCH_RESULTS)}
+			>
 				<SearchIcon />
 			</Button>
 		</Box>

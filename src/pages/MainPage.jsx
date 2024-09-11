@@ -2,8 +2,10 @@ import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import SearchBar from "../components/SearchBar";
 import CardsListComponent from "../cards/CardsListComponent";
+import { useIsDark } from "../providers/CustomThemeProvider";
 
 export default function MainPage() {
+	const { isDark, setIsDark } = useIsDark();
 	return (
 		<>
 			<Box
@@ -43,7 +45,7 @@ export default function MainPage() {
 				</Typography>
 			</Container>
 			<Box
-				sx={{ py: 5, backgroundColor: "#eee" }}
+				sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}
 			>
 				<Typography variant="h2" sx={{ my: 2,textAlign:"center" }}>
 					Recommended Apartments
