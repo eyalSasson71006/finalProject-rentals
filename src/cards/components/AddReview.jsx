@@ -38,7 +38,7 @@ export default function AddReview() {
 				<Box sx={{ width: "80%" }}>
 					<Box sx={{ display: "flex" }}>
 						<Typography fontWeight={"bold"} mr={1}>
-							{user.name.first} {user.name.first}
+							{user.name.first} {user.name.last}
 						</Typography>
 						<Stack spacing={1}>
 							<Rating

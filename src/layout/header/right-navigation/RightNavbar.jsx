@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Box } from "@mui/material";
 import Logged from "./Logged";
 import NotLogged from "./NotLogged";
@@ -11,8 +10,8 @@ export default function RightNavbar() {
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			<DarkModeSwitch/>
 			{/* {user ? <Logged /> : <NotLogged />} */}
-			{/* <NotLogged/> */}
-			<Logged />
+			<NotLogged/>
+			{/* <Logged /> */}
 		</Box>
 	);
 }

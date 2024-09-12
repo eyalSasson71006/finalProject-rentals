@@ -37,10 +37,11 @@ const apartment = {
         wheelchairAccessible: false,
     },
     owner: {
-        id:"1",
+        id: "1",
         fullName: "David Cohen",
         img: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
         rating: 4.8,
+        createdAt:"2024-09-10T09:59:14.778Z"
     },
     reviews: [
         {
@@ -72,6 +73,7 @@ const apartment = {
             rating: 4.8,
         },
     ],
+    likes: [],
     rating: 4.9,
     favorite: true,
 };

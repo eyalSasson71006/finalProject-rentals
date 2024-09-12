@@ -8,6 +8,7 @@ import apartment from "../models/apartment";
 import AddReview from "../cards/components/addReview";
 import AmenitiesComponent from "../components/AmenitiesComponent";
 import ROUTES from "../routes/routesModel";
+import MapComponent from "../components/map/MapComponent";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
