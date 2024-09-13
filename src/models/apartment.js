@@ -2,14 +2,20 @@ const apartment = {
     id: 1,
     title: "Luxury House",
     subtitle: "A modern and spacious home with stunning city views",
-    address: "123 Dizengoff St, Tel-Aviv, Israel",
+    address:{
+        state: "",
+        country: "Israel",
+        city: "Tel Aviv",
+        street: "Dizengoff",
+        houseNumber: 123,
+        zip: ""
+    },
     price: "$5,000/month",
     bedrooms: 4,
     bathrooms: 3,
     propertyType: "house",
     description:
         "This luxurious house offers 4 bedrooms, 3 bathrooms, and a large balcony overlooking the vibrant Tel-Aviv skyline. Equipped with modern appliances, open-plan living spaces, and a rooftop terrace, it's perfect for families or groups looking to experience the city in style.",
-    location: "Tel-Aviv",
     src: "https://i.pinimg.com/originals/24/e8/f0/24e8f08ba83e34213572acbdb1061bf0.jpg",
     amenities: {
         airConditioning: true,

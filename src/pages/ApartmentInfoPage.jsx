@@ -1,5 +1,5 @@
 import { Box, Button, Container, Grid2, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
@@ -12,11 +12,18 @@ import MapComponent from "../components/map/MapComponent";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
+	const [toggle, setToggle] = useState(false);
+	const address = `${apartment.address.country} ${apartment.address.city} ${apartment.address.street} ${apartment.address.houseNumber} `;
 	return (
 		<>
 			<PageHeadline
 				title={apartment.title}
 				subtitle={apartment.subtitle}
+			/>
+			<MapComponent
+				show={toggle}
+				closePage={() => setToggle(false)}
+				address={address}
 			/>
 			<Grid2
 				container
@@ -38,10 +45,21 @@ export default function ApartmentInfoPage() {
 					/>
 				</Grid2>
 				<Grid2 size={8}>
-					<Typography my={1} variant="h5" color="gray">
-						Location: {apartment.location} <br />
-						price: {apartment.price} <br />
-					</Typography>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "space-between",
+						}}
+					>
+						<Typography my={1} variant="h5" color="gray">
+							Location: {apartment.address.city},{" "}
+							{apartment.address.country} <br />
+							price: {apartment.price} <br />
+						</Typography>
+						<Button onClick={() => setToggle(true)}>
+							OPEN LOCATION ON MAP
+						</Button>
+					</Box>
 					<Typography
 						variant="body1"
 						sx={{ fontSize: 18, lineHeight: 1.7 }}

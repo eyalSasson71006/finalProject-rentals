@@ -13,7 +13,6 @@ export default function UserInfoPage() {
 	const { id } = useParams();
 	return (
 		<Box>
-			<PageHeadline title={`About ${user.name.first}`} />
 			<Grid2
 				container
 				spacing={2}
@@ -25,20 +24,24 @@ export default function UserInfoPage() {
 				}}
 			>
 				<Grid2 size={8}>
-					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						<AddReview />
-						{apartment.reviews.map((review) => (
-							<Review key={review.id} reviewObj={review} />
-						))}
-					</Box>
-					<Box sx={{ py: 5 }}>
+					<Box sx={{ py: 0 }}>
 						<Typography
-							variant="h3"
+							variant="h2"
 							sx={{ my: 2, textAlign: "center" }}
 						>
 							{user.name.first}'s Apartments
 						</Typography>
 						<CardsListComponent />
+					</Box>
+					<Typography
+						variant="h3"
+						mb={3}
+					>{`About ${user.name.first}`}</Typography>
+					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
+						<AddReview />
+						{apartment.reviews.map((review) => (
+							<Review key={review.id} reviewObj={review} />
+						))}
 					</Box>
 				</Grid2>
 				<Grid2 size={"auto"}>
