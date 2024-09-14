@@ -18,7 +18,6 @@ const user = {
         zip: 6348100
     },
     isAdmin: false,
-    isOwner: true
 }
 
 
