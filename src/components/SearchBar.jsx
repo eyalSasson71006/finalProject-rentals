@@ -2,29 +2,29 @@ import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../routes/routesModel";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function SearchBar() {
 	const navigate = useNavigate();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [search, setSearch] = useState({
-		location: "",
-		date_from: "",
-		date_to: "",
-		guests: 1,
+		location: searchParams.get("location") || "",
+		date_from: searchParams.get("date_from") || "",
+		date_to: searchParams.get("date_to") || "",
+		guests: searchParams.get("guests") || 1,
 	});
 
 	function handleChange(e) {
-		if (e.target.type == "number") {
-			setSearch((prev) => ({
-				...prev,
-				[e.target.name]: Number(e.target.value),
-			}));
-		} else {
-			setSearch((prev) => ({
-				...prev,
-				[e.target.name]: e.target.value,
-			}));
-		}
+		const { name, value, type } = e.target;
+		setSearch((prev) => ({
+			...prev,
+			[name]: type === "number" ? Number(value) : value,
+		}));
+		setSearchParams((prev) => {
+			const newParams = new URLSearchParams(prev);
+			newParams.set(name, value);
+			return newParams;
+		});
 	}
 
 	const textFieldSx = {
@@ -44,11 +44,14 @@ export default function SearchBar() {
 			},
 			backgroundColor: "white",
 			borderRadius: "5px",
-			color: "black"
+			color: "black",
 		},
 	};
 
-	console.log(search);
+	function handleSearch() {
+		console.log(searchParams);
+		navigate(`${ROUTES.SEARCH_RESULTS}?${searchParams.toString()}`);
+	}
 
 	return (
 		<Box
@@ -99,10 +102,7 @@ export default function SearchBar() {
 				value={search.guests}
 				onChange={handleChange}
 			/>
-			<Button
-				variant="contained"
-				onClick={() => navigate(ROUTES.SEARCH_RESULTS)}
-			>
+			<Button variant="contained" onClick={handleSearch}>
 				<SearchIcon />
 			</Button>
 		</Box>
