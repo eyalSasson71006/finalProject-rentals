@@ -9,8 +9,8 @@ export default function SearchBar() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [search, setSearch] = useState({
 		location: searchParams.get("location") || "",
-		date_from: searchParams.get("date_from") || "",
-		date_to: searchParams.get("date_to") || "",
+		dateFrom: searchParams.get("dateFrom") || "",
+		dateTo: searchParams.get("dateTo") || "",
 		guests: searchParams.get("guests") || 1,
 	});
 
@@ -49,7 +49,6 @@ export default function SearchBar() {
 	};
 
 	function handleSearch() {
-		console.log(searchParams);
 		navigate(`${ROUTES.SEARCH_RESULTS}?${searchParams.toString()}`);
 	}
 
@@ -79,16 +78,16 @@ export default function SearchBar() {
 				required
 				sx={textFieldSx}
 				type="date"
-				name="date_from"
-				value={search.date_from}
+				name="dateFrom"
+				value={search.dateFrom}
 				onChange={handleChange}
 			/>
 			<TextField
 				required
 				sx={textFieldSx}
 				type="date"
-				name="date_to"
-				value={search.date_to}
+				name="dateTo"
+				value={search.dateTo}
 				onChange={handleChange}
 			/>
 			<TextField

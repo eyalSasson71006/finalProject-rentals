@@ -8,154 +8,73 @@ import {
 	TextField,
 } from "@mui/material";
 import FilterAccordion from "./components/FilterAccordion";
+import FilterCheckbox from "./components/FilterCheckbox";
+import FilterTextfield from "./components/FilterTextfield";
+import { useSearchParams } from "react-router-dom";
 
 export default function FilterResults() {
+
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			<FilterAccordion title={"Price"}>
-				<TextField type="number" label="Minimum" sx={{ mb: 1 }} />
-				<TextField type="number" label="Maximum" />
+				<FilterTextfield
+					name="minimumPrice"
+					type="number"
+					label="Minimum"
+				/>
+				<FilterTextfield
+					name="maximumPrice"
+					type="number"
+					label="Maximum"
+				/>
 			</FilterAccordion>
 			<FilterAccordion title={"City/Location"}>
 				<List component="div" disablePadding>
-					<ListItem>
-						<ListItemText primary="Tel Aviv" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Haifa" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Jerusalem" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Holon" />
-						<Checkbox edge="end" />
-					</ListItem>
+					<FilterCheckbox name="telAviv" />
+					<FilterCheckbox name="haifa" />
+					<FilterCheckbox name="jerusalem" />
+					<FilterCheckbox name="holon" />
 				</List>
 			</FilterAccordion>
 			<FilterAccordion title={"Property Type"}>
 				<List component="div" disablePadding>
-					<ListItem>
-						<ListItemText primary="House" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Apartment" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Penthouse" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Studio" />
-						<Checkbox edge="end" />
-					</ListItem>
+					<FilterCheckbox name="house" />
+					<FilterCheckbox name="apartment" />
+					<FilterCheckbox name="penthouse" />
+					<FilterCheckbox name="studio" />
 				</List>
 			</FilterAccordion>
 			<FilterAccordion title={"Bedrooms"}>
-				<TextField type="number" value={1} />
+				<FilterTextfield name="bedrooms" type="number" value={1} />
 			</FilterAccordion>
 			<FilterAccordion title={"Bathrooms"}>
-				<TextField type="number" value={1} />
+				<FilterTextfield name="bathrooms" type="number" value={1} />
 			</FilterAccordion>
 			<FilterAccordion title={"Amenities"}>
 				<List component="div" disablePadding>
-					<ListItem>
-						<ListItemText primary="Air Conditioning" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Heating" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="WiFi" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Parking" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Washing Machine" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Dryer" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Dishwasher" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Balcony" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Pool" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Gym" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Elevator" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Pet Friendly" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Furnished" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Security System" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Fireplace" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Garden" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Rooftop Access" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Smart Home Features" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Cable TV" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Outdoor Seating" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Kitchen Appliances" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Smoke Detectors" />
-						<Checkbox edge="end" />
-					</ListItem>
-					<ListItem>
-						<ListItemText primary="Wheelchair Accessible" />
-						<Checkbox edge="end" />
-					</ListItem>
+					<FilterCheckbox name="airConditioning" />
+					<FilterCheckbox name="heating" />
+					<FilterCheckbox name="wifi" />
+					<FilterCheckbox name="parking" />
+					<FilterCheckbox name="washingMachine" />
+					<FilterCheckbox name="dryer" />
+					<FilterCheckbox name="dishwasher" />
+					<FilterCheckbox name="balcony" />
+					<FilterCheckbox name="pool" />
+					<FilterCheckbox name="gym" />
+					<FilterCheckbox name="elevator" />
+					<FilterCheckbox name="petFriendly" />
+					<FilterCheckbox name="furnished" />
+					<FilterCheckbox name="securitySystem" />
+					<FilterCheckbox name="fireplace" />
+					<FilterCheckbox name="garden" />
+					<FilterCheckbox name="rooftopAccess" />
+					<FilterCheckbox name="smartHomeFeatures" />
+					<FilterCheckbox name="cableTV" />
+					<FilterCheckbox name="outdoorSeating" />
+					<FilterCheckbox name="kitchenAppliances" />
+					<FilterCheckbox name="smokeDetectors" />
+					<FilterCheckbox name="wheelchairAccessible" />
 				</List>
 			</FilterAccordion>
 		</Box>
