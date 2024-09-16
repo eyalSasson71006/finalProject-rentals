@@ -1,9 +1,9 @@
 import { Box, Card, CardActionArea } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 import CardHeaderComponent from "./components/CardHeaderComponent";
 import CardFooterComponent from "./components/CardFooterComponent";
-import { useNavigate } from "react-router-dom";
-import ROUTES from "../routes/routesModel";
 
 export default function CardComponent({ apartment }) {
 	const navigate = useNavigate()

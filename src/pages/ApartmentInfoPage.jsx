@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
-import Review from "../cards/components/Review";
 import apartment from "../models/apartment";
-import AddReview from "../cards/components/addReview";
 import AmenitiesComponent from "../components/AmenitiesComponent";
 import ROUTES from "../routes/routesModel";
 import MapComponent from "../components/map/MapComponent";
+import AddReview from "../apartments/cards/components/AddReview";
+import Review from "../apartments/cards/components/Review";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -37,7 +37,8 @@ export default function ApartmentInfoPage() {
 			>
 				<Grid2 size={12} sx={{ textAlign: "center" }}>
 					<img
-						src={apartment.src}
+						src={apartment.image.src}
+						alt={apartment.image.alt}
 						style={{
 							width: "clamp(300px, 100%, 50vw",
 							borderRadius: "12px",
@@ -78,7 +79,8 @@ export default function ApartmentInfoPage() {
 				<Grid2 size={"auto"}>
 					<Box sx={{ position: "sticky", top: "100px" }}>
 						<img
-							src={apartment.owner.img}
+							src={apartment.owner.image.src}
+							alt={apartment.owner.image.alt}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
 						<Link

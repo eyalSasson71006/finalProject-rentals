@@ -15,14 +15,14 @@ export default function Review({ reviewObj }) {
 				gap: 2,
 			}}
 		>
-			<Avatar alt="avatar" src={reviewObj.img} />
+			<Avatar alt={reviewObj.image.alt} src={reviewObj.image.src} />
 			<Box>
 				<Box sx={{ display: "flex" }}>
 					<Typography fontWeight={"bold"} mr={1}>
 						{reviewObj.username}
 					</Typography>
 					<Typography>{reviewObj.rating}</Typography>
-					<StarIcon sx={{width:"15px"}} />
+					<StarIcon sx={{ width: "15px" }} />
 				</Box>
 				<Typography>{reviewObj.text}</Typography>
 			</Box>

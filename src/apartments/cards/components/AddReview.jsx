@@ -1,9 +1,9 @@
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import user from "../../models/user";
 import SendIcon from "@mui/icons-material/Send";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import user from "../../../models/user";
 
 export default function AddReview() {
 	const [value, setValue] = useState(0);

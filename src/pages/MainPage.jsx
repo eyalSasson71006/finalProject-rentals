@@ -1,8 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import SearchBar from "../components/SearchBar";
-import CardsListComponent from "../cards/CardsListComponent";
 import { useIsDark } from "../providers/CustomThemeProvider";
+import CardsListComponent from "../apartments/cards/CardsListComponent";
 
 export default function MainPage() {
 	const { isDark, setIsDark } = useIsDark();

@@ -4,10 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
 import user from "../models/user";
-import CardsListComponent from "../cards/CardsListComponent";
-import AddReview from "../cards/components/addReview";
-import Review from "../cards/components/Review";
 import apartment from "../models/apartment";
+import CardsListComponent from "../apartments/cards/CardsListComponent";
+import AddReview from "../apartments/cards/components/AddReview";
+import Review from "../apartments/cards/components/Review";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
