@@ -1,32 +1,15 @@
 import React from "react";
-import {
-	Box,
-	Checkbox,
-	List,
-	ListItem,
-	ListItemText,
-	TextField,
-} from "@mui/material";
+import { Box, List } from "@mui/material";
 import FilterAccordion from "./components/FilterAccordion";
 import FilterCheckbox from "./components/FilterCheckbox";
 import FilterTextfield from "./components/FilterTextfield";
-import { useSearchParams } from "react-router-dom";
+import FilterSlider from "./components/FilterSlider";
 
 export default function FilterResults() {
-
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			<FilterAccordion title={"Price"}>
-				<FilterTextfield
-					name="minimumPrice"
-					type="number"
-					label="Minimum"
-				/>
-				<FilterTextfield
-					name="maximumPrice"
-					type="number"
-					label="Maximum"
-				/>
+				<FilterSlider minValue={0} maxValue={10_000} />
 			</FilterAccordion>
 			<FilterAccordion title={"City/Location"}>
 				<List component="div" disablePadding>
