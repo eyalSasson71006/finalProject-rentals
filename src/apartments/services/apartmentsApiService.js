@@ -11,6 +11,15 @@ export const getApartments = async () => {
     }
 };
 
+export const getApartmentById = async (id) => {
+    try {
+        const response = await axios.get(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
 export const createApartment = async (card) => {
     try {
         const { data } = await axios.post(apiUrl, card);

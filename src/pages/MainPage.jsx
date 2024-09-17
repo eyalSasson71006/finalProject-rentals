@@ -1,11 +1,18 @@
 import { Box, Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { useIsDark } from "../providers/CustomThemeProvider";
 import CardsListComponent from "../apartments/cards/CardsListComponent";
+import useApartments from "../hooks/useApartments";
 
 export default function MainPage() {
 	const { isDark, setIsDark } = useIsDark();
+	const { getAllApartments, apartments, setApartments } = useApartments();
+
+	useEffect(() => {
+		getAllApartments();
+	}, []);
+	
 	return (
 		<>
 			<Box
@@ -44,13 +51,15 @@ export default function MainPage() {
 					rent, with RentMate!
 				</Typography>
 			</Container>
-			<Box
-				sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}
-			>
-				<Typography variant="h2" sx={{ my: 2,textAlign:"center" }}>
+			<Box sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}>
+				<Typography variant="h2" sx={{ my: 2, textAlign: "center" }}>
 					Recommended Apartments
 				</Typography>
-				<CardsListComponent />
+				<CardsListComponent
+					apartments={apartments
+						.sort((a, b) => b.rating - a.rating)
+						.slice(0, 3)}
+				/>
 			</Box>
 		</>
 	);

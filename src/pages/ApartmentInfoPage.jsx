@@ -1,18 +1,30 @@
 import { Box, Button, Container, Grid2, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
-import apartment from "../models/apartment";
 import AmenitiesComponent from "../components/AmenitiesComponent";
 import ROUTES from "../routes/routesModel";
 import MapComponent from "../components/map/MapComponent";
 import AddReview from "../apartments/cards/components/AddReview";
 import Review from "../apartments/cards/components/Review";
+import useApartments from "../hooks/useApartments";
+import Spinner from "../components/Spinner";
+import Error from "../components/Error";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
 	const [toggle, setToggle] = useState(false);
+	const { getApartment, apartment, isLoading, error } = useApartments();
+
+	useEffect(() => {
+		getApartment(id);
+	}, [id]);
+	console.log(apartment);
+	
+	if (isLoading) return <Spinner />;
+	if (error) return <Error errorMessage={error} />;
+
 	const address = `${apartment.address.country} ${apartment.address.city} ${apartment.address.street} ${apartment.address.houseNumber} `;
 	return (
 		<>
@@ -72,7 +84,7 @@ export default function ApartmentInfoPage() {
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						<AddReview />
 						{apartment.reviews.map((review) => (
-							<Review key={review.id} reviewObj={review} />
+							<Review key={review._id} reviewObj={review} />
 						))}
 					</Box>
 				</Grid2>

@@ -18,10 +18,11 @@ export default function CardComponent({ apartment }) {
 				position: "relative",
 			}}
 		>
-			<CardActionArea onClick={()=> navigate(ROUTES.APARTMENT_INFO + "/" +apartment.id)}>
+			<CardActionArea onClick={()=> navigate(ROUTES.APARTMENT_INFO + "/" +apartment._id)}>
 				<Box
 					component="img"
-					src={apartment.src}
+					src={apartment.image.src}
+					alt={apartment.image.alt}
 					sx={{
 						width: "250px",
 						height: "250px",
