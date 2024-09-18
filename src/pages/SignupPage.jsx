@@ -4,13 +4,10 @@ import useForm from "../hooks/useForm";
 import initialSignupForm from "../users/helpers/initialForms/initialSignupForm";
 import signupSchema from "../users/models/signupSchema";
 import SignupForm from "../components/users/SignupForm";
-import normalizeUser from "../users/helpers/normalization/normalizeUser";
-
-const handleSignup = (data) => {
-	console.log(normalizeUser(data));
-};
+import useUsers from "../hooks/useUsers";
 
 export default function SignupPage() {
+	const {handleSignup} = useUsers()
 	const {
 		data,
 		errors,

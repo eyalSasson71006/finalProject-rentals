@@ -20,8 +20,7 @@ export default function ApartmentInfoPage() {
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
-	console.log(apartment);
-	
+
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 

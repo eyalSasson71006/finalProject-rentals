@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
+import useAxios from "./useAxios";
 
 
 export default function useApartments() {
@@ -7,6 +8,8 @@ export default function useApartments() {
     const [apartment, setApartment] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
+
+    useAxios()
 
     const getAllApartments = async () => {
         setIsLoading(true);

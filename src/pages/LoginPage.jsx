@@ -4,13 +4,10 @@ import LoginForm from "../components/users/LoginForm";
 import initialLoginForm from "../users/helpers/initialForms/initialLoginForm";
 import loginSchema from "../users/models/loginSchema";
 import useForm from "../hooks/useForm";
-
-const handleLogin = (data)=>{
-	console.log(data);
-	
-}
+import useUsers from "../hooks/useUsers";
 
 export default function LoginPage() {
+	const { handleLogin } = useUsers();
 	const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
 		useForm(initialLoginForm, loginSchema, handleLogin);
 
