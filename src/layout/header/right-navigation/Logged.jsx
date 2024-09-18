@@ -12,7 +12,8 @@ export default function Logged() {
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const { user } = useCurrentUser()
-	const {getUserById, userById} = useUsers()
+	const {getUserById} = useUsers()
+	const [userData, setUserData] = useState();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -23,8 +24,11 @@ export default function Logged() {
 	};
 
 	useEffect(()=>{
-		getUserById(user._id);
-	},[])
+		const getData = async () => {
+			setUserData(await getUserById(user._id));
+		};
+		getData();
+	},[user])
 	
 	return (
 		<>
@@ -33,7 +37,7 @@ export default function Logged() {
 					onClick={handleClick}
 					sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}
 				>
-					<Avatar alt="avatar" src={userById ? userById.image.src : "/images/avatar.png"} />
+					<Avatar alt="avatar" src={userData ? userData.image.src : "/images/avatar.png"} />
 				</IconButton>
 			</Tooltip>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

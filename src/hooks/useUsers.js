@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../providers/UserProvider";
-import { getUserData, login, signup } from "../users/services/usersApiService";
+import { getUserData, getUsersApartments, login, signup } from "../users/services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../users/services/localStorageService";
 import normalizeUser from "../users/helpers/normalization/normalizeUser";
 import ROUTES from "../routes/routesModel";
@@ -11,7 +11,6 @@ import useAxios from "./useAxios";
 export default function useUsers() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [userById, setUserById] = useState();
     const { setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
 
@@ -62,7 +61,6 @@ export default function useUsers() {
         try {
             let user = await getUserData(id);
             setIsLoading(false);
-            setUserById(user);
             return user;
         } catch (err) {
             setError(err.message);
@@ -70,8 +68,22 @@ export default function useUsers() {
         }
         setIsLoading(false);
     };
+    
+    const handleGetUsersApartments = async (id) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            let apartments = await getUsersApartments(id);            
+            setIsLoading(false);
+            return apartments;
+        } catch (err) {
+            setError(err.message);
+            // setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    };
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, userById };
+    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments };
 }
 
 

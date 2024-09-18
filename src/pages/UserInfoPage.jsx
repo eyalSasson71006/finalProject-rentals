@@ -1,16 +1,33 @@
 import { Box, Button, Grid2, Typography } from "@mui/material";
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import PageHeadline from "../components/PageHeadline";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
-import user from "../models/user";
 import apartment from "../models/apartment";
 import CardsListComponent from "../apartments/cards/CardsListComponent";
 import AddReview from "../apartments/cards/components/AddReview";
 import Review from "../apartments/cards/components/Review";
+import useUsers from "../hooks/useUsers";
+import Spinner from "../components/Spinner";
+import Error from "../components/Error";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
+	const { getUserById, handleGetUsersApartments, isLoading, error } =
+		useUsers();
+	const [userData, setUserData] = useState();
+	const [userApartments, setUserApartments] = useState();
+
+	useEffect(() => {
+		const getData = async () => {
+			setUserData(await getUserById(id));
+			setUserApartments(await handleGetUsersApartments(id));
+		};
+		getData();
+	}, [id]);
+
+	if (isLoading) return <Spinner />;
+	if (error) return <Error errorMessage={error} />;
+
 	return (
 		<Box>
 			<Grid2
@@ -29,14 +46,14 @@ export default function UserInfoPage() {
 							variant="h2"
 							sx={{ my: 2, textAlign: "center" }}
 						>
-							{user.name.first}'s Apartments
+							{userData.name.first}'s Apartments
 						</Typography>
-						<CardsListComponent />
+						<CardsListComponent apartments={userApartments}/>
 					</Box>
 					<Typography
 						variant="h3"
 						mb={3}
-					>{`About ${user.name.first}`}</Typography>
+					>{`About ${userData.name.first}`}</Typography>
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						<AddReview />
 						{apartment.reviews.map((review) => (
@@ -47,11 +64,12 @@ export default function UserInfoPage() {
 				<Grid2 size={"auto"}>
 					<Box sx={{ position: "sticky", top: "100px" }}>
 						<img
-							src={user.img.src}
+							src={userData.image.src}
+							alt={userData.image.alt}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
 						<Typography variant="h5">
-							{`${user.name.first} ${user.name.middle} ${user.name.last}`}
+							{`${userData.name.first} ${userData.name.middle} ${userData.name.last}`}
 						</Typography>
 						<Box
 							sx={{
@@ -65,8 +83,12 @@ export default function UserInfoPage() {
 							<StarIcon />
 						</Box>
 						<Box>
-							<Typography variant="h6">{user.phone}</Typography>
-							<Typography variant="h6">{user.email}</Typography>
+							<Typography variant="h6">
+								{userData.phone}
+							</Typography>
+							<Typography variant="h6">
+								{userData.email}
+							</Typography>
 						</Box>
 						<Button
 							variant="contained"

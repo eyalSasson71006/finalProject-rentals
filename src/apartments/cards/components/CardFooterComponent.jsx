@@ -21,7 +21,7 @@ export default function CardFooterComponent({ apartment }) {
 				<Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
 					<LocationOnIcon sx={{ width: "0.9rem" }} />
 					<Typography sx={{ fontSize: "0.8rem" }}>
-						{apartment.location}
+						{apartment.address.city}, {apartment.address.country}
 					</Typography>
 				</Box>
 				<Typography>{apartment.title}</Typography>

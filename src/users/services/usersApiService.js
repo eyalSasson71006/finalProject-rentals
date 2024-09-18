@@ -30,3 +30,12 @@ export const getUserData = async (id) => {
         throw new Error(err.message);
     }
 };
+
+export const getUsersApartments = async (id) => {
+    try {
+        const response = await axios.get(`${apiUrl}/users-apartments/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
