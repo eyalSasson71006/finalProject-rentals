@@ -1,10 +1,9 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import React from "react";
-import apartment from "../models/apartment";
 import { camelCaseToText } from "../helpers/helperFunctions";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-export default function AmenitiesComponent() {
+export default function AmenitiesComponent({ apartment }) {
 	return (
 		<Box
 			sx={{
@@ -19,7 +18,7 @@ export default function AmenitiesComponent() {
 			</Typography>
 			<Grid2 container>
 				{Object.entries(apartment.amenities).map((amenity, index) => {
-					if (amenity[1])
+					if (amenity[1] && amenity[0] != "_id")
 						return (
 							<Grid2
 								size={6}

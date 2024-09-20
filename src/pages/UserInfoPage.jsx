@@ -2,7 +2,6 @@ import { Box, Button, Grid2, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
-import apartment from "../models/apartment";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";

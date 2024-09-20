@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid2, Typography } from "@mui/material";
+import { Box, Button, Grid2, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
@@ -85,7 +85,7 @@ export default function ApartmentInfoPage() {
 					>
 						{apartment.description}
 					</Typography>
-					<AmenitiesComponent />
+					<AmenitiesComponent apartment={apartment} />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						<AddReview setReviews={setReviews} apartmentId={id} />
 						{reviews.map((review) => (
