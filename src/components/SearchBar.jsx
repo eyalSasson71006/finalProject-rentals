@@ -1,4 +1,12 @@
-import { Box, Button, TextField } from "@mui/material";
+import {
+	Box,
+	Button,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+	TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../routes/routesModel";
@@ -9,8 +17,8 @@ export default function SearchBar() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [search, setSearch] = useState({
 		location: searchParams.get("location") || "",
-		dateFrom: searchParams.get("dateFrom") || "",
-		dateTo: searchParams.get("dateTo") || "",
+		propertyType: searchParams.get("propertyType") || "",
+		bedrooms: searchParams.get("bedrooms") || 1,
 		guests: searchParams.get("guests") || 1,
 	});
 
@@ -30,6 +38,9 @@ export default function SearchBar() {
 	const textFieldSx = {
 		color: "black",
 		"& .MuiInputLabel-root": {
+			color: "black",
+		},
+		"& .MuiSvgIcon-root": {
 			color: "black",
 		},
 		"& .MuiOutlinedInput-root": {
@@ -64,6 +75,7 @@ export default function SearchBar() {
 				border: "1px solid gray",
 				width: "fit-content",
 				margin: "0 auto",
+				backgroundColor:"white"
 			}}
 		>
 			<TextField
@@ -74,20 +86,40 @@ export default function SearchBar() {
 				label={"Location"}
 				onChange={handleChange}
 			/>
+			<FormControl
+				sx={{
+					...textFieldSx,
+					minWidth: "150px",
+				}}
+			>
+				<InputLabel id={"propertyType"}>{"Property Type"}</InputLabel>
+				<Select
+					labelId={"propertyType"}
+					id={"propertyType"}
+					name={"propertyType"}
+					label={"Property Type"}
+					value={search.propertyType}
+					onChange={handleChange}
+				>
+					{["apartment", "house", "penthouse", "studio"].map(
+						(item, index) => (
+							<MenuItem key={item + index} value={item}>
+								{item}
+							</MenuItem>
+						)
+					)}
+				</Select>
+			</FormControl>
+
 			<TextField
-				required
-				sx={textFieldSx}
-				type="date"
-				name="dateFrom"
-				value={search.dateFrom}
-				onChange={handleChange}
-			/>
-			<TextField
-				required
-				sx={textFieldSx}
-				type="date"
-				name="dateTo"
-				value={search.dateTo}
+				sx={{
+					...textFieldSx,
+					width: "90px",
+				}}
+				type="number"
+				name="bedrooms"
+				label="Bedrooms"
+				value={search.bedrooms}
 				onChange={handleChange}
 			/>
 			<TextField

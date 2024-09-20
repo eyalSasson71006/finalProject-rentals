@@ -7,7 +7,7 @@ import React from "react";
 
 export default function FilterAccordion({ title, children }) {
 	return (
-		<Accordion>
+		<Accordion defaultExpanded>
 			<AccordionSummary
 				expandIcon={<ArrowDropDownIcon />}
 				aria-controls="filter-content"
@@ -15,7 +15,9 @@ export default function FilterAccordion({ title, children }) {
 			>
 				<Typography>{title}</Typography>
 			</AccordionSummary>
-			<AccordionDetails sx={{maxHeight:"300px", overflow:"auto"}}>{children}</AccordionDetails>
+			<AccordionDetails sx={{ maxHeight: "300px", overflow: "auto" }}>
+				{children}
+			</AccordionDetails>
 		</Accordion>
 	);
 }

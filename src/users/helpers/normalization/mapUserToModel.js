@@ -5,7 +5,7 @@ const mapUserToModel = (user) => ({
     email: user.email,
     phone: user.phone,
     password: user.password,
-    url: user.image.url,
+    src: user.image.src,
     alt: user.image.alt,
     state: user.address.state,
     country: user.address.country,

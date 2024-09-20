@@ -8,7 +8,7 @@ const normalizeUser = (user) => ({
     phone: user.phone,
     password: user.password,
     image: {
-        url: user.url,
+        src: user.src,
         alt: user.alt,
     },
     address: {

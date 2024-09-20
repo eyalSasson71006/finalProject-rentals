@@ -13,7 +13,7 @@ export default function Logged() {
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const { user } = useCurrentUser();
-	const { getUserById, userData } = useUsers();
+	const { getUserById, userData, handleLogout } = useUsers();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -67,7 +67,14 @@ export default function Logged() {
 				>
 					Edit account
 				</MenuItem>
-				<MenuItem onClick={handleClose}>Logout</MenuItem>
+				<MenuItem
+					onClick={() => {
+						handleLogout();
+						navigate(ROUTES.ROOT);
+					}}
+				>
+					Logout
+				</MenuItem>
 			</Menu>
 		</>
 	);

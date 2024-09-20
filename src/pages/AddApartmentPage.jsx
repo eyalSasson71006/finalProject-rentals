@@ -15,8 +15,6 @@ export default function AddApartmentPage() {
 		useForm(initialApartmentForm, apartmentSchema, addApartment);
 	const steps = ["Basic Details", "Amenities", "Add Image"];
 
-	console.log(data);
-
 	const components = [
 		<BasicDetailsComponent
 			errors={errors}

@@ -71,9 +71,9 @@ export default function SignupForm({
 				size={{ xs: 6 }}
 			/>
 			<Input
-				name="url"
+				name="src"
 				label="image url"
-				error={errors.url}
+				error={errors.src}
 				onChange={onInputChange}
 				data={data}
 				size={{ xs: 6 }}

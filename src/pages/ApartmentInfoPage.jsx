@@ -11,22 +11,26 @@ import Review from "../components/reviews/Review";
 import useApartments from "../hooks/useApartments";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
+import useUsers from "../hooks/useUsers";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
 	const [toggle, setToggle] = useState(false);
 	const [reviews, setReviews] = useState([]);
 	const { getApartment, apartment, isLoading, error } = useApartments();
+	const { getUserById, userData } = useUsers();
 
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
 
 	useEffect(() => {
-		if (!apartment) return
+		if(!apartment) return
+		getUserById(apartment.owner);
 		setReviews(apartment.reviews);
 	}, [apartment]);
-	
+
+
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 
@@ -96,20 +100,16 @@ export default function ApartmentInfoPage() {
 				<Grid2 size={"auto"}>
 					<Box sx={{ position: "sticky", top: "100px" }}>
 						<img
-							src={apartment.owner.image.src}
-							alt={apartment.owner.image.alt}
+							src={userData?.image.src}
+							alt={userData?.image.alt}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
 						<Link
 							style={{ textDecoration: "none", color: "inherit" }}
-							to={
-								ROUTES.USER_PROFILE +
-								"/" +
-								apartment.owner.ownerId
-							}
+							to={ROUTES.USER_PROFILE + "/" + userData?._id}
 						>
 							<Typography variant="h5">
-								{apartment.owner.fullName}
+								{userData?.name.first} {userData?.name.last}
 							</Typography>
 						</Link>
 						<Box
@@ -121,7 +121,7 @@ export default function ApartmentInfoPage() {
 						>
 							<Typography variant="h6">Host rating: </Typography>
 							<Typography variant="h5">
-								{apartment.owner.rating}
+								{userData?.rating.toFixed(1)}
 							</Typography>
 							<StarIcon />
 						</Box>
