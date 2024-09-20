@@ -29,3 +29,31 @@ export const createApartment = async (card) => {
     }
 };
 
+export const deleteApartment = async (id) => {
+    try {
+        const response = await axios.delete(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+export const editApartment = async (id, apartment) => {
+    try {
+        const { data } = await axios.put(`${apiUrl}/${id}`, apartment);
+        return data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+export const changeLikeStatus = async (id) => {
+    try {
+        const response = await axios.patch(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+

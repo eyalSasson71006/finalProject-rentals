@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { createApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
+import { useCallback, useState } from "react";
+import { changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
 import useAxios from "./useAxios";
 import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function useApartments() {
     const navigate = useNavigate();
     const [error, setError] = useState();
 
-    useAxios()
+    useAxios();
 
     const getAllApartments = async () => {
         setIsLoading(true);
@@ -45,7 +45,7 @@ export default function useApartments() {
             let data = normalizeApartment(apartment);
             await createApartment(data);
             setIsLoading(false);
-            navigate(ROUTES.ROOT)
+            navigate(ROUTES.ROOT);
             return data;
         } catch (error) {
             setError(err.message);
@@ -53,5 +53,37 @@ export default function useApartments() {
         setIsLoading(false);
     };
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment };
+    const handleDelete = useCallback((id) => {
+        try {
+            deleteApartment(id);
+            // setSnack("info", `Card ${id} was deleted successfully`);
+        } catch (err) {
+            setSnack("error", err.message);
+        }
+    }, []);
+
+    const handleEdit = useCallback(async (id, apartment) => {
+        try {
+            await editApartment(id, normalizeApartment(apartment));
+            // setSnack("success", "Card edited successfully!");
+            setTimeout(() => {
+                navigate(ROUTES.MY_APARTMENTS);
+            }, 2000);
+        } catch (err) {
+            setError(err.message);
+            // setSnack("error", err.message);
+        }
+    }, []);
+
+
+    const handleLike = useCallback(async (id) => {
+        try {
+            let apartment = await changeLikeStatus(id);
+            return apartment.likes.includes(user._id);
+        } catch (err) {
+            setSnack("error", err.message);
+        }
+    }, [user]);
+
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike };
 }
