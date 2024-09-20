@@ -12,8 +12,8 @@ export default function Logged() {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
-	const { user } = useCurrentUser()
-	const {getUserById} = useUsers()
+	const { user } = useCurrentUser();
+	const { getUserById } = useUsers();
 	const [userData, setUserData] = useState();
 
 	const handleClick = (event) => {
@@ -24,13 +24,13 @@ export default function Logged() {
 		setAnchorEl(null);
 	};
 
-	useEffect(()=>{
+	useEffect(() => {
 		const getData = async () => {
 			setUserData(await getUserById(user._id));
 		};
 		getData();
-	},[user])
-	
+	}, [user]);
+
 	return (
 		<>
 			<Tooltip title="My Account">
@@ -38,13 +38,18 @@ export default function Logged() {
 					onClick={handleClick}
 					sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}
 				>
-					<Avatar alt="avatar" src={userData ? userData.image.src : "/images/avatar.png"} />
+					<Avatar
+						alt="avatar"
+						src={
+							userData ? userData.image.src : "/images/avatar.png"
+						}
+					/>
 				</IconButton>
 			</Tooltip>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
 				<MenuItem
 					onClick={() => {
-						navigate(ROUTES.USER_PROFILE);
+						navigate(ROUTES.USER_PROFILE + "/" + user._id);
 						handleClose();
 					}}
 				>

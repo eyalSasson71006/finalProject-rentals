@@ -24,7 +24,7 @@ export default function UserInfoPage() {
 		};
 		getData();
 	}, [id]);
-
+	
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 

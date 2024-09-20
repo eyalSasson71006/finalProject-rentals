@@ -13,7 +13,7 @@ const Error = ({ errorMessage }) => {
 		>
 			<img
 				style={{ width: "300px" }}
-				src="/img404.png"
+				src="/images/img404.png"
 				alt="broken robot"
 			/>
 			<Typography m={2} variant="h5" component="h3">

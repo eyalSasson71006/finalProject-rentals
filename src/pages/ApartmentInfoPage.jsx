@@ -96,7 +96,7 @@ export default function ApartmentInfoPage() {
 						/>
 						<Link
 							style={{ textDecoration: "none", color: "inherit" }}
-							to={ROUTES.USER_PROFILE + "/" + apartment.owner._id}
+							to={ROUTES.USER_PROFILE + "/" + apartment.owner.ownerId}
 						>
 							<Typography variant="h5">
 								{apartment.owner.fullName}
