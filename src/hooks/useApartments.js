@@ -4,6 +4,7 @@ import useAxios from "./useAxios";
 import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
+import { useCurrentUser } from "../providers/UserProvider";
 
 
 export default function useApartments() {
@@ -12,6 +13,7 @@ export default function useApartments() {
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [error, setError] = useState();
+    const { user } = useCurrentUser();
 
     useAxios();
 
