@@ -39,3 +39,12 @@ export const getUsersApartments = async (id) => {
         throw new Error(err.message);
     }
 };
+
+export const getUsersReviews = async (id) => {
+    try {
+        const response = await axios.get(`${apiUrl}/users-reviews/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};

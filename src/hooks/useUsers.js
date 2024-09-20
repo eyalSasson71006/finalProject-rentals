@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../providers/UserProvider";
-import { getUserData, getUsersApartments, login, signup } from "../users/services/usersApiService";
+import { getUserData, getUsersApartments, getUsersReviews, login, signup } from "../users/services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../users/services/localStorageService";
 import normalizeUser from "../users/helpers/normalization/normalizeUser";
 import ROUTES from "../routes/routesModel";
@@ -61,7 +61,7 @@ export default function useUsers() {
         setError(null);
         try {
             let user = await getUserData(id);
-            setUserData(user)
+            setUserData(user);
             setIsLoading(false);
             return user;
         } catch (err) {
@@ -70,12 +70,12 @@ export default function useUsers() {
         }
         setIsLoading(false);
     };
-    
+
     const handleGetUsersApartments = async (id) => {
         setIsLoading(true);
         setError(null);
         try {
-            let apartments = await getUsersApartments(id);            
+            let apartments = await getUsersApartments(id);
             setIsLoading(false);
             return apartments;
         } catch (err) {
@@ -85,7 +85,17 @@ export default function useUsers() {
         setIsLoading(false);
     };
 
-    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments };
+    const handleGetUsersReviews = async (id) => {
+        try {
+            let reviews = await getUsersReviews(id);                        
+            return reviews;
+        } catch (err) {
+            setError(err.message);
+            // setSnack("error", err.message);
+        }
+    };
+
+    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments, handleGetUsersReviews };
 }
 
 

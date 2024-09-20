@@ -11,19 +11,26 @@ import Review from "../components/reviews/Review";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
-	const { getUserById, handleGetUsersApartments, isLoading, error } =
-		useUsers();
+	const {
+		getUserById,
+		handleGetUsersApartments,
+		handleGetUsersReviews,
+		isLoading,
+		error,
+	} = useUsers();
 	const [userData, setUserData] = useState();
 	const [userApartments, setUserApartments] = useState();
+	const [userReviews, setUserReviews] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
 			setUserData(await getUserById(id));
 			setUserApartments(await handleGetUsersApartments(id));
+			setUserReviews(await handleGetUsersReviews(id));
 		};
 		getData();
 	}, [id]);
-	
+
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 
@@ -47,15 +54,15 @@ export default function UserInfoPage() {
 						>
 							{userData.name.first}'s Apartments
 						</Typography>
-						<CardsListComponent apartments={userApartments}/>
+						<CardsListComponent apartments={userApartments} />
 					</Box>
 					<Typography
 						variant="h3"
 						mb={3}
 					>{`About ${userData.name.first}`}</Typography>
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						{apartment.reviews.map((review) => (
-							<Review key={review.id} reviewObj={review} />
+						{userReviews.map((review) => (
+							<Review key={review._id} reviewObj={review} />
 						))}
 					</Box>
 				</Grid2>
@@ -77,7 +84,9 @@ export default function UserInfoPage() {
 							}}
 						>
 							<Typography variant="h6">Host rating: </Typography>
-							<Typography variant="h5">4.9</Typography>
+							<Typography variant="h5">
+								{userData.rating.toFixed(1)}
+							</Typography>
 							<StarIcon />
 						</Box>
 						<Box>
