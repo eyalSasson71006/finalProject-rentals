@@ -5,7 +5,7 @@ import CardComponent from "./CardComponent";
 export default function CardsListComponent({ apartments }) {
 	if (apartments.length == 0)
 		return (
-			<Box sx={{ borderRadius: "20px", border: "1px solid #708871", my:4 }}>
+			<Box sx={{ borderRadius: "20px", border: "1px solid #708871", m:4 }}>
 				<Typography py={5} variant="h5" textAlign={"center"}>
 					No apartments to present...
 				</Typography>
