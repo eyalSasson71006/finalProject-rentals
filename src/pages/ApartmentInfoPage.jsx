@@ -15,12 +15,18 @@ import Error from "../components/Error";
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
 	const [toggle, setToggle] = useState(false);
+	const [reviews, setReviews] = useState([]);
 	const { getApartment, apartment, isLoading, error } = useApartments();
 
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
 
+	useEffect(() => {
+		if (!apartment) return
+		setReviews(apartment.reviews);
+	}, [apartment]);
+	
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 
@@ -81,8 +87,8 @@ export default function ApartmentInfoPage() {
 					</Typography>
 					<AmenitiesComponent />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						<AddReview apartmentId={id} />
-						{apartment.reviews.map((review) => (
+						<AddReview setReviews={setReviews} apartmentId={id} />
+						{reviews.map((review) => (
 							<Review key={review._id} reviewObj={review} />
 						))}
 					</Box>

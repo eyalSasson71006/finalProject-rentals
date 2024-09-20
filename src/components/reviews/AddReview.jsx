@@ -7,7 +7,7 @@ import { useCurrentUser } from "../../providers/UserProvider";
 import useUsers from "../../hooks/useUsers";
 import useApartments from "../../hooks/useApartments";
 
-export default function AddReview({ apartmentId }) {
+export default function AddReview({ apartmentId, setReviews }) {
 	const [value, setValue] = useState(0);
 	const [review, setReview] = useState({});
 	const { user } = useCurrentUser();
@@ -38,8 +38,8 @@ export default function AddReview({ apartmentId }) {
 		}));
 	}
 
-	function handleSubmit() {
-		handleAddReview(apartmentId, review);
+	async function handleSubmit() {
+		setReviews(await handleAddReview(apartmentId, review));
 		setReview((prev) => ({
 			...prev,
 			text: "",
