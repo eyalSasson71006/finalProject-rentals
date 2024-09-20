@@ -13,8 +13,7 @@ export default function Logged() {
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const { user } = useCurrentUser();
-	const { getUserById } = useUsers();
-	const [userData, setUserData] = useState();
+	const { getUserById, userData } = useUsers();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -25,10 +24,7 @@ export default function Logged() {
 	};
 
 	useEffect(() => {
-		const getData = async () => {
-			setUserData(await getUserById(user._id));
-		};
-		getData();
+		getUserById(user._id);
 	}, [user]);
 
 	return (

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
+import { addReview, changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
 import useAxios from "./useAxios";
 import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
 import { useNavigate } from "react-router-dom";
@@ -60,7 +60,8 @@ export default function useApartments() {
             deleteApartment(id);
             // setSnack("info", `Card ${id} was deleted successfully`);
         } catch (err) {
-            setSnack("error", err.message);
+            // setSnack("error", err.message);
+            console.log(err.message);
         }
     }, []);
 
@@ -83,9 +84,20 @@ export default function useApartments() {
             let apartment = await changeLikeStatus(id);
             return apartment.likes.includes(user._id);
         } catch (err) {
-            setSnack("error", err.message);
+            // setSnack("error", err.message);
+            console.log(err.message);
         }
     }, [user]);
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike };
+    const handleAddReview = useCallback(async (id, review) => {
+        try {
+            let reviews = await addReview(id, review);            
+            return reviews;
+        } catch (err) {
+            // setSnack("error", err.message);
+            console.log(err.message);
+        }
+    }, [user]);
+
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview };
 }

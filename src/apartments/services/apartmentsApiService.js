@@ -56,4 +56,13 @@ export const changeLikeStatus = async (id) => {
     }
 }
 
+export const addReview = async (id, review) => {
+    try {
+        const response = await axios.patch(`${apiUrl}/review/${id}`, review);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 

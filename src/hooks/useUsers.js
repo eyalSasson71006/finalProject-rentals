@@ -11,6 +11,7 @@ import useAxios from "./useAxios";
 export default function useUsers() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
+    const [userData, setUserData] = useState();
     const { setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
 
@@ -60,6 +61,7 @@ export default function useUsers() {
         setError(null);
         try {
             let user = await getUserData(id);
+            setUserData(user)
             setIsLoading(false);
             return user;
         } catch (err) {
@@ -83,7 +85,7 @@ export default function useUsers() {
         setIsLoading(false);
     };
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments };
+    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments };
 }
 
 

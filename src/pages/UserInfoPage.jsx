@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import apartment from "../models/apartment";
 import CardsListComponent from "../apartments/cards/CardsListComponent";
-import AddReview from "../apartments/cards/components/AddReview";
 import Review from "../apartments/cards/components/Review";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
@@ -55,7 +54,6 @@ export default function UserInfoPage() {
 						mb={3}
 					>{`About ${userData.name.first}`}</Typography>
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						<AddReview />
 						{apartment.reviews.map((review) => (
 							<Review key={review.id} reviewObj={review} />
 						))}

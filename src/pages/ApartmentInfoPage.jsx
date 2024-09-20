@@ -81,7 +81,7 @@ export default function ApartmentInfoPage() {
 					</Typography>
 					<AmenitiesComponent />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						<AddReview />
+						<AddReview apartmentId={id} />
 						{apartment.reviews.map((review) => (
 							<Review key={review._id} reviewObj={review} />
 						))}
@@ -96,7 +96,11 @@ export default function ApartmentInfoPage() {
 						/>
 						<Link
 							style={{ textDecoration: "none", color: "inherit" }}
-							to={ROUTES.USER_PROFILE + "/" + apartment.owner.ownerId}
+							to={
+								ROUTES.USER_PROFILE +
+								"/" +
+								apartment.owner.ownerId
+							}
 						>
 							<Typography variant="h5">
 								{apartment.owner.fullName}
