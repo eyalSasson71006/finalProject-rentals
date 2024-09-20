@@ -4,6 +4,7 @@ import FilterAccordion from "./components/FilterAccordion";
 import FilterCheckbox from "./components/FilterCheckbox";
 import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
+import amenities from "../../models/amenities";
 
 export default function FilterResults() {
 	return (
@@ -35,29 +36,9 @@ export default function FilterResults() {
 			</FilterAccordion>
 			<FilterAccordion title={"Amenities"}>
 				<List component="div" disablePadding>
-					<FilterCheckbox name="airConditioning" />
-					<FilterCheckbox name="heating" />
-					<FilterCheckbox name="wifi" />
-					<FilterCheckbox name="parking" />
-					<FilterCheckbox name="washingMachine" />
-					<FilterCheckbox name="dryer" />
-					<FilterCheckbox name="dishwasher" />
-					<FilterCheckbox name="balcony" />
-					<FilterCheckbox name="pool" />
-					<FilterCheckbox name="gym" />
-					<FilterCheckbox name="elevator" />
-					<FilterCheckbox name="petFriendly" />
-					<FilterCheckbox name="furnished" />
-					<FilterCheckbox name="securitySystem" />
-					<FilterCheckbox name="fireplace" />
-					<FilterCheckbox name="garden" />
-					<FilterCheckbox name="rooftopAccess" />
-					<FilterCheckbox name="smartHomeFeatures" />
-					<FilterCheckbox name="cableTV" />
-					<FilterCheckbox name="outdoorSeating" />
-					<FilterCheckbox name="kitchenAppliances" />
-					<FilterCheckbox name="smokeDetectors" />
-					<FilterCheckbox name="wheelchairAccessible" />
+					{amenities.map((item, index) => (
+						<FilterCheckbox key={index} name={item} />
+					))}
 				</List>
 			</FilterAccordion>
 		</Box>

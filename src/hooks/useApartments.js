@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
+import { createApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
 import useAxios from "./useAxios";
+import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../routes/routesModel";
 
 
 export default function useApartments() {
     const [apartments, setApartments] = useState([]);
     const [apartment, setApartment] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
     const [error, setError] = useState();
 
     useAxios()
@@ -35,5 +39,19 @@ export default function useApartments() {
         setIsLoading(false);
     };
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment };
+    const addApartment = async (apartment) => {
+        setIsLoading(true);
+        try {
+            let data = normalizeApartment(apartment);
+            await createApartment(data);
+            setIsLoading(false);
+            navigate(ROUTES.ROOT)
+            return data;
+        } catch (error) {
+            setError(err.message);
+        }
+        setIsLoading(false);
+    };
+
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment };
 }

@@ -16,7 +16,7 @@ export default function SearchResults() {
 					<FilterResults />
 				</Box>
 				<Box sx={{ flexGrow: "0" }}>
-					<CardsListComponent />
+					{/* <CardsListComponent /> */}
 				</Box>
 			</Box>
 		</Box>

@@ -11,10 +11,12 @@ const Input = ({
 	required = true,
 	error,
 	onChange,
+	multiline,
+	maxRows = 1,
 	...rest
 }) => {
 	return (
-		<Grid2 size={{ xs: 12}} {...rest}>
+		<Grid2 size={{ xs: 12 }} {...rest}>
 			<TextField
 				variant={variant}
 				label={label}
@@ -23,6 +25,8 @@ const Input = ({
 				name={name}
 				value={data[name] ? data[name] : ""}
 				required={required}
+				multiline={multiline}
+				maxRows={maxRows}
 				helperText={error}
 				error={Boolean(error)}
 				onChange={onChange}

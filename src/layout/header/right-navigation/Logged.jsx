@@ -6,6 +6,7 @@ import { Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../../providers/UserProvider";
 import useUsers from "../../../hooks/useUsers";
+import ROUTES from "../../../routes/routesModel";
 
 export default function Logged() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -48,6 +49,14 @@ export default function Logged() {
 					}}
 				>
 					My account
+				</MenuItem>
+				<MenuItem
+					onClick={() => {
+						navigate(ROUTES.CREATE_APARTMENT);
+						handleClose();
+					}}
+				>
+					List Apartment
 				</MenuItem>
 				<MenuItem
 					onClick={() => {
