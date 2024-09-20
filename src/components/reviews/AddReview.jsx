@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import { useCurrentUser } from "../../../providers/UserProvider";
-import useUsers from "../../../hooks/useUsers";
-import useApartments from "../../../hooks/useApartments";
+import { useCurrentUser } from "../../providers/UserProvider";
+import useUsers from "../../hooks/useUsers";
+import useApartments from "../../hooks/useApartments";
 
 export default function AddReview({ apartmentId }) {
 	const [value, setValue] = useState(0);

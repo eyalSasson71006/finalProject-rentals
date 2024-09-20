@@ -3,7 +3,7 @@ import SearchBar from "../components/SearchBar";
 import { Box } from "@mui/material";
 import FilterResults from "../components/resultsFilter/FilterResults";
 import { useSearchParams } from "react-router-dom";
-import CardsListComponent from "../apartments/cards/CardsListComponent";
+import CardsListComponent from "../components/cards/CardsListComponent";
 
 export default function SearchResults() {
 	let [searchParams, setSearchParams] = useSearchParams();

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, IconButton } from "@mui/material";
-import { useCurrentUser } from "../../../providers/UserProvider";
-import useApartments from "../../../hooks/useApartments";
+import { useCurrentUser } from "../../providers/UserProvider";
+import useApartments from "../../hooks/useApartments";
 
 export default function CardHeaderComponent({ apartment }) {
 	const { user } = useCurrentUser();

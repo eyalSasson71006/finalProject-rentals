@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import PageHeadline from "../components/PageHeadline";
-import CardsListComponent from "../apartments/cards/CardsListComponent";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useCurrentUser } from "../providers/UserProvider";
+import CardsListComponent from "../components/cards/CardsListComponent";
 
 export default function MyApartmentsPage() {
 	const { user } = useCurrentUser();

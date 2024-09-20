@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import apartment from "../models/apartment";
-import CardsListComponent from "../apartments/cards/CardsListComponent";
-import Review from "../apartments/cards/components/Review";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
+import CardsListComponent from "../components/cards/CardsListComponent";
+import Review from "../components/reviews/Review";
 
 export default function UserInfoPage() {
 	const { id } = useParams();

@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PageHeadline from "../components/PageHeadline";
-import CardsListComponent from "../apartments/cards/CardsListComponent";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useCurrentUser } from "../providers/UserProvider";
 import useApartments from "../hooks/useApartments";
+import CardsListComponent from "../components/cards/CardsListComponent";
 
 export default function FavoritesPage() {
 	const { user } = useCurrentUser();
