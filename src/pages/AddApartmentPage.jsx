@@ -8,6 +8,7 @@ import useForm from "../hooks/useForm";
 import apartmentSchema from "../apartments/models/apartmentSchema";
 import initialApartmentForm from "../apartments/helpers/initialForms/initialCardForm";
 import useApartments from "../hooks/useApartments";
+import PageHeadline from "../components/PageHeadline";
 
 export default function AddApartmentPage() {
 	const { addApartment } = useApartments();
@@ -40,20 +41,23 @@ export default function AddApartmentPage() {
 		/>,
 	];
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				mt: 15,
-			}}
-		>
-			<StepperForm
-				validateForm={validateForm}
-				components={components}
-				steps={steps}
-				onSubmit={onSubmit}
-			/>
+		<Box>
+			<PageHeadline title={"List apartment"} />
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					mt: 5,
+				}}
+			>
+				<StepperForm
+					validateForm={validateForm}
+					components={components}
+					steps={steps}
+					onSubmit={onSubmit}
+				/>
+			</Box>
 		</Box>
 	);
 }

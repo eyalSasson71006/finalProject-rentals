@@ -38,7 +38,7 @@ export default function StepperForm({
 	};
 
 	return (
-		<Box sx={{ width: "70%" }}>
+		<Box sx={{ width: "70%", mb:7 }}>
 			<Stepper activeStep={activeStep}>
 				{steps.map((label, index) => {
 					const stepProps = {};
@@ -64,7 +64,7 @@ export default function StepperForm({
 				>
 					{components[activeStep]}
 				</Box>
-				<Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+				<Box sx={{ display: "flex", flexDirection: "row" }}>
 					<Button
 						color="inherit"
 						disabled={activeStep === 0}
