@@ -1,25 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useApartments from "../hooks/useApartments";
+import { useCurrentUser } from "../providers/UserProvider";
+import { Navigate, useParams } from "react-router-dom";
+import useForm from "../hooks/useForm";
+import initialApartmentForm from "../apartments/helpers/initialForms/initialApartmentForm";
+import apartmentSchema from "../apartments/models/apartmentSchema";
+import mapApartmentToModel from "../apartments/helpers/normalization/mapApartmentToModel";
+import ROUTES from "../routes/routesModel";
+import Spinner from "../components/Spinner";
+import Error from "../components/Error";
 import { Box } from "@mui/material";
 import StepperForm from "../components/forms/StepperForm";
 import BasicDetailsComponent from "../components/forms/addApartmentForm/BasicDetailsComponent";
 import AmenitiesComponent from "../components/forms/addApartmentForm/AmenitiesComponent";
 import AddImageComponent from "../components/forms/addApartmentForm/AddImageComponent";
-import useForm from "../hooks/useForm";
-import apartmentSchema from "../apartments/models/apartmentSchema";
-import initialApartmentForm from "../apartments/helpers/initialForms/initialApartmentForm";
-import useApartments from "../hooks/useApartments";
 import PageHeadline from "../components/PageHeadline";
 
-export default function AddApartmentPage() {
-	const { addApartment } = useApartments();
+export default function EditApartmentPage() {
+	const { handleEdit, getApartment, isLoading, error } = useApartments();
+	const { user } = useCurrentUser();
+	const { id } = useParams();
 	const {
 		data,
+		setData,
 		errors,
 		handleChange,
+		handleReset,
 		handleChangeCheckBox,
-		onSubmit,
 		validateForm,
-	} = useForm(initialApartmentForm, apartmentSchema, addApartment);
+		onSubmit,
+	} = useForm(initialApartmentForm, apartmentSchema, () => {
+		handleEdit(id, data);
+	});
+
+	useEffect(() => {
+		const getData = async () => {
+			setData(await getApartment(id));
+			setData((prev) => mapApartmentToModel(prev));
+		};
+		getData();
+	}, [id]);
+
 	const steps = ["Basic Details", "Amenities", "Add Image"];
 
 	const components = [
@@ -40,6 +61,9 @@ export default function AddApartmentPage() {
 			onInputChange={handleChange}
 		/>,
 	];
+	if (isLoading) return <Spinner />;
+	if (error) return <Error errorMessage={error} />;
+	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
 			<PageHeadline title={"List apartment"} />

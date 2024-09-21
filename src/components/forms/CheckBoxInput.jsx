@@ -2,14 +2,14 @@ import React from "react";
 import { Checkbox, Grid2, ListItem, ListItemText } from "@mui/material";
 import { camelCaseToText } from "../../helpers/helperFunctions";
 
-export default function CheckBoxInput({ name, handleChange, data }) {
+export default function CheckBoxInput({ name, handleChange, data }) {	
 	return (
 		<Grid2 size={{ sm: 12, lg: 6 }}>
 			<ListItem>
 				<Checkbox
 					name={name}
 					onChange={handleChange}
-					checked={data.name}
+					checked={data[name]}
 					edge="end"
 					sx={{ mr: 1 }}
 				/>

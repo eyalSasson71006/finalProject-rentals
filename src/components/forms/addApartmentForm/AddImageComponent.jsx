@@ -10,9 +10,9 @@ export default function AddImageComponent({ errors, data, onInputChange }) {
 	return (
 		<Box>
 			<Input
-				name="imageUrl"
+				name="src"
 				label="Image Url"
-				error={errors.imageUrl}
+				error={errors.src}
 				onChange={onInputChange}
 				data={data}
 				required={true}
@@ -28,7 +28,7 @@ export default function AddImageComponent({ errors, data, onInputChange }) {
 			>
 				<img
 					style={{ width: "40%", borderRadius: "15px" }}
-					src={data.imageUrl}
+					src={data.src}
 					onError={handleBrokenImg}
 					alt="apartment preview"
 				/>

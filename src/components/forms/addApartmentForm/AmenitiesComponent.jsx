@@ -67,7 +67,6 @@ export default function AmenitiesComponent({
 					error={errors.country}
 					onChange={onInputChange}
 					data={data}
-					required={true}
 				/>
 				<Input
 					name="city"
@@ -75,7 +74,6 @@ export default function AmenitiesComponent({
 					error={errors.city}
 					onChange={onInputChange}
 					data={data}
-					required={true}
 				/>
 				<Input
 					name="street"
@@ -83,7 +81,6 @@ export default function AmenitiesComponent({
 					error={errors.street}
 					onChange={onInputChange}
 					data={data}
-					required={true}
 				/>
 				<Input
 					name="houseNumber"
@@ -92,7 +89,6 @@ export default function AmenitiesComponent({
 					error={errors.houseNumber}
 					onChange={onInputChange}
 					data={data}
-					required={true}
 					size={{ xs: 12, sm: 6 }}
 				/>
 				<Input
@@ -102,6 +98,7 @@ export default function AmenitiesComponent({
 					error={errors.zip}
 					onChange={onInputChange}
 					data={data}
+					required={false}
 					size={{ xs: 12, sm: 6 }}
 				/>
 			</Grid2>

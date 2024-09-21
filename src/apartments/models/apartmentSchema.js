@@ -17,7 +17,7 @@ const apartmentSchema = {
     bathrooms: Joi.number().min(1).required(),
     propertyType: Joi.string().min(2).max(256).required(),
     description: Joi.string().min(2).max(1024).required(),
-    imageUrl: Joi.string()
+    src: Joi.string()
         .ruleset.regex(urlRegex)
         .rule({ message: 'card.image "url" mast be a valid url' })
         .allow(""),

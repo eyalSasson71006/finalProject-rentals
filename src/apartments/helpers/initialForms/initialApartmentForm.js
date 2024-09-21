@@ -13,7 +13,7 @@ const initialApartmentForm = {
     bathrooms: "",
     propertyType: "",
     description: "",
-    imageUrl: "",
+    src: "",
     airConditioning: false,
     heating: false,
     wifi: false,
