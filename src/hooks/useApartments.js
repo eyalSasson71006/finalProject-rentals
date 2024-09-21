@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
 import { useCurrentUser } from "../providers/UserProvider";
 import useUsers from "./useUsers";
+import { useSnack } from "../providers/SnackbarProvider";
 
 
 export default function useApartments() {
@@ -16,6 +17,7 @@ export default function useApartments() {
     const [error, setError] = useState();
     const { user } = useCurrentUser();
     const { handleGetUsersReviews } = useUsers();
+    const setSnack = useSnack();
 
     useAxios();
 
@@ -25,6 +27,7 @@ export default function useApartments() {
             let allApartments = await getApartments(params);
             setApartments(allApartments);
         } catch (error) {
+            setSnack("error", error.message);
             setError(error.message);
         }
         setIsLoading(false);
@@ -38,6 +41,7 @@ export default function useApartments() {
             setIsLoading(false);
             return data;
         } catch (error) {
+            setSnack("error", error.message);
             setError(error.message);
         }
         setIsLoading(false);
@@ -52,6 +56,7 @@ export default function useApartments() {
             navigate(ROUTES.ROOT);
             return data;
         } catch (error) {
+            setSnack("error", error.message);
             setError(error.message);
         }
         setIsLoading(false);
@@ -60,23 +65,22 @@ export default function useApartments() {
     const handleDelete = useCallback((id) => {
         try {
             deleteApartment(id);
-            // setSnack("info", `Card ${id} was deleted successfully`);
+            setSnack("info", `Apartment ${id} was deleted successfully`);
         } catch (error) {
-            // setSnack("error", error.message);
-            console.log(error.message);
+            setSnack("error", error.message);
         }
     }, []);
 
     const handleEdit = useCallback(async (id, apartment) => {
         try {
             await editApartment(id, normalizeApartment(apartment));
-            // setSnack("success", "Card edited successfully!");
+            setSnack("success", "Apartment edited successfully!");
             setTimeout(() => {
                 navigate(ROUTES.MY_APARTMENTS);
             }, 2000);
         } catch (error) {
+            setSnack("error", error.message);
             setError(error.message);
-            // setSnack("error", error.message);
         }
     }, []);
 
@@ -86,8 +90,7 @@ export default function useApartments() {
             let apartment = await changeLikeStatus(id);
             return apartment.likes.includes(user._id);
         } catch (error) {
-            // setSnack("error", error.message);
-            console.log(error.message);
+            setSnack("error", error.message);
         }
     }, [user]);
 
@@ -99,8 +102,7 @@ export default function useApartments() {
             let reviews = await addReview(id, review);
             return reviews;
         } catch (error) {
-            // setSnack("error", error.message);
-            console.log(error.message);
+            setSnack("error", error.message);
         }
     }, [user]);
 
@@ -109,8 +111,8 @@ export default function useApartments() {
             let reviews = await getApartmentsReviews(id);
             return reviews;
         } catch (error) {
+            setSnack("error", error.message);
             setError(error.message);
-            // setSnack("error", error.message);
         }
     };
 

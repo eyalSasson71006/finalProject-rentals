@@ -6,6 +6,7 @@ import { getUser, removeToken, setTokenInLocalStorage } from "../users/services/
 import normalizeUser from "../users/helpers/normalization/normalizeUser";
 import ROUTES from "../routes/routesModel";
 import useAxios from "./useAxios";
+import { useSnack } from "../providers/SnackbarProvider";
 
 
 export default function useUsers() {
@@ -14,6 +15,7 @@ export default function useUsers() {
     const [userData, setUserData] = useState();
     const { setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
+    const setSnack = useSnack();
 
     useAxios();
 
@@ -24,9 +26,9 @@ export default function useUsers() {
             setToken(token);
             setUser(getUser());
             navigate(ROUTES.ROOT);
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            setSnack("error", error.message);
+            console.log(error.message);
 
         }
     };
@@ -35,9 +37,8 @@ export default function useUsers() {
         try {
             removeToken();
             setUser(null);
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            setSnack("error", error.message);
         }
     };
 
@@ -48,10 +49,8 @@ export default function useUsers() {
                 email: user.email,
                 password: user.password
             });
-            // setSnack("success", "Signed up successfully!");
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            setSnack("error", error.message);
         }
     };
 
@@ -63,9 +62,9 @@ export default function useUsers() {
             setUserData(user);
             setIsLoading(false);
             return user;
-        } catch (err) {
-            setError(err.message);
-            // setSnack("error", err.message);
+        } catch (error) {
+            setSnack("error", error.message);
+            setError(error.message);
         }
         setIsLoading(false);
     };
@@ -77,9 +76,9 @@ export default function useUsers() {
             let apartments = await getUsersApartments(id);
             setIsLoading(false);
             return apartments;
-        } catch (err) {
-            setError(err.message);
-            // setSnack("error", err.message);
+        } catch (error) {
+            setSnack("error", error.message);
+            setError(error.message);
         }
         setIsLoading(false);
     };
@@ -88,9 +87,9 @@ export default function useUsers() {
         try {
             let reviews = await getUsersReviews(id);                        
             return reviews;
-        } catch (err) {
-            setError(err.message);
-            // setSnack("error", err.message);
+        } catch (error) {
+            setSnack("error", error.message);
+            setError(error.message);
         }
     };
 
