@@ -69,4 +69,13 @@ export const addReview = async (id, review) => {
     }
 }
 
+export const getApartmentsReviews = async (id) => {
+    try {
+        const response = await axios.get(`${apiUrl}/apartment-reviews/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
 

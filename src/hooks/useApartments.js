@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { addReview, changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
+import { addReview, changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments, getApartmentsReviews } from "../apartments/services/apartmentsApiService";
 import useAxios from "./useAxios";
 import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
 import { useNavigate } from "react-router-dom";
@@ -95,6 +95,7 @@ export default function useApartments() {
         try {
             let { owner } = await getApartmentById(id)            
             handleGetUsersReviews(owner) // updates owner's rating after review
+            handleGetApartmentsReviews(id); // updates apartment's rating after review
             let reviews = await addReview(id, review);            
             return reviews;
         } catch (err) {
@@ -102,6 +103,16 @@ export default function useApartments() {
             console.log(err.message);
         }
     }, [user]);
+
+    const handleGetApartmentsReviews = async (id) => {
+        try {
+            let reviews = await getApartmentsReviews(id);
+            return reviews;
+        } catch (err) {
+            setError(err.message);
+            // setSnack("error", err.message);
+        }
+    };
 
     return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview };
 }
