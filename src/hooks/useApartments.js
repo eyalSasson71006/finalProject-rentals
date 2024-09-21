@@ -5,6 +5,7 @@ import normalizeApartment from "../apartments/helpers/normalization/normalizeApa
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
 import { useCurrentUser } from "../providers/UserProvider";
+import useUsers from "./useUsers";
 
 
 export default function useApartments() {
@@ -14,16 +15,17 @@ export default function useApartments() {
     const navigate = useNavigate();
     const [error, setError] = useState();
     const { user } = useCurrentUser();
+    const { handleGetUsersReviews } = useUsers();
 
     useAxios();
 
-    const getAllApartments = async () => {
+    const getAllApartments = async (params={}) => {
         setIsLoading(true);
         try {
-            let allApartments = await getApartments();
+            let allApartments = await getApartments(params);            
             setApartments(allApartments);
         } catch (error) {
-            setError(err.message);
+            setError(error.message);
         }
         setIsLoading(false);
     };
@@ -36,7 +38,7 @@ export default function useApartments() {
             setIsLoading(false);
             return data;
         } catch (error) {
-            setError(err.message);
+            setError(error.message);
         }
         setIsLoading(false);
     };
@@ -91,6 +93,8 @@ export default function useApartments() {
 
     const handleAddReview = useCallback(async (id, review) => {
         try {
+            let { owner } = await getApartmentById(id)            
+            handleGetUsersReviews(owner) // updates owner's rating after review
             let reviews = await addReview(id, review);            
             return reviews;
         } catch (err) {

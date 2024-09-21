@@ -12,9 +12,7 @@ export const login = async (userLogin) => {
 };
 
 export const signup = async (normalizedUser) => {
-    try {
-        console.log(normalizedUser);
-        
+    try {        
         const { data } = await axios.post(apiUrl, normalizedUser);
         return data;
     } catch (err) {

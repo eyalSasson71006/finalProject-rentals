@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-export default function SearchBar() {
+export default function SearchBar({ reRender = ()=>{} }) {
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [search, setSearch] = useState({
@@ -60,6 +60,7 @@ export default function SearchBar() {
 	};
 
 	function handleSearch() {
+		reRender();
 		navigate(`${ROUTES.SEARCH_RESULTS}?${searchParams.toString()}`);
 	}
 
@@ -75,7 +76,7 @@ export default function SearchBar() {
 				border: "1px solid gray",
 				width: "fit-content",
 				margin: "0 auto",
-				backgroundColor:"white"
+				backgroundColor: "white",
 			}}
 		>
 			<TextField

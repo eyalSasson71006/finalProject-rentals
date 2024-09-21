@@ -43,7 +43,6 @@ export default function useUsers() {
 
     const handleSignup = async (user) => {
         try {
-            // console.log(normalizeUser(user));
             await signup(normalizeUser(user));
             await handleLogin({
                 email: user.email,
