@@ -5,7 +5,12 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 
-export default function StepperForm({ components, steps, onSubmit }) {
+export default function StepperForm({
+	components,
+	steps,
+	onSubmit,
+	validateForm,
+}) {
 	const [activeStep, setActiveStep] = React.useState(0);
 	const [skipped, setSkipped] = React.useState(new Set());
 
@@ -70,7 +75,9 @@ export default function StepperForm({ components, steps, onSubmit }) {
 					</Button>
 					<Box sx={{ flex: "1 1 auto" }} />
 					{activeStep === steps.length - 1 ? (
-						<Button onClick={onSubmit}>Finish</Button>
+						<Button disabled={!validateForm()} onClick={onSubmit}>
+							Finish
+						</Button>
 					) : (
 						<Button onClick={handleNext}>Next</Button>
 					)}

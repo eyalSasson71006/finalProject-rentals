@@ -19,10 +19,10 @@ export default function useApartments() {
 
     useAxios();
 
-    const getAllApartments = async (params={}) => {
+    const getAllApartments = async (params = {}) => {
         setIsLoading(true);
         try {
-            let allApartments = await getApartments(params);            
+            let allApartments = await getApartments(params);
             setApartments(allApartments);
         } catch (error) {
             setError(error.message);
@@ -52,7 +52,7 @@ export default function useApartments() {
             navigate(ROUTES.ROOT);
             return data;
         } catch (error) {
-            setError(err.message);
+            setError(error.message);
         }
         setIsLoading(false);
     };
@@ -61,9 +61,9 @@ export default function useApartments() {
         try {
             deleteApartment(id);
             // setSnack("info", `Card ${id} was deleted successfully`);
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            // setSnack("error", error.message);
+            console.log(error.message);
         }
     }, []);
 
@@ -74,9 +74,9 @@ export default function useApartments() {
             setTimeout(() => {
                 navigate(ROUTES.MY_APARTMENTS);
             }, 2000);
-        } catch (err) {
-            setError(err.message);
-            // setSnack("error", err.message);
+        } catch (error) {
+            setError(error.message);
+            // setSnack("error", error.message);
         }
     }, []);
 
@@ -85,22 +85,22 @@ export default function useApartments() {
         try {
             let apartment = await changeLikeStatus(id);
             return apartment.likes.includes(user._id);
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            // setSnack("error", error.message);
+            console.log(error.message);
         }
     }, [user]);
 
     const handleAddReview = useCallback(async (id, review) => {
         try {
-            let { owner } = await getApartmentById(id)            
-            handleGetUsersReviews(owner) // updates owner's rating after review
+            let { owner } = await getApartmentById(id);
+            handleGetUsersReviews(owner); // updates owner's rating after review
             handleGetApartmentsReviews(id); // updates apartment's rating after review
-            let reviews = await addReview(id, review);            
+            let reviews = await addReview(id, review);
             return reviews;
-        } catch (err) {
-            // setSnack("error", err.message);
-            console.log(err.message);
+        } catch (error) {
+            // setSnack("error", error.message);
+            console.log(error.message);
         }
     }, [user]);
 
@@ -108,9 +108,9 @@ export default function useApartments() {
         try {
             let reviews = await getApartmentsReviews(id);
             return reviews;
-        } catch (err) {
-            setError(err.message);
-            // setSnack("error", err.message);
+        } catch (error) {
+            setError(error.message);
+            // setSnack("error", error.message);
         }
     };
 

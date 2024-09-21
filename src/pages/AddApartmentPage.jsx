@@ -11,8 +11,14 @@ import useApartments from "../hooks/useApartments";
 
 export default function AddApartmentPage() {
 	const { addApartment } = useApartments();
-	const { data, errors, handleChange, handleChangeCheckBox, onSubmit } =
-		useForm(initialApartmentForm, apartmentSchema, addApartment);
+	const {
+		data,
+		errors,
+		handleChange,
+		handleChangeCheckBox,
+		onSubmit,
+		validateForm,
+	} = useForm(initialApartmentForm, apartmentSchema, addApartment);
 	const steps = ["Basic Details", "Amenities", "Add Image"];
 
 	const components = [
@@ -43,6 +49,7 @@ export default function AddApartmentPage() {
 			}}
 		>
 			<StepperForm
+				validateForm={validateForm}
 				components={components}
 				steps={steps}
 				onSubmit={onSubmit}

@@ -12,11 +12,11 @@ export default function SearchResults() {
 	let [searchParams, setSearchParams] = useSearchParams();
 	const queryParams = Object.fromEntries([...searchParams]);
 	const { getAllApartments, apartments, isLoading, error } = useApartments();
-	const [render,setRender] = useState()
-	
-	const reRender = ()=>{
-		setRender(prev=>!prev)
-	}
+	const [render, setRender] = useState();
+
+	const reRender = () => {
+		setRender((prev) => !prev);
+	};
 
 	useEffect(() => {
 		getAllApartments(queryParams);
@@ -32,7 +32,7 @@ export default function SearchResults() {
 				<Box sx={{ position: "sticky", top: "100px" }}>
 					<FilterResults />
 				</Box>
-				<Box sx={{ flexGrow: "0" }}>
+				<Box sx={{ width: "100%" }}>
 					<CardsListComponent apartments={apartments} />
 				</Box>
 			</Box>
