@@ -25,7 +25,7 @@ export default function AmenitiesComponent({
 				onChange={onInputChange}
 				data={data}
 				required={true}
-				size={{ xs: 12, sm: 6 }}
+				size={{ xs: 12, sm: 4 }}
 			/>
 			<Input
 				name="bathrooms"
@@ -35,7 +35,17 @@ export default function AmenitiesComponent({
 				onChange={onInputChange}
 				data={data}
 				required={true}
-				size={{ xs: 12, sm: 6 }}
+				size={{ xs: 12, sm: 4 }}
+			/>
+			<Input
+				name="guests"
+				label="Guests"
+				type="number"
+				error={errors.guests}
+				onChange={onInputChange}
+				data={data}
+				required={true}
+				size={{ xs: 12, sm: 4 }}
 			/>
 			<Grid2
 				container

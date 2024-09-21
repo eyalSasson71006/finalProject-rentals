@@ -85,10 +85,30 @@ export default function ApartmentInfoPage() {
 					<Typography
 						variant="body1"
 						sx={{ fontSize: 18, lineHeight: 1.7 }}
-						mb={8}
+						mb={4}
 					>
 						{apartment.description}
 					</Typography>
+					<Box sx={{ display: "flex", mb: 4, justifyContent:"space-evenly" }}>
+						<Box sx={{ display: "flex" }}>
+							<Typography fontWeight={"bold"}>
+								Guests:
+							</Typography>
+							<Typography>{apartment.guests}</Typography>
+						</Box>
+						<Box sx={{ display: "flex" }}>
+							<Typography fontWeight={"bold"}>
+								Bed Rooms:
+							</Typography>
+							<Typography>{apartment.bedrooms}</Typography>
+						</Box>
+						<Box sx={{ display: "flex" }}>
+							<Typography fontWeight={"bold"}>
+								Bath Rooms:
+							</Typography>
+							<Typography>{apartment.bathrooms}</Typography>
+						</Box>
+					</Box>
 					<AmenitiesComponent apartment={apartment} />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						<AddReview setReviews={setReviews} apartmentId={id} />

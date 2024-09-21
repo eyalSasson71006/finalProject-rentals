@@ -11,6 +11,7 @@ const normalizeApartment = (apartment) => {
             zip: apartment.zip,
         },
         price: apartment.price,
+        guests: apartment.guests,
         bedrooms: apartment.bedrooms,
         bathrooms: apartment.bathrooms,
         propertyType: apartment.propertyType,

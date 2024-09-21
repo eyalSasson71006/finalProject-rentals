@@ -8,6 +8,7 @@ const initialApartmentForm = {
     houseNumber: "",
     zip: "",
     price: "",
+    guests: "",
     bedrooms: "",
     bathrooms: "",
     propertyType: "",
