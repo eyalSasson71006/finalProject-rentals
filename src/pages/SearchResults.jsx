@@ -17,6 +17,11 @@ export default function SearchResults() {
 	const reRender = () => {
 		setRender((prev) => !prev);
 	};
+	
+	const resetParams = () => {
+		setSearchParams("");
+		reRender()
+	};
 
 	useEffect(() => {
 		getAllApartments(queryParams);
@@ -30,7 +35,7 @@ export default function SearchResults() {
 			<SearchBar reRender={reRender} />
 			<Box sx={{ display: "flex" }}>
 				<Box sx={{ position: "sticky", top: "100px" }}>
-					<FilterResults />
+					<FilterResults resetFunc={resetParams} />
 				</Box>
 				<Box sx={{ width: "100%" }}>
 					<CardsListComponent apartments={apartments} />

@@ -1,14 +1,15 @@
 import React from "react";
-import { Box, List } from "@mui/material";
+import { Box, Button, List } from "@mui/material";
 import FilterAccordion from "./components/FilterAccordion";
 import FilterCheckbox from "./components/FilterCheckbox";
 import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 
-export default function FilterResults() {
+export default function FilterResults({resetFunc}) {
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
+			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
 			<FilterAccordion title={"Price"}>
 				<FilterSlider minValue={0} maxValue={10_000} />
 			</FilterAccordion>
