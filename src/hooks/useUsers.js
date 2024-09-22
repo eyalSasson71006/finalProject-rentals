@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../providers/UserProvider";
-import { getUserData, getUsersApartments, getUsersReviews, login, signup } from "../users/services/usersApiService";
+import { editUser, getUserData, getUsersApartments, getUsersReviews, login, signup } from "../users/services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../users/services/localStorageService";
 import normalizeUser from "../users/helpers/normalization/normalizeUser";
 import ROUTES from "../routes/routesModel";
@@ -54,6 +54,15 @@ export default function useUsers() {
         }
     };
 
+    const handleEditUser = async (userId, user) => {
+        try {
+            await editUser(userId, normalizeUser(user));
+            setSnack("info", `User: ${userId} was edited successfully`);
+        } catch (error) {
+            setSnack("error", error.message);
+        }
+    };
+
     const getUserById = async (id) => {
         setIsLoading(true);
         setError(null);
@@ -85,7 +94,7 @@ export default function useUsers() {
 
     const handleGetUsersReviews = async (id) => {
         try {
-            let reviews = await getUsersReviews(id);                        
+            let reviews = await getUsersReviews(id);
             return reviews;
         } catch (error) {
             setSnack("error", error.message);
@@ -93,7 +102,7 @@ export default function useUsers() {
         }
     };
 
-    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleGetUsersApartments, handleGetUsersReviews };
+    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews };
 }
 
 

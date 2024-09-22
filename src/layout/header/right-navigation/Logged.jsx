@@ -61,7 +61,7 @@ export default function Logged() {
 				</MenuItem>
 				<MenuItem
 					onClick={() => {
-						navigate(ROUTES.EDIT_USER);
+						navigate(ROUTES.EDIT_USER + "/" + user._id);
 						handleClose();
 					}}
 				>

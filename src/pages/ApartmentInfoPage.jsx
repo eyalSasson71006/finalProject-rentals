@@ -1,6 +1,6 @@
-import { Box, Button, Grid2, Typography } from "@mui/material";
+import { Box, Button, Grid2, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
 import AmenitiesComponent from "../components/AmenitiesComponent";
@@ -12,6 +12,8 @@ import useApartments from "../hooks/useApartments";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useUsers from "../hooks/useUsers";
+import EditIcon from "@mui/icons-material/Edit";
+import { useCurrentUser } from "../providers/UserProvider";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -19,17 +21,17 @@ export default function ApartmentInfoPage() {
 	const [reviews, setReviews] = useState([]);
 	const { getApartment, apartment, isLoading, error } = useApartments();
 	const { getUserById, userData } = useUsers();
-
+	const { user } = useCurrentUser();
+	const navigate = useNavigate()
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
 
 	useEffect(() => {
-		if(!apartment) return
+		if (!apartment) return;
 		getUserById(apartment.owner);
 		setReviews(apartment.reviews);
 	}, [apartment]);
-
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
@@ -41,6 +43,12 @@ export default function ApartmentInfoPage() {
 				title={apartment.title}
 				subtitle={apartment.subtitle}
 			/>
+			{apartment.owner == user._id && <IconButton
+				sx={{ position: "absolute", right: "30px", top: "250px" }}
+				onClick={() => navigate(ROUTES.EDIT_APARTMENT+"/"+apartment._id)}
+			>
+				<EditIcon fontSize="large" />
+			</IconButton>}
 			<MapComponent
 				show={toggle}
 				closePage={() => setToggle(false)}
@@ -89,11 +97,15 @@ export default function ApartmentInfoPage() {
 					>
 						{apartment.description}
 					</Typography>
-					<Box sx={{ display: "flex", mb: 4, justifyContent:"space-evenly" }}>
+					<Box
+						sx={{
+							display: "flex",
+							mb: 4,
+							justifyContent: "space-evenly",
+						}}
+					>
 						<Box sx={{ display: "flex" }}>
-							<Typography fontWeight={"bold"}>
-								Guests:
-							</Typography>
+							<Typography fontWeight={"bold"}>Guests:</Typography>
 							<Typography>{apartment.guests}</Typography>
 						</Box>
 						<Box sx={{ display: "flex" }}>

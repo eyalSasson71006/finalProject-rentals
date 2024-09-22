@@ -15,7 +15,7 @@ export default function LeftNavBar({ sx }) {
 		<Box sx={{ display: "flex", alignItems: "center", gap: "20px", ...sx }}>
 			<LogoIcon />
 			<Link style={linkStyle} to={ROUTES.FAV_APARTMENTS}>
-				FAV APARTMENTS
+				WISHLIST
 			</Link>
 			<Link style={linkStyle} to={ROUTES.MY_APARTMENTS}>
 				MY APARTMENTS

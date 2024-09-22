@@ -20,6 +20,15 @@ export const signup = async (normalizedUser) => {
     }
 };
 
+export const editUser = async (id, newUser) => {
+    try {        
+        const { data } = await axios.put(`${apiUrl}/${id}`, newUser);
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
 export const getUserData = async (id) => {
     try {
         const response = await axios.get(`${apiUrl}/${id}`);

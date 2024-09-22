@@ -6,7 +6,7 @@ const initialApartmentForm = {
     city: "",
     street: "",
     houseNumber: "",
-    zip: "",
+    zip: 0,
     price: "",
     guests: "",
     bedrooms: "",

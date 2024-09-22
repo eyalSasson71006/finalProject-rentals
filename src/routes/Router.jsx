@@ -12,6 +12,7 @@ import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import AddApartmentPage from "../pages/AddApartmentPage";
 import EditApartmentPage from "../pages/EditApartmentPage";
+import EditUserPage from "../pages/EditUserPage";
 
 export default function Router() {
 	return (
@@ -37,6 +38,10 @@ export default function Router() {
 			<Route
 				path={ROUTES.USER_PROFILE + "/:id"}
 				element={<UserInfoPage />}
+			/>
+			<Route
+				path={ROUTES.EDIT_USER + "/:id"}
+				element={<EditUserPage />}
 			/>
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>
