@@ -124,7 +124,7 @@ export default function ApartmentInfoPage() {
 					<AmenitiesComponent apartment={apartment} />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						<AddReview setReviews={setReviews} apartmentId={id} />
-						{reviews.map((review) => (
+						{reviews?.map((review) => (
 							<Review key={review._id} reviewObj={review} />
 						))}
 					</Box>

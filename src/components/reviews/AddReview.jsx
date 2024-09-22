@@ -10,6 +10,7 @@ import useApartments from "../../hooks/useApartments";
 export default function AddReview({ apartmentId, setReviews }) {
 	const [value, setValue] = useState(0);
 	const [review, setReview] = useState({});
+	const [error, setError] = useState("");
 	const { user } = useCurrentUser();
 	const { getUserById, isLoading, userData } = useUsers();
 	const { handleAddReview } = useApartments();
@@ -32,9 +33,15 @@ export default function AddReview({ apartmentId, setReviews }) {
 	}, [userData]);
 
 	function handleChange(e) {
+		const { name, value, type } = e.target;
+		if (type == "text" && value.length < 2) {
+			setError("Review must be at least 2 characters long");
+		} else if (type == "text") {
+			setError(null);
+		}
 		setReview((prev) => ({
 			...prev,
-			[e.target.name]: e.target.value,
+			[name]: value,
 		}));
 	}
 
@@ -86,10 +93,15 @@ export default function AddReview({ apartmentId, setReviews }) {
 						variant="standard"
 						value={review.text || ""}
 						name="text"
+						helperText={error}
+						error={Boolean(error)}
 						sx={{ width: "100%" }}
 					/>
 				</Box>
-				<Button onClick={handleSubmit}>
+				<Button
+					disabled={Boolean(error) || error == ""}
+					onClick={handleSubmit}
+				>
 					<SendIcon />
 				</Button>
 			</Box>

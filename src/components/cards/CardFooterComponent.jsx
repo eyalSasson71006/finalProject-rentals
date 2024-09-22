@@ -37,7 +37,7 @@ export default function CardFooterComponent({ apartment }) {
 			>
 				<StarIcon sx={{ color: "white", width: "20px" }} />
 				<Typography sx={{ color: "white", fontSize: "1.1rem" }}>
-					{apartment.rating}
+					{apartment.rating.toFixed(1)}
 				</Typography>
 			</Box>
 		</Box>
