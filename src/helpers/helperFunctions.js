@@ -5,3 +5,7 @@ export function camelCaseToText(str) {
         .replace(/^./, function (char) { return char.toUpperCase(); });
 }
 
+export function titleCase(str) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase()
+}
+

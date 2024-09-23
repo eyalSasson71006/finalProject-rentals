@@ -66,7 +66,7 @@ export default function EditApartmentPage() {
 	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
-			<PageHeadline title={"List apartment"} />
+			<PageHeadline title={"Edit apartment"} />
 			<Box
 				sx={{
 					display: "flex",

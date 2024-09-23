@@ -5,7 +5,7 @@ import { Box, IconButton } from "@mui/material";
 import { useCurrentUser } from "../../providers/UserProvider";
 import useApartments from "../../hooks/useApartments";
 
-export default function CardHeaderComponent({ apartment }) {
+export default function CardHeaderComponent({ apartment, color="white" }) {
 	const { user } = useCurrentUser();
 	const { handleLike } = useApartments();
 	const [liked, setLiked] = useState(user && apartment.likes.includes(user._id));
@@ -18,7 +18,7 @@ export default function CardHeaderComponent({ apartment }) {
 			<IconButton
 				onClick={handleLikeClick}
 				sx={{
-					color: "white",
+					color: color,
 					borderRadius: "15px",
 					width: "45px",
 					height: "45px",

@@ -1,4 +1,11 @@
-import { Box, Button, Grid2, IconButton, Typography } from "@mui/material";
+import {
+	Box,
+	Button,
+	Grid2,
+	IconButton,
+	MenuItem,
+	Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PageHeadline from "../components/PageHeadline";
@@ -14,6 +21,7 @@ import Error from "../components/Error";
 import useUsers from "../hooks/useUsers";
 import EditIcon from "@mui/icons-material/Edit";
 import { useCurrentUser } from "../providers/UserProvider";
+import MoreIcon from "../components/MoreIcon";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -22,7 +30,16 @@ export default function ApartmentInfoPage() {
 	const { getApartment, apartment, isLoading, error } = useApartments();
 	const { getUserById, userData } = useUsers();
 	const { user } = useCurrentUser();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
+
+	const onDelete = () => {
+		if (
+			confirm("Are you sure you want to delete " + apartment.title + "?")
+		) {
+			handleDelete(apartment._id);
+		}
+	};
+
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
@@ -43,12 +60,25 @@ export default function ApartmentInfoPage() {
 				title={apartment.title}
 				subtitle={apartment.subtitle}
 			/>
-			{apartment.owner == user._id && <IconButton
-				sx={{ position: "absolute", right: "30px", top: "250px" }}
-				onClick={() => navigate(ROUTES.EDIT_APARTMENT+"/"+apartment._id)}
-			>
-				<EditIcon fontSize="large" />
-			</IconButton>}
+			{apartment.owner == user._id && (
+				<Box sx={{ position: "absolute", right: "40px", top: "250px" }}>
+					<MoreIcon sx={{ mb: "auto" }}>
+						<MenuItem
+							key={"Edit Apartment"}
+							onClick={() =>
+								navigate(
+									ROUTES.EDIT_APARTMENT + "/" + apartment._id
+								)
+							}
+						>
+							Edit Apartment
+						</MenuItem>
+						<MenuItem key={"Delete Apartment"} onClick={onDelete}>
+							Delete Apartment
+						</MenuItem>
+					</MoreIcon>
+				</Box>
+			)}
 			<MapComponent
 				show={toggle}
 				closePage={() => setToggle(false)}

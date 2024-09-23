@@ -6,6 +6,8 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useCurrentUser } from "../providers/UserProvider";
 import CardsListComponent from "../components/cards/CardsListComponent";
+import LargeCardComponent from "../components/largeCards/LargeCardComponent";
+import LargeCardsListComponent from "../components/largeCards/LargeCardsListComponent";
 
 export default function MyApartmentsPage() {
 	const { user } = useCurrentUser();
@@ -25,7 +27,8 @@ export default function MyApartmentsPage() {
 	return (
 		<Box>
 			<PageHeadline title={"My Apartments"} />
-			<CardsListComponent apartments={userApartments} />
+			{/* <CardsListComponent apartments={userApartments} /> */}
+			<LargeCardsListComponent apartments={userApartments} />
 		</Box>
 	);
 }
