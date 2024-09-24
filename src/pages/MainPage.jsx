@@ -1,18 +1,24 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import { useIsDark } from "../providers/CustomThemeProvider";
 import useApartments from "../hooks/useApartments";
 import CardsListComponent from "../components/cards/CardsListComponent";
+import Spinner from "../components/Spinner";
+import Error from "../components/Error";
 
 export default function MainPage() {
 	const { isDark, setIsDark } = useIsDark();
-	const { getAllApartments, apartments, setApartments } = useApartments();
+	const { getAllApartments, filterParams, apartments, isLoading, error } =
+		useApartments();
 
 	useEffect(() => {
 		getAllApartments();
 	}, []);
-	
+
+	if (isLoading) return <Spinner />;
+	if (error) return <Error errorMessage={error} />;
+
 	return (
 		<>
 			<Box
@@ -26,7 +32,7 @@ export default function MainPage() {
 					alignItems: "center",
 				}}
 			>
-				<SearchBar />
+				<SearchBar locations={filterParams?.locations} />
 			</Box>
 			<Container sx={{ my: 5, width: "80vw" }}>
 				<Typography variant="h2" sx={{ my: 2 }}>

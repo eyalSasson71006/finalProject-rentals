@@ -11,8 +11,9 @@ import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import AutoCompleteSearch from "./resultsFilter/AutoCompleteSearch";
 
-export default function SearchBar({ reRender = ()=>{} }) {
+export default function SearchBar({ locations, reRender = () => {} }) {
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [search, setSearch] = useState({
@@ -23,14 +24,23 @@ export default function SearchBar({ reRender = ()=>{} }) {
 	});
 
 	function handleChange(e) {
-		const { name, value, type } = e.target;
+		const { name, value, type, innerText } = e.target;
+		let isLocation = innerText ? true : false;
+
+		let newValue = isLocation
+			? innerText
+			: type === "number"
+			? Number(value)
+			: value;
+		let paramName = isLocation ? "location" : name;
+
 		setSearch((prev) => ({
 			...prev,
-			[name]: type === "number" ? Number(value) : value,
+			[paramName]: newValue,
 		}));
 		setSearchParams((prev) => {
 			const newParams = new URLSearchParams(prev);
-			newParams.set(name, value);
+			newParams.set(paramName, newValue);
 			return newParams;
 		});
 	}
@@ -58,7 +68,6 @@ export default function SearchBar({ reRender = ()=>{} }) {
 			color: "black",
 		},
 	};
-
 	function handleSearch() {
 		reRender();
 		navigate(`${ROUTES.SEARCH_RESULTS}?${searchParams.toString()}`);
@@ -79,13 +88,10 @@ export default function SearchBar({ reRender = ()=>{} }) {
 				backgroundColor: "white",
 			}}
 		>
-			<TextField
-				required
+			<AutoCompleteSearch
 				sx={textFieldSx}
-				name="location"
-				value={search.location}
-				label={"Location"}
-				onChange={handleChange}
+				handleChange={handleChange}
+				locations={locations}
 			/>
 			<FormControl
 				sx={{
@@ -111,7 +117,6 @@ export default function SearchBar({ reRender = ()=>{} }) {
 					)}
 				</Select>
 			</FormControl>
-
 			<TextField
 				sx={{
 					...textFieldSx,

@@ -1,8 +1,8 @@
 const getFilterParams = (apartments) => {
     let maxPrice = 0;
-    let minPrice = apartments[0].price;
+    let minPrice = apartments[0]?.price;
     let locations = [];
-    apartments.forEach(apartment => {
+    apartments?.forEach(apartment => {
         if (apartment.price > maxPrice) maxPrice = apartment.price;
         if (apartment.price < minPrice) minPrice = apartment.price;
         if (!locations.includes(apartment.address.state)) locations.push(apartment.address.state);

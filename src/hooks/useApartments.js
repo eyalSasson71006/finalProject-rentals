@@ -7,12 +7,14 @@ import ROUTES from "../routes/routesModel";
 import { useCurrentUser } from "../providers/UserProvider";
 import useUsers from "./useUsers";
 import { useSnack } from "../providers/SnackbarProvider";
+import getFilterParams from "../helpers/getFilterParams";
 
 
 export default function useApartments() {
     const [apartments, setApartments] = useState([]);
     const [apartment, setApartment] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [filterParams, setFilterParams] = useState();
     const navigate = useNavigate();
     const [error, setError] = useState();
     const { user } = useCurrentUser();
@@ -21,11 +23,24 @@ export default function useApartments() {
 
     useAxios();
 
-    const getAllApartments = async (params = {}) => {
+    const getAllApartments = async () => {
         setIsLoading(true);
         try {
-            let allApartments = await getApartments(params);
+            let allApartments = await getApartments();
             setApartments(allApartments);
+            setFilterParams(getFilterParams(allApartments));
+        } catch (error) {
+            setSnack("error", error.message);
+            setError(error.message);
+        }
+        setIsLoading(false);
+    };
+
+    const getFilteredApartments = async (params = {}) => {
+        setIsLoading(true);
+        try {
+            let filteredApartments = await getApartments(params);
+            setApartments(filteredApartments);
         } catch (error) {
             setSnack("error", error.message);
             setError(error.message);
@@ -116,5 +131,5 @@ export default function useApartments() {
         }
     };
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview };
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getFilteredApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams };
 }

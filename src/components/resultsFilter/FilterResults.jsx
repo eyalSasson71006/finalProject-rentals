@@ -6,9 +6,7 @@ import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 
-export default function FilterResults({ filterParams, resetFunc }) {
-	console.log(filterParams);
-	
+export default function FilterResults({ filterParams, resetFunc }) {	
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
