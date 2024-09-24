@@ -89,6 +89,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 			}}
 		>
 			<AutoCompleteSearch
+				initialValue={search.location}
 				sx={textFieldSx}
 				handleChange={handleChange}
 				locations={locations}

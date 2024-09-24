@@ -23,20 +23,7 @@ export default function useApartments() {
 
     useAxios();
 
-    const getAllApartments = async () => {
-        setIsLoading(true);
-        try {
-            let allApartments = await getApartments();
-            setApartments(allApartments);
-            setFilterParams(getFilterParams(allApartments));
-        } catch (error) {
-            setSnack("error", error.message);
-            setError(error.message);
-        }
-        setIsLoading(false);
-    };
-
-    const getFilteredApartments = async (params = {}) => {
+    const getAllApartments = async (params = {}) => {
         setIsLoading(true);
         try {
             let filteredApartments = await getApartments(params);
@@ -131,5 +118,15 @@ export default function useApartments() {
         }
     };
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, getFilteredApartments, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams };
+    const handleGetFilterParams = async () => {
+        try {
+            let allApartments = await getApartments();
+            setFilterParams(getFilterParams(allApartments));
+        } catch (error) {
+            setSnack("error", error.message);
+            setError(error.message);
+        }
+    };
+
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams };
 }

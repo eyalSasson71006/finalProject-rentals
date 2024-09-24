@@ -9,11 +9,12 @@ import Error from "../components/Error";
 
 export default function MainPage() {
 	const { isDark, setIsDark } = useIsDark();
-	const { getAllApartments, filterParams, apartments, isLoading, error } =
+	const { handleGetFilterParams,getAllApartments, filterParams, apartments, isLoading, error } =
 		useApartments();
 
 	useEffect(() => {
 		getAllApartments();
+		handleGetFilterParams()
 	}, []);
 
 	if (isLoading) return <Spinner />;

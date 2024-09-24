@@ -12,8 +12,8 @@ export default function SearchResults() {
 	let [searchParams, setSearchParams] = useSearchParams();
 	const queryParams = Object.fromEntries([...searchParams]);
 	const {
+		handleGetFilterParams,
 		getAllApartments,
-		getFilteredApartments,
 		filterParams,
 		apartments,
 		isLoading,
@@ -32,8 +32,8 @@ export default function SearchResults() {
 	};
 
 	useEffect(() => {
-		if (apartments.length == 0) getAllApartments();
-		getFilteredApartments(queryParams);
+		if (apartments.length == 0) handleGetFilterParams();
+		getAllApartments(queryParams);
 	}, [render]);
 
 	if (isLoading) return <Spinner />;
