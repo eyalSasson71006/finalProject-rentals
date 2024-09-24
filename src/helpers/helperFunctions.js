@@ -6,6 +6,7 @@ export function camelCaseToText(str) {
 }
 
 export function titleCase(str) {
-    return str[0].toUpperCase() + str.slice(1).toLowerCase()
+    if (!str) return "";
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { titleCase } from "../../helpers/helperFunctions";
 
-export default function AutoCompleteSearch({ locations = [], initialValue, sx, handleChange }) {
+export default function AutoCompleteSearch({
+	locations = [],
+	initialValue,
+	sx,
+	handleChange,
+}) {
 	const [value, setValue] = useState(initialValue);
 	const onChange = (event, newValue) => {
 		setValue(newValue);
@@ -11,7 +17,7 @@ export default function AutoCompleteSearch({ locations = [], initialValue, sx, h
 
 	return (
 		<Autocomplete
-			options={locations}
+			options={locations.map((location) => titleCase(location))}
 			id="location"
 			value={value}
 			sx={{ ...sx, width: 300 }}

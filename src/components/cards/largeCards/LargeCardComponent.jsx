@@ -1,6 +1,6 @@
 import { Box, Card, Typography } from "@mui/material";
 import React from "react";
-import CardHeaderComponent from "../CardHeaderComponent";
+import CardLikeComponent from "../CardLikeComponent";
 import StarIcon from "@mui/icons-material/Star";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { titleCase } from "../../../helpers/helperFunctions";
@@ -9,9 +9,11 @@ import ROUTES from "../../../routes/routesModel";
 import MoreIcon from "../../MoreIcon";
 import MenuItem from "@mui/material/MenuItem";
 import useApartments from "../../../hooks/useApartments";
+import { useCurrentUser } from "../../../providers/UserProvider";
 
 export default function LargeCardComponent({ apartment }) {
 	const { handleDelete } = useApartments();
+	const { user } = useCurrentUser();
 	const navigate = useNavigate();
 	const onDelete = () => {
 		if (
@@ -21,13 +23,18 @@ export default function LargeCardComponent({ apartment }) {
 		}
 	};
 
+	const checkOwner = () => {
+		if (user._id == apartment.owner || user.isAdmin) return true;
+		return false;
+	};
+
 	return (
 		<Card
 			sx={{
 				margin: "8px",
 				padding: "15px",
 				width: "700px",
-				height: "fit-content",
+				height: "280px",
 				borderRadius: "15px",
 				overflow: "hidden",
 				position: "relative",
@@ -63,7 +70,7 @@ export default function LargeCardComponent({ apartment }) {
 				<Typography
 					variant="body2"
 					sx={{
-						my:1.5,
+						my: 1.5,
 						display: "-webkit-box",
 						WebkitBoxOrient: "vertical",
 						overflow: "hidden",
@@ -73,12 +80,12 @@ export default function LargeCardComponent({ apartment }) {
 				>
 					{titleCase(apartment.description)}
 				</Typography>
-					<Typography my={1.5}>
-						<LocationOnIcon />
-						{`${titleCase(apartment.address.city)}, ${titleCase(
-							apartment.address.country
-						)}`}
-					</Typography>
+				<Typography my={1.5}>
+					<LocationOnIcon />
+					{`${titleCase(apartment.address.city)}, ${titleCase(
+						apartment.address.country
+					)}`}
+				</Typography>
 			</Box>
 			<Box
 				sx={{
@@ -88,25 +95,27 @@ export default function LargeCardComponent({ apartment }) {
 					alignItems: "center",
 				}}
 			>
-				<MoreIcon sx={{ mb: "auto" }}>
-					<MenuItem
-						key={"Edit Apartment"}
-						onClick={() =>
-							navigate(
-								ROUTES.EDIT_APARTMENT + "/" + apartment._id
-							)
-						}
-					>
-						Edit Apartment
-					</MenuItem>
-					<MenuItem key={"Delete Apartment"} onClick={onDelete}>
-						Delete Apartment
-					</MenuItem>
-				</MoreIcon>
-				<CardHeaderComponent color="#333" apartment={apartment} />
+				{checkOwner() && (
+					<MoreIcon sx={{ mb: "auto" }}>
+						<MenuItem
+							key={"Edit Apartment"}
+							onClick={() =>
+								navigate(
+									ROUTES.EDIT_APARTMENT + "/" + apartment._id
+								)
+							}
+						>
+							Edit Apartment
+						</MenuItem>
+						<MenuItem key={"Delete Apartment"} onClick={onDelete}>
+							Delete Apartment
+						</MenuItem>
+					</MoreIcon>
+				)}
+				<CardLikeComponent color="#333" apartment={apartment} />
 				<Box
 					sx={{
-						backgroundColor: "#333",
+						backgroundColor: "#708871",
 						padding: "5px 10px",
 						borderRadius: "10px",
 						display: "flex",

@@ -5,9 +5,10 @@ import StarIcon from "@mui/icons-material/Star";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
-import CardsListComponent from "../components/cards/CardsListComponent";
 import Review from "../components/reviews/Review";
 import CardsListToggle from "../components/cards/CardsListToggle";
+import { useCurrentUser } from "../providers/UserProvider";
+import { titleCase } from "../helpers/helperFunctions";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -21,6 +22,7 @@ export default function UserInfoPage() {
 	const [userData, setUserData] = useState();
 	const [userApartments, setUserApartments] = useState();
 	const [userReviews, setUserReviews] = useState([]);
+	const { user } = useCurrentUser();
 
 	useEffect(() => {
 		const getData = async () => {
@@ -52,14 +54,16 @@ export default function UserInfoPage() {
 							variant="h2"
 							sx={{ my: 2, textAlign: "center" }}
 						>
-							{userData.name.first}'s Apartments
+							{user._id == id
+								? "My"
+								: titleCase(userData.name.first) + "'s"}{" "}
+							Apartments
 						</Typography>
 						<CardsListToggle apartments={userApartments} />
 					</Box>
-					<Typography
-						variant="h3"
-						mb={3}
-					>{`About ${userData.name.first}`}</Typography>
+					<Typography variant="h3" mb={3}>{`About ${
+						user._id == id ? "Me" : titleCase(userData.name.first)
+					}`}</Typography>
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						{userReviews.map((review) => (
 							<Review key={review._id} reviewObj={review} />

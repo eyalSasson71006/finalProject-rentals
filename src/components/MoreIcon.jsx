@@ -15,7 +15,7 @@ export default function MoreIcon({ children, sx }) {
 		setAnchorEl(null);
 	};
 	return (
-		<Box sx={{...sx}}>
+		<Box sx={{ ...sx }}>
 			<IconButton
 				aria-label="more"
 				id="long-button"
@@ -23,8 +23,13 @@ export default function MoreIcon({ children, sx }) {
 				aria-expanded={open ? "true" : undefined}
 				aria-haspopup="true"
 				onClick={handleClick}
+				sx={{
+					"&:hover": {
+						backgroundColor: "#ffffff99",
+					},
+				}}
 			>
-				<MoreVertIcon/>
+				<MoreVertIcon />
 			</IconButton>
 			<Menu
 				id="long-menu"
