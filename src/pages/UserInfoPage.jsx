@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import CardsListComponent from "../components/cards/CardsListComponent";
 import Review from "../components/reviews/Review";
+import CardsListToggle from "../components/cards/CardsListToggle";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -53,7 +54,7 @@ export default function UserInfoPage() {
 						>
 							{userData.name.first}'s Apartments
 						</Typography>
-						<CardsListComponent apartments={userApartments} />
+						<CardsListToggle apartments={userApartments} />
 					</Box>
 					<Typography
 						variant="h3"

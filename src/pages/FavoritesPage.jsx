@@ -5,7 +5,7 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useCurrentUser } from "../providers/UserProvider";
 import useApartments from "../hooks/useApartments";
-import CardsListComponent from "../components/cards/CardsListComponent";
+import CardsListToggle from "../components/cards/CardsListToggle";
 
 export default function FavoritesPage() {
 	const { user } = useCurrentUser();
@@ -21,7 +21,7 @@ export default function FavoritesPage() {
 	return (
 		<Box>
 			<PageHeadline title={"Favorite Apartments"} />
-			<CardsListComponent
+			<CardsListToggle
 				apartments={apartments.filter((apartment) =>
 					apartment.likes.includes(user._id)
 				)}

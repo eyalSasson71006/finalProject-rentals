@@ -5,9 +5,7 @@ import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import { useCurrentUser } from "../providers/UserProvider";
-import CardsListComponent from "../components/cards/CardsListComponent";
-import LargeCardComponent from "../components/largeCards/LargeCardComponent";
-import LargeCardsListComponent from "../components/largeCards/LargeCardsListComponent";
+import CardsListToggle from "../components/cards/CardsListToggle";
 
 export default function MyApartmentsPage() {
 	const { user } = useCurrentUser();
@@ -27,8 +25,7 @@ export default function MyApartmentsPage() {
 	return (
 		<Box>
 			<PageHeadline title={"My Apartments"} />
-			{/* <CardsListComponent apartments={userApartments} /> */}
-			<LargeCardsListComponent apartments={userApartments} />
+			<CardsListToggle apartments={userApartments} />
 		</Box>
 	);
 }

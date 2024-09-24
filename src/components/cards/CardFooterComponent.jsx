@@ -2,6 +2,7 @@ import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Typography } from "@mui/material";
+import { titleCase } from "../../helpers/helperFunctions";
 
 export default function CardFooterComponent({ apartment }) {
 	return (
@@ -21,10 +22,11 @@ export default function CardFooterComponent({ apartment }) {
 				<Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
 					<LocationOnIcon sx={{ width: "0.9rem" }} />
 					<Typography sx={{ fontSize: "0.8rem" }}>
-						{apartment.address.city}, {apartment.address.country}
+						{titleCase(apartment.address.city)},{" "}
+						{titleCase(apartment.address.country)}
 					</Typography>
 				</Box>
-				<Typography>{apartment.title}</Typography>
+				<Typography>{titleCase(apartment.title)}</Typography>
 			</Box>
 			<Box
 				sx={{

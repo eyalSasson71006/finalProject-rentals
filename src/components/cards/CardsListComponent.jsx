@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import CardComponent from "./CardComponent";
+import VerticalToggleButtons from "./CardsToggleButton";
 
 export default function CardsListComponent({ apartments }) {
 	if (apartments.length == 0)

@@ -7,6 +7,7 @@ import CardsListComponent from "../components/cards/CardsListComponent";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useApartments from "../hooks/useApartments";
+import CardsListToggle from "../components/cards/CardsListToggle";
 
 export default function SearchResults() {
 	let [searchParams, setSearchParams] = useSearchParams();
@@ -53,7 +54,7 @@ export default function SearchResults() {
 					/>
 				</Box>
 				<Box sx={{ width: "100%" }}>
-					<CardsListComponent apartments={apartments} />
+					<CardsListToggle apartments={apartments} />
 				</Box>
 			</Box>
 		</Box>

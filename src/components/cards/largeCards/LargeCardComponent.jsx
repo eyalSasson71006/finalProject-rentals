@@ -1,14 +1,14 @@
 import { Box, Card, Typography } from "@mui/material";
 import React from "react";
-import CardHeaderComponent from "../cards/CardHeaderComponent";
+import CardHeaderComponent from "../CardHeaderComponent";
 import StarIcon from "@mui/icons-material/Star";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { titleCase } from "../../helpers/helperFunctions";
+import { titleCase } from "../../../helpers/helperFunctions";
 import { Link, useNavigate } from "react-router-dom";
-import ROUTES from "../../routes/routesModel";
-import MoreIcon from "../MoreIcon";
+import ROUTES from "../../../routes/routesModel";
+import MoreIcon from "../../MoreIcon";
 import MenuItem from "@mui/material/MenuItem";
-import useApartments from "../../hooks/useApartments";
+import useApartments from "../../../hooks/useApartments";
 
 export default function LargeCardComponent({ apartment }) {
 	const { handleDelete } = useApartments();
@@ -50,20 +50,35 @@ export default function LargeCardComponent({ apartment }) {
 					}}
 				/>
 			</Box>
-			<Box sx={{ width: "33%", mr: "auto" }}>
+			<Box sx={{ width: "50%", mr: "auto" }}>
 				<Link
 					style={{ color: "#708871" }}
 					to={ROUTES.APARTMENT_INFO + "/" + apartment._id}
 				>
-					<Typography variant="h5">{apartment.title}</Typography>
+					<Typography variant="h5">
+						{titleCase(apartment.title)}
+					</Typography>
 				</Link>
-				<Typography>{apartment.subtitle}</Typography>
-				<Typography>
-					<LocationOnIcon />
-					{`${titleCase(apartment.address.city)}, ${titleCase(
-						apartment.address.country
-					)}`}
+				<Typography>{titleCase(apartment.subtitle)}</Typography>
+				<Typography
+					variant="body2"
+					sx={{
+						my:1.5,
+						display: "-webkit-box",
+						WebkitBoxOrient: "vertical",
+						overflow: "hidden",
+						textOverflow: "ellipsis",
+						WebkitLineClamp: 3, // Limits to 3 lines and shows "..."
+					}}
+				>
+					{titleCase(apartment.description)}
 				</Typography>
+					<Typography my={1.5}>
+						<LocationOnIcon />
+						{`${titleCase(apartment.address.city)}, ${titleCase(
+							apartment.address.country
+						)}`}
+					</Typography>
 			</Box>
 			<Box
 				sx={{
@@ -84,10 +99,7 @@ export default function LargeCardComponent({ apartment }) {
 					>
 						Edit Apartment
 					</MenuItem>
-					<MenuItem
-						key={"Delete Apartment"}
-						onClick={onDelete}
-					>
+					<MenuItem key={"Delete Apartment"} onClick={onDelete}>
 						Delete Apartment
 					</MenuItem>
 				</MoreIcon>
