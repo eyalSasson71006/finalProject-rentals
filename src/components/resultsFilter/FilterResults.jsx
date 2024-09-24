@@ -6,12 +6,17 @@ import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 
-export default function FilterResults({resetFunc}) {
+export default function FilterResults({ filterParams, resetFunc }) {
+	console.log(filterParams);
+	
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
 			<FilterAccordion title={"Price"}>
-				<FilterSlider minValue={0} maxValue={10_000} />
+				<FilterSlider
+					minValue={filterParams.minPrice || 0}
+					maxValue={filterParams.maxPrice || 10_000}
+				/>
 			</FilterAccordion>
 
 			<FilterAccordion title={"Bathrooms"}>

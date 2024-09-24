@@ -40,6 +40,7 @@ export default function FilterSlider({ minValue, maxValue }) {
 			<Slider
 				getAriaLabel={() => "Minimum"}
 				value={value}
+				min={minValue}
 				max={maxValue}
 				onChange={handleChange}
 				valueLabelDisplay="on"

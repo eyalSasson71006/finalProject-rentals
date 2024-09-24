@@ -7,11 +7,13 @@ import CardsListComponent from "../components/cards/CardsListComponent";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useApartments from "../hooks/useApartments";
+import getFilterParams from "../helpers/getFilterParams";
 
 export default function SearchResults() {
 	let [searchParams, setSearchParams] = useSearchParams();
 	const queryParams = Object.fromEntries([...searchParams]);
 	const { getAllApartments, apartments, isLoading, error } = useApartments();
+	const [filterParams, setFilterParams] = useState();
 	const [render, setRender] = useState();
 
 	const reRender = () => {
@@ -26,7 +28,7 @@ export default function SearchResults() {
 	useEffect(() => {
 		getAllApartments(queryParams);
 	}, [render]);
-
+	
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 
@@ -35,7 +37,10 @@ export default function SearchResults() {
 			<SearchBar reRender={reRender} />
 			<Box sx={{ display: "flex" }}>
 				<Box sx={{ position: "sticky", top: "100px" }}>
-					<FilterResults resetFunc={resetParams} />
+					<FilterResults
+						filterParams={getFilterParams(apartments)}
+						resetFunc={resetParams}
+					/>
 				</Box>
 				<Box sx={{ width: "100%" }}>
 					<CardsListComponent apartments={apartments} />
