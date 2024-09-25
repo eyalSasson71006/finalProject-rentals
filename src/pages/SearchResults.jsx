@@ -3,7 +3,6 @@ import SearchBar from "../components/SearchBar";
 import { Box } from "@mui/material";
 import FilterResults from "../components/resultsFilter/FilterResults";
 import { useSearchParams } from "react-router-dom";
-import CardsListComponent from "../components/cards/CardsListComponent";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useApartments from "../hooks/useApartments";
@@ -41,13 +40,20 @@ export default function SearchResults() {
 	if (error) return <Error errorMessage={error} />;
 
 	return (
-		<Box p={5}>
+		<Box py={5} px={{ xs: 0, md: 5 }}>
 			<SearchBar
 				locations={filterParams?.locations}
 				reRender={reRender}
 			/>
-			<Box sx={{ display: "flex" }}>
-				<Box sx={{ position: "sticky", top: "100px" }}>
+			<Box
+				sx={{ display: "flex", flexWrap: { xs: "wrap", md: "nowrap" } }}
+			>
+				<Box
+					sx={{
+						position: { xs: "static", md: "sticky" },
+						top: "100px",
+					}}
+				>
 					<FilterResults
 						filterParams={filterParams}
 						resetFunc={resetParams}
