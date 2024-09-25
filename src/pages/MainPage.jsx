@@ -9,12 +9,18 @@ import Error from "../components/Error";
 
 export default function MainPage() {
 	const { isDark, setIsDark } = useIsDark();
-	const { handleGetFilterParams,getAllApartments, filterParams, apartments, isLoading, error } =
-		useApartments();
+	const {
+		handleGetFilterParams,
+		getAllApartments,
+		filterParams,
+		apartments,
+		isLoading,
+		error,
+	} = useApartments();
 
 	useEffect(() => {
 		getAllApartments();
-		handleGetFilterParams()
+		handleGetFilterParams();
 	}, []);
 
 	if (isLoading) return <Spinner />;
@@ -59,7 +65,14 @@ export default function MainPage() {
 				</Typography>
 			</Container>
 			<Box sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}>
-				<Typography variant="h2" sx={{ my: 2, textAlign: "center" }}>
+				<Typography
+					variant="h2"
+					sx={{
+						my: 2,
+						textAlign: "center",
+						fontSize: { xs: "3rem", md: "4rem" },
+					}}
+				>
 					Recommended Apartments
 				</Typography>
 				<CardsListComponent

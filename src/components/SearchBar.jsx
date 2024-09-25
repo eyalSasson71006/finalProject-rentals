@@ -87,6 +87,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 				gap: "7px",
 				border: "1px solid gray",
 				width: "fit-content",
+				maxWidth: "80vw",
 				margin: "0 auto",
 				backgroundColor: "white",
 			}}
@@ -101,6 +102,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 				sx={{
 					...textFieldSx,
 					minWidth: "150px",
+					display: { xs: "none", md: "inline-flex" },
 				}}
 			>
 				<InputLabel id={"propertyType"}>{"Property Type"}</InputLabel>
@@ -125,6 +127,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 				sx={{
 					...textFieldSx,
 					width: "90px",
+					display: { xs: "none", md: "inline-flex" },
 				}}
 				type="number"
 				name="bedrooms"
@@ -136,6 +139,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 				sx={{
 					...textFieldSx,
 					width: "70px",
+					display: { xs: "none", md: "inline-flex" },
 				}}
 				type="number"
 				name="guests"
