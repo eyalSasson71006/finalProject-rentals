@@ -23,7 +23,7 @@ export default function useApartments() {
 
     useAxios();
 
-    const getAllApartments = async (params = {}) => {
+    const getAllApartments = useCallback(async (params = {}) => {
         setIsLoading(true);
         try {
             let filteredApartments = await getApartments(params);
@@ -33,9 +33,9 @@ export default function useApartments() {
             setError(error.message);
         }
         setIsLoading(false);
-    };
+    }, []);
 
-    const getApartment = async (id) => {
+    const getApartment = useCallback(async (id) => {
         setIsLoading(true);
         try {
             let data = await getApartmentById(id);
@@ -47,9 +47,9 @@ export default function useApartments() {
             setError(error.message);
         }
         setIsLoading(false);
-    };
+    }, []);
 
-    const addApartment = async (apartment) => {
+    const addApartment = useCallback(async (apartment) => {
         setIsLoading(true);
         try {
             let data = normalizeApartment(apartment);
@@ -62,7 +62,7 @@ export default function useApartments() {
             setError(error.message);
         }
         setIsLoading(false);
-    };
+    }, []);
 
     const handleDelete = useCallback((id) => {
         try {
@@ -108,7 +108,7 @@ export default function useApartments() {
         }
     }, [user]);
 
-    const handleGetApartmentsReviews = async (id) => {
+    const handleGetApartmentsReviews = useCallback(async (id) => {
         try {
             let reviews = await getApartmentsReviews(id);
             return reviews;
@@ -116,9 +116,9 @@ export default function useApartments() {
             setSnack("error", error.message);
             setError(error.message);
         }
-    };
+    }, []);
 
-    const handleGetFilterParams = async () => {
+    const handleGetFilterParams = useCallback(async () => {
         try {
             let allApartments = await getApartments();
             setFilterParams(getFilterParams(allApartments));
@@ -126,7 +126,7 @@ export default function useApartments() {
             setSnack("error", error.message);
             setError(error.message);
         }
-    };
+    }, []);
 
     return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams };
 }

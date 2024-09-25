@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../providers/UserProvider";
 import { editUser, getUserData, getUsersApartments, getUsersReviews, login, signup } from "../users/services/usersApiService";
@@ -19,7 +19,7 @@ export default function useUsers() {
 
     useAxios();
 
-    const handleLogin = async (userLogin) => {
+    const handleLogin = useCallback(async (userLogin) => {
         try {
             const token = await login(userLogin);
             setTokenInLocalStorage(token);
@@ -31,18 +31,18 @@ export default function useUsers() {
             console.log(error.message);
 
         }
-    };
+    },[]);
 
-    const handleLogout = () => {
+    const handleLogout = useCallback(() => {
         try {
             removeToken();
             setUser(null);
         } catch (error) {
             setSnack("error", error.message);
         }
-    };
+    }, []);
 
-    const handleSignup = async (user) => {
+    const handleSignup = useCallback(async (user) => {
         try {
             await signup(normalizeUser(user));
             await handleLogin({
@@ -52,18 +52,18 @@ export default function useUsers() {
         } catch (error) {
             setSnack("error", error.message);
         }
-    };
+    }, []);
 
-    const handleEditUser = async (userId, user) => {
+    const handleEditUser = useCallback(async (userId, user) => {
         try {
             await editUser(userId, normalizeUser(user));
             setSnack("info", `User: ${userId} was edited successfully`);
         } catch (error) {
             setSnack("error", error.message);
         }
-    };
+    }, []);
 
-    const getUserById = async (id) => {
+    const getUserById = useCallback(async (id) => {
         setIsLoading(true);
         setError(null);
         try {
@@ -76,9 +76,9 @@ export default function useUsers() {
             setError(error.message);
         }
         setIsLoading(false);
-    };
+    }, []);
 
-    const handleGetUsersApartments = async (id) => {
+    const handleGetUsersApartments = useCallback(async (id) => {
         setIsLoading(true);
         setError(null);
         try {
@@ -90,9 +90,9 @@ export default function useUsers() {
             setError(error.message);
         }
         setIsLoading(false);
-    };
+    }, []);
 
-    const handleGetUsersReviews = async (id) => {
+    const handleGetUsersReviews = useCallback(async (id) => {
         try {
             let reviews = await getUsersReviews(id);
             return reviews;
@@ -100,7 +100,7 @@ export default function useUsers() {
             setSnack("error", error.message);
             setError(error.message);
         }
-    };
+    }, []);
 
     return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews };
 }
