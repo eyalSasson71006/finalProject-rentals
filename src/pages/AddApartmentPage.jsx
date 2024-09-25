@@ -9,9 +9,13 @@ import apartmentSchema from "../apartments/models/apartmentSchema";
 import initialApartmentForm from "../apartments/helpers/initialForms/initialApartmentForm";
 import useApartments from "../hooks/useApartments";
 import PageHeadline from "../components/PageHeadline";
+import { useCurrentUser } from "../providers/UserProvider";
+import ROUTES from "../routes/routesModel";
+import { Navigate } from "react-router-dom";
 
 export default function AddApartmentPage() {
 	const { addApartment } = useApartments();
+	const { user } = useCurrentUser();
 	const {
 		data,
 		errors,
@@ -40,6 +44,7 @@ export default function AddApartmentPage() {
 			onInputChange={handleChange}
 		/>,
 	];
+	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
 			<PageHeadline title={"List apartment"} />

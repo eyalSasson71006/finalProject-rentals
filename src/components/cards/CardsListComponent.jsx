@@ -1,13 +1,18 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import React from "react";
 import CardComponent from "./CardComponent";
-import VerticalToggleButtons from "./CardsToggleButton";
 
 export default function CardsListComponent({ apartments }) {
+	const { palette } = useTheme();
 	if (apartments.length == 0)
 		return (
 			<Box
-				sx={{ borderRadius: "20px", border: "1px solid #708871", m: 4 }}
+				sx={{
+					borderRadius: "20px",
+					border: `1px solid ${palette.primary.main}`,
+					m: 4,
+					width:"70%"
+				}}
 			>
 				<Typography py={5} variant="h5" textAlign={"center"}>
 					No apartments to present...

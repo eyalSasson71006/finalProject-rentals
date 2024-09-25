@@ -57,11 +57,11 @@ export default function EditUserPage() {
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
+	if (!user || user._id != id) return <Navigate to={ROUTES.ROOT} replace />;
 
 	return (
 		<Box>
-			<PageHeadline title={"Signup Page"} />
+			<PageHeadline title={"Edit Account"} />
 			<Box
 				sx={{
 					display: "flex",

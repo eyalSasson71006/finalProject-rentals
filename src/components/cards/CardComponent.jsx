@@ -21,7 +21,7 @@ export default function CardComponent({ apartment }) {
 	};
 
 	const checkOwner = () => {
-		if (user._id == apartment.owner || user.isAdmin) return true;
+		if (user?._id == apartment.owner || user?.isAdmin) return true;
 		return false;
 	};
 	return (
@@ -69,7 +69,7 @@ export default function CardComponent({ apartment }) {
 					alignItems: "center",
 				}}
 			>
-				<CardLikeComponent apartment={apartment} />
+				{user && <CardLikeComponent apartment={apartment} />}
 				{checkOwner() && (
 					<MoreIcon sx={{ padding: "15px 20px" }}>
 						<MenuItem

@@ -1,14 +1,15 @@
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { camelCaseToText } from "../helpers/helperFunctions";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 export default function AmenitiesComponent({ apartment }) {
+	const {palette} = useTheme()	
 	return (
 		<Box
 			sx={{
 				borderRadius: "12px",
-				border: "1px solid #708871",
+				border: `1px solid ${palette.primary.main}`,
 				padding: "10px",
 				mb: 8,
 			}}

@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography, useTheme } from "@mui/material";
 import React from "react";
 import CardLikeComponent from "../CardLikeComponent";
 import StarIcon from "@mui/icons-material/Star";
@@ -12,6 +12,7 @@ import useApartments from "../../../hooks/useApartments";
 import { useCurrentUser } from "../../../providers/UserProvider";
 
 export default function LargeCardComponent({ apartment }) {
+	const { palette } = useTheme();
 	const { handleDelete } = useApartments();
 	const { user } = useCurrentUser();
 	const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function LargeCardComponent({ apartment }) {
 	};
 
 	const checkOwner = () => {
-		if (user._id == apartment.owner || user.isAdmin) return true;
+		if (user?._id == apartment.owner || user?.isAdmin) return true;
 		return false;
 	};
 
@@ -41,7 +42,7 @@ export default function LargeCardComponent({ apartment }) {
 				display: "flex",
 				justifyContent: "left",
 				backgroundColor: "#70887120",
-				border: "1px solid #708871",
+				border: `1px solid ${palette.primary.main}`,
 			}}
 		>
 			<Box mr={2}>
@@ -59,7 +60,7 @@ export default function LargeCardComponent({ apartment }) {
 			</Box>
 			<Box sx={{ width: "50%", mr: "auto" }}>
 				<Link
-					style={{ color: "#708871" }}
+					style={{ color: palette.primary.main }}
 					to={ROUTES.APARTMENT_INFO + "/" + apartment._id}
 				>
 					<Typography variant="h5">
@@ -75,7 +76,7 @@ export default function LargeCardComponent({ apartment }) {
 						WebkitBoxOrient: "vertical",
 						overflow: "hidden",
 						textOverflow: "ellipsis",
-						WebkitLineClamp: 3, // Limits to 3 lines and shows "..."
+						WebkitLineClamp: 3,
 					}}
 				>
 					{titleCase(apartment.description)}
@@ -112,10 +113,12 @@ export default function LargeCardComponent({ apartment }) {
 						</MenuItem>
 					</MoreIcon>
 				)}
-				<CardLikeComponent color="#333" apartment={apartment} />
+				{user && (
+					<CardLikeComponent color="#333" apartment={apartment} />
+				)}
 				<Box
 					sx={{
-						backgroundColor: "#708871",
+						backgroundColor: palette.primary.main,
 						padding: "5px 10px",
 						borderRadius: "10px",
 						display: "flex",

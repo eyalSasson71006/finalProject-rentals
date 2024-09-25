@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import Rating from "@mui/material/Rating";
@@ -8,6 +8,7 @@ import useUsers from "../../hooks/useUsers";
 import useApartments from "../../hooks/useApartments";
 
 export default function AddReview({ apartmentId, setReviews }) {
+	const { palette } = useTheme();
 	const [value, setValue] = useState(0);
 	const [review, setReview] = useState({});
 	const [error, setError] = useState("");
@@ -62,7 +63,7 @@ export default function AddReview({ apartmentId, setReviews }) {
 			<Box
 				sx={{
 					borderRadius: "12px",
-					border: "1px solid #708871",
+					border: `1px solid ${palette.primary.main}`,
 					width: "100%",
 					padding: "10px",
 					my: 1,

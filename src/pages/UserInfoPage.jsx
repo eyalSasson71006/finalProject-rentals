@@ -54,7 +54,7 @@ export default function UserInfoPage() {
 							variant="h2"
 							sx={{ my: 2, textAlign: "center" }}
 						>
-							{user._id == id
+							{user?._id == id
 								? "My"
 								: titleCase(userData.name.first) + "'s"}{" "}
 							Apartments
@@ -62,7 +62,7 @@ export default function UserInfoPage() {
 						<CardsListToggle apartments={userApartments} />
 					</Box>
 					<Typography variant="h3" mb={3}>{`About ${
-						user._id == id ? "Me" : titleCase(userData.name.first)
+						user?._id == id ? "Me" : titleCase(userData.name.first)
 					}`}</Typography>
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						{userReviews.map((review) => (

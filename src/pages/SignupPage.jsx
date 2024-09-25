@@ -9,9 +9,13 @@ import UserBasicDetails from "../components/forms/signupForm/UserBasicDetails";
 import UserAddressComponent from "../components/forms/signupForm/UserAddressComponent";
 import UserImageComponent from "../components/forms/signupForm/UserImageComponent";
 import PageHeadline from "../components/PageHeadline";
+import { useCurrentUser } from "../providers/UserProvider";
+import { Navigate } from "react-router-dom";
+import ROUTES from "../routes/routesModel";
 
 export default function SignupPage() {
 	const { handleSignup } = useUsers();
+	const { user } = useCurrentUser();
 	const { data, errors, handleChange, onSubmit, validateForm } = useForm(
 		initialSignupForm,
 		signupSchema,
@@ -36,6 +40,7 @@ export default function SignupPage() {
 			onInputChange={handleChange}
 		/>,
 	];
+	if (user) return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
 			<PageHeadline title={"Signup Page"} />

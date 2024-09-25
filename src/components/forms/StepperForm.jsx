@@ -4,6 +4,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
+import { useIsDark } from "../../providers/CustomThemeProvider";
 
 export default function StepperForm({
 	components,
@@ -11,6 +12,7 @@ export default function StepperForm({
 	onSubmit,
 	validateForm,
 }) {
+	const { isDark } = useIsDark();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const [skipped, setSkipped] = React.useState(new Set());
 
@@ -33,12 +35,8 @@ export default function StepperForm({
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	const handleReset = () => {
-		setActiveStep(0);
-	};
-
 	return (
-		<Box sx={{ width: "70%", mb:7 }}>
+		<Box sx={{ width: "70%", mb: 7 }}>
 			<Stepper activeStep={activeStep}>
 				{steps.map((label, index) => {
 					const stepProps = {};
@@ -58,7 +56,7 @@ export default function StepperForm({
 					sx={{
 						p: 5,
 						my: 5,
-						backgroundColor: "#eee",
+						backgroundColor: isDark ? "#333" : "#eee",
 						borderRadius: "20px",
 					}}
 				>

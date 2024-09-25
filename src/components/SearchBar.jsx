@@ -49,6 +49,9 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 		color: "black",
 		"& .MuiInputLabel-root": {
 			color: "black",
+			"&.MuiInputLabel-shrink": {
+				color: "black",
+			},
 		},
 		"& .MuiSvgIcon-root": {
 			color: "black",

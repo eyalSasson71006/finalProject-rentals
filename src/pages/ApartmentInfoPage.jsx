@@ -19,7 +19,6 @@ import useApartments from "../hooks/useApartments";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useUsers from "../hooks/useUsers";
-import EditIcon from "@mui/icons-material/Edit";
 import { useCurrentUser } from "../providers/UserProvider";
 import MoreIcon from "../components/MoreIcon";
 
@@ -60,7 +59,7 @@ export default function ApartmentInfoPage() {
 				title={apartment.title}
 				subtitle={apartment.subtitle}
 			/>
-			{apartment.owner == user._id && (
+			{apartment.owner == user?._id && (
 				<Box sx={{ position: "absolute", right: "40px", top: "250px" }}>
 					<MoreIcon sx={{ mb: "auto" }}>
 						<MenuItem
@@ -153,7 +152,12 @@ export default function ApartmentInfoPage() {
 					</Box>
 					<AmenitiesComponent apartment={apartment} />
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
-						<AddReview setReviews={setReviews} apartmentId={id} />
+						{user && (
+							<AddReview
+								setReviews={setReviews}
+								apartmentId={id}
+							/>
+						)}
 						{reviews?.map((review) => (
 							<Review key={review._id} reviewObj={review} />
 						))}

@@ -61,6 +61,14 @@ export default function Logged() {
 				</MenuItem>
 				<MenuItem
 					onClick={() => {
+						navigate(ROUTES.FAV_APARTMENTS);
+						handleClose();
+					}}
+				>
+					WishList
+				</MenuItem>
+				<MenuItem
+					onClick={() => {
 						navigate(ROUTES.EDIT_USER + "/" + user._id);
 						handleClose();
 					}}

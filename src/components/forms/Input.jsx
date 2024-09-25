@@ -13,6 +13,7 @@ const Input = ({
 	onChange,
 	multiline,
 	maxRows = 1,
+	minRows = 1,
 	...rest
 }) => {
 	return (
@@ -27,6 +28,7 @@ const Input = ({
 				required={required}
 				multiline={multiline}
 				maxRows={maxRows}
+				minRows={minRows}
 				helperText={error}
 				error={Boolean(error)}
 				onChange={onChange}

@@ -9,11 +9,13 @@ export default function CustomThemeProvider({ children }) {
 	const theme = createTheme({
 		palette: {
 			primary: {
-				main: "#708871",
+				main: isDark ? "#586c5a" : "#708871",
+			},
+			background: {
+				default: isDark ? "#2a2a2a" : "#f5f5f5",
 			},
 			mode: isDark ? "dark" : "light",
 		},
-		bgc: isDark ? "#4f4f4f" : "#fff",
 	});
 
 	return (

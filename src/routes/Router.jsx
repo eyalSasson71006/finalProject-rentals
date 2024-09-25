@@ -7,7 +7,6 @@ import ErrorPage from "../pages/ErrorPage";
 import ApartmentInfoPage from "../pages/ApartmentInfoPage";
 import UserInfoPage from "../pages/UserInfoPage";
 import FavoritesPage from "../pages/FavoritesPage";
-import MyApartmentsPage from "../pages/MyApartmentsPage";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import AddApartmentPage from "../pages/AddApartmentPage";
@@ -22,7 +21,6 @@ export default function Router() {
 			<Route path={ROUTES.SIGNUP} element={<SignupPage />} />
 			<Route path={ROUTES.SEARCH_RESULTS} element={<SearchResults />} />
 			<Route path={ROUTES.FAV_APARTMENTS} element={<FavoritesPage />} />
-			<Route path={ROUTES.MY_APARTMENTS} element={<MyApartmentsPage />} />
 			<Route
 				path={ROUTES.CREATE_APARTMENT}
 				element={<AddApartmentPage />}

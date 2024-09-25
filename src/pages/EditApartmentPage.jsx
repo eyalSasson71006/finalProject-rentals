@@ -17,7 +17,8 @@ import AddImageComponent from "../components/forms/addApartmentForm/AddImageComp
 import PageHeadline from "../components/PageHeadline";
 
 export default function EditApartmentPage() {
-	const { handleEdit, getApartment, isLoading, error } = useApartments();
+	const { handleEdit, getApartment, apartment, isLoading, error } =
+		useApartments();
 	const { user } = useCurrentUser();
 	const { id } = useParams();
 	const {
@@ -60,10 +61,11 @@ export default function EditApartmentPage() {
 			data={data}
 			onInputChange={handleChange}
 		/>,
-	];
+	];	
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
+	if (!user || user._id != apartment.owner)
+		return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
 			<PageHeadline title={"Edit apartment"} />

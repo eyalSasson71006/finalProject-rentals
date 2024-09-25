@@ -1,13 +1,14 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function Review({ reviewObj }) {
+	const { palette } = useTheme();
 	return (
 		<Box
 			sx={{
 				borderRadius: "12px",
-				border: "1px solid #708871",
+				border: `1px solid ${palette.primary.main}`,
 				width: "100%",
 				padding: "10px",
 				my: 1,
