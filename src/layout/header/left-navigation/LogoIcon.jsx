@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, IconButton, Typography } from "@mui/material";
-import ROUTES from "../../../../routes/routesModel";
+import ROUTES from "../../../routes/routesModel";
 import { Link } from "react-router-dom";
-import { useIsDark } from "../../../../providers/CustomThemeProvider";
+import { useIsDark } from "../../../providers/CustomThemeProvider";
 
 export default function LogoIcon() {
-	const {isDark,setIsDark} = useIsDark()
+	const { isDark, setIsDark } = useIsDark();
 	return (
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			<Link to={ROUTES.ROOT}>

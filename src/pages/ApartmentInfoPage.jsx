@@ -60,7 +60,7 @@ export default function ApartmentInfoPage() {
 				subtitle={apartment.subtitle}
 			/>
 			{apartment.owner == user?._id && (
-				<Box sx={{ position: "absolute", right: "40px", top: "250px" }}>
+				<Box sx={{ position: "absolute", right: "10px", top: "250px" }}>
 					<MoreIcon sx={{ mb: "auto" }}>
 						<MenuItem
 							key={"Edit Apartment"}
@@ -83,6 +83,16 @@ export default function ApartmentInfoPage() {
 				closePage={() => setToggle(false)}
 				address={address}
 			/>
+			<Grid2 size={12} sx={{ textAlign: "center" }}>
+				<img
+					src={apartment.image.src}
+					alt={apartment.image.alt}
+					style={{
+						width: "clamp(300px, 100%, 50vw",
+						borderRadius: "12px",
+					}}
+				/>
+			</Grid2>
 			<Grid2
 				container
 				spacing={2}
@@ -90,24 +100,16 @@ export default function ApartmentInfoPage() {
 					justifyContent: "center",
 					width: "80vw",
 					margin: "50px auto",
+					flexWrap: "wrap-reverse",
 					gap: 10,
 				}}
 			>
-				<Grid2 size={12} sx={{ textAlign: "center" }}>
-					<img
-						src={apartment.image.src}
-						alt={apartment.image.alt}
-						style={{
-							width: "clamp(300px, 100%, 50vw",
-							borderRadius: "12px",
-						}}
-					/>
-				</Grid2>
-				<Grid2 size={8}>
+				<Grid2 size={{ xs: 12, md: 8 }}>
 					<Box
 						sx={{
 							display: "flex",
 							justifyContent: "space-between",
+							flexWrap: "wrap",
 						}}
 					>
 						<Typography my={1} variant="h5" color="gray">

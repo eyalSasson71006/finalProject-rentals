@@ -17,15 +17,20 @@ export default function CardsListToggle({ apartments }) {
 				position: "relative",
 			}}
 		>
-			<Box sx={{ position: "absolute", top: "0", right: "10px" }}>
+			<Box
+				sx={{
+					position: "absolute",
+					top: "0",
+					right: "10px",
+					display: { xs: "none", md: "block" },
+				}}
+			>
 				<VerticalToggleButtons view={view} setView={setView} />
 			</Box>
-			{(view == "small" && <CardsListComponent apartments={apartments} />)}
-			{
-				(view == "large" && (
-					<LargeCardsListComponent apartments={apartments} />
-				))
-			}
+			{view == "small" && <CardsListComponent apartments={apartments} />}
+			{view == "large" && (
+				<LargeCardsListComponent apartments={apartments} />
+			)}
 		</Container>
 	);
 }

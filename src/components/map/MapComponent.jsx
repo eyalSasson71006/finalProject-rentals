@@ -17,7 +17,7 @@ const MapPage = ({ show, closePage, address }) => {
 	};
 
 	const mapSectionStyle = {
-		width: "40%",
+		width: {xs:"70%", md:"40%"},
 		height: "400px",
 	};
 

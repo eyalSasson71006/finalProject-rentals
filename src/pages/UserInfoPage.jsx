@@ -43,12 +43,13 @@ export default function UserInfoPage() {
 				spacing={2}
 				sx={{
 					justifyContent: "center",
-					width: "80vw",
+					width: {xs:"90vw", md:"80vw"},
 					margin: "50px auto",
+					flexWrap:"wrap-reverse",
 					gap: 10,
 				}}
 			>
-				<Grid2 size={8}>
+				<Grid2 size={{xs:12, md:8}}>
 					<Box sx={{ py: 0 }}>
 						<Typography
 							variant="h2"

@@ -43,22 +43,15 @@ export default function Footer() {
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
+						display: { md: "block", xs: "none" },
 					}}
 				>
-					<IconButton>
-						<img
-							style={{ width: "80px" }}
-							alt="logo"
-							src="/images/logo.png"
-						/>
-					</IconButton>
-					<Typography
-						variant="h4"
-						sx={{
-							display: { md: "block", xs: "none" },
-						}}
-						color={isDark ? "#fff" : "#333"}
-					>
+					<img
+						style={{ width: "80px" }}
+						alt="logo"
+						src="/images/logo.png"
+					/>
+					<Typography variant="h4" color={isDark ? "#fff" : "#333"}>
 						RentMate
 					</Typography>
 				</Box>
