@@ -1,19 +1,23 @@
 import React from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-const Spinner = ({ color = "primary", size = 40, height = "50vh" }) => {
+import "../index.css";
+const Spinner = ({ size = 80, height = "90vh" }) => {
 	return (
 		<Box
 			sx={{
 				display: "flex",
 				justifyContent: "center",
+				alignItems: "center",
 				minHeight: { height },
+				flexGrow: 1,
 			}}
 		>
-			<CircularProgress
-				color={color}
-				size={size}
-				sx={{ alignSelf: "center" }}
+			<img
+				src="/images/logo.png"
+				alt="spinner"
+				width={size}
+				height={size}
+				className="spinner"
 			/>
 		</Box>
 	);

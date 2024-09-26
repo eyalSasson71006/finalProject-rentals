@@ -6,7 +6,7 @@ import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 
-export default function FilterResults({ filterParams, resetFunc }) {	
+export default function FilterResults({ filterParams, resetFunc }) {
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
@@ -17,6 +17,12 @@ export default function FilterResults({ filterParams, resetFunc }) {
 				/>
 			</FilterAccordion>
 
+			<FilterAccordion
+				title={"Bedrooms"}
+				sx={{ display: { xs: "block", md: "none" } }}
+			>
+				<FilterTextfield name="bedrooms" type="number" value={1} />
+			</FilterAccordion>
 			<FilterAccordion title={"Bathrooms"}>
 				<FilterTextfield name="bathrooms" type="number" value={1} />
 			</FilterAccordion>

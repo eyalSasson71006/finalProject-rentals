@@ -5,9 +5,9 @@ import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import React from "react";
 
-export default function FilterAccordion({ title, children }) {
+export default function FilterAccordion({ title, children, sx }) {
 	return (
-		<Accordion defaultExpanded>
+		<Accordion sx={sx} defaultExpanded>
 			<AccordionSummary
 				expandIcon={<ArrowDropDownIcon />}
 				aria-controls="filter-content"

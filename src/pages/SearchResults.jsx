@@ -51,6 +51,7 @@ export default function SearchResults() {
 				<Box
 					sx={{
 						position: { xs: "static", md: "sticky" },
+						margin: { xs: "0 auto", md: "0" },
 						top: "100px",
 					}}
 				>
