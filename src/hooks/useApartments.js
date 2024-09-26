@@ -105,9 +105,6 @@ export default function useApartments() {
 
     const handleAddReview = useCallback(async (id, review) => {
         try {
-            let { owner } = await getApartmentById(id);
-            handleGetUsersReviews(owner); // updates owner's rating after review
-            handleGetApartmentsReviews(id); // updates apartment's rating after review
             let reviews = await addReview(id, review);
             return reviews;
         } catch (error) {
@@ -135,5 +132,5 @@ export default function useApartments() {
         }
     }, []);
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams, toggleAvailability };
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, handleGetApartmentsReviews, filterParams, setFilterParams, toggleAvailability };
 }

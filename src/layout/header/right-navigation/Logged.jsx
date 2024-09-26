@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../../providers/UserProvider";
 import useUsers from "../../../hooks/useUsers";
 import ROUTES from "../../../routes/routesModel";
+import { handleBrokenUserImg } from "../../../helpers/brokenImages";
 
 export default function Logged() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -36,9 +37,8 @@ export default function Logged() {
 				>
 					<Avatar
 						alt="avatar"
-						src={
-							userData ? userData.image.src : "/images/avatar.png"
-						}
+						onError={handleBrokenUserImg}
+						src={userData?.image.src}
 					/>
 				</IconButton>
 			</Tooltip>
