@@ -2,9 +2,13 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8181/apartments";
 
-export const getApartments = async () => {
+export const getApartments = async (params={}) => {
     try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get(apiUrl, {
+            params: {
+                ...params
+            }
+        });
         return response.data;
     } catch (error) {
         throw new Error(error);

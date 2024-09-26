@@ -43,6 +43,7 @@ export default function Footer() {
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
+						textAlign: "center",
 						display: { md: "block", xs: "none" },
 					}}
 				>
@@ -56,7 +57,7 @@ export default function Footer() {
 					</Typography>
 				</Box>
 				<Box sx={{ width: "70%" }}>
-					<Typography variant="h3" color={isDark ? "#fff" : "#333"}>
+					<Typography variant="h3" color={"primary"}>
 						Contact Us
 					</Typography>
 					<Box sx={{ display: "flex", gap: "10px" }}>
@@ -117,9 +118,9 @@ export default function Footer() {
 					</Box>
 				</Box>
 			</Box>
+			<Divider/>
 			<Box
 				sx={{
-					backgroundColor: palette.primary.main,
 					height: "50px",
 					display: "flex",
 					justifyContent: "space-between",

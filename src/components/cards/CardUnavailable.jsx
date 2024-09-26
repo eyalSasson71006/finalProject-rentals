@@ -16,7 +16,7 @@ export default function CardUnavailable() {
 				zIndex: 2,
 			}}
 		>
-			<Typography sx={{ color: "#f22", fontSize: "2rem" }}>
+			<Typography sx={{ color: "#fff", fontSize: "2rem" }}>
 				Unavailable
 			</Typography>
 		</Box>
