@@ -6,6 +6,7 @@ import LargeCardsListComponent from "./largeCards/LargeCardsListComponent";
 
 export default function CardsListToggle({ apartments }) {
 	const [view, setView] = useState("small");
+	
 	return (
 		<Container
 			sx={{

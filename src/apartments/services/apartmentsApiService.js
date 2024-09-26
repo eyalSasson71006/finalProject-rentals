@@ -59,6 +59,14 @@ export const changeLikeStatus = async (id) => {
         throw new Error(error);
     }
 }
+export const changeAvailableStatus = async (id) => {
+    try {
+        const response = await axios.patch(`${apiUrl}/available/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
 
 export const addReview = async (id, review) => {
     try {

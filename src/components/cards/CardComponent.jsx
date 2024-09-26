@@ -1,5 +1,5 @@
 import { Box, Card, CardActionArea, MenuItem } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardLikeComponent from "./CardLikeComponent";
 import CardFooterComponent from "./CardFooterComponent";
@@ -10,14 +10,20 @@ import { useCurrentUser } from "../../providers/UserProvider";
 
 export default function CardComponent({ apartment }) {
 	const navigate = useNavigate();
-	const { handleDelete } = useApartments();
+	const [isAvailable, setIsAvailable] = useState(apartment.available);
+	const { handleDelete, toggleAvailability } = useApartments();
 	const { user } = useCurrentUser();
+
 	const onDelete = () => {
 		if (
 			confirm("Are you sure you want to delete " + apartment.title + "?")
 		) {
 			handleDelete(apartment._id);
 		}
+	};
+
+	const onToggleAvailability = async () => {
+		setIsAvailable(await toggleAvailability(apartment._id));
 	};
 
 	const checkOwner = () => {
@@ -72,6 +78,14 @@ export default function CardComponent({ apartment }) {
 				{user && <CardLikeComponent apartment={apartment} />}
 				{checkOwner() && (
 					<MoreIcon sx={{ padding: "15px 20px" }}>
+						<MenuItem
+							key={"toggle availability"}
+							onClick={onToggleAvailability}
+						>
+							{isAvailable
+								? "Mark as unavailable"
+								: "Mark as available"}
+						</MenuItem>
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>

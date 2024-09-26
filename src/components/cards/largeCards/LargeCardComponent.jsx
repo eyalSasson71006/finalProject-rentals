@@ -1,5 +1,5 @@
 import { Box, Card, Typography, useTheme } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CardLikeComponent from "../CardLikeComponent";
 import StarIcon from "@mui/icons-material/Star";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -13,7 +13,8 @@ import { useCurrentUser } from "../../../providers/UserProvider";
 
 export default function LargeCardComponent({ apartment }) {
 	const { palette } = useTheme();
-	const { handleDelete } = useApartments();
+	const { handleDelete, toggleAvailability } = useApartments();
+	const [isAvailable, setIsAvailable] = useState(apartment.available);
 	const { user } = useCurrentUser();
 	const navigate = useNavigate();
 	const onDelete = () => {
@@ -22,6 +23,10 @@ export default function LargeCardComponent({ apartment }) {
 		) {
 			handleDelete(apartment._id);
 		}
+	};
+
+	const onToggleAvailability = async () => {
+		setIsAvailable(await toggleAvailability(apartment._id));
 	};
 
 	const checkOwner = () => {
@@ -98,6 +103,14 @@ export default function LargeCardComponent({ apartment }) {
 			>
 				{checkOwner() && (
 					<MoreIcon sx={{ mb: "auto" }}>
+						<MenuItem
+							key={"toggle availability"}
+							onClick={onToggleAvailability}
+						>
+							{isAvailable
+								? "Mark as unavailable"
+								: "Mark as available"}
+						</MenuItem>
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>
