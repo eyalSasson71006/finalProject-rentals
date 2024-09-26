@@ -43,13 +43,13 @@ export default function UserInfoPage() {
 				spacing={2}
 				sx={{
 					justifyContent: "center",
-					width: {xs:"90vw", md:"80vw"},
+					width: { xs: "90vw", md: "80vw" },
 					margin: "50px auto",
-					flexWrap:"wrap-reverse",
+					flexWrap: "wrap-reverse",
 					gap: 10,
 				}}
 			>
-				<Grid2 size={{xs:12, md:8}}>
+				<Grid2 size={{ xs: 12, md: 8 }}>
 					<Box sx={{ py: 0 }}>
 						<Typography
 							variant="h2"
@@ -60,7 +60,15 @@ export default function UserInfoPage() {
 								: titleCase(userData.name.first) + "'s"}{" "}
 							Apartments
 						</Typography>
-						<CardsListToggle apartments={userApartments} />
+						<CardsListToggle
+							apartments={
+								user?._id == id
+									? userApartments
+									: userApartments.filter(
+											(apartment) => apartment.available
+									  )
+							}
+						/>
 					</Box>
 					<Typography variant="h3" mb={3}>{`About ${
 						user?._id == id ? "Me" : titleCase(userData.name.first)

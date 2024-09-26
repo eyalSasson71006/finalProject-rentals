@@ -2,13 +2,9 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8181/apartments";
 
-export const getApartments = async (params={}) => {
-    try {                
-        const response = await axios.get(apiUrl, {
-            params:{
-                ...params
-            }
-        });
+export const getApartments = async () => {
+    try {
+        const response = await axios.get(apiUrl);
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -58,7 +54,7 @@ export const changeLikeStatus = async (id) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 export const changeAvailableStatus = async (id) => {
     try {
         const response = await axios.patch(`${apiUrl}/available/${id}`);
@@ -66,7 +62,7 @@ export const changeAvailableStatus = async (id) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 export const addReview = async (id, review) => {
     try {
@@ -75,7 +71,7 @@ export const addReview = async (id, review) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 export const getApartmentsReviews = async (id) => {
     try {

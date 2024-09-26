@@ -23,10 +23,10 @@ export default function useApartments() {
 
     useAxios();
 
-    const getAllApartments = useCallback(async (params = {}) => {
+    const getAllApartments = useCallback(async () => {
         setIsLoading(true);
         try {
-            let filteredApartments = await getApartments(params);
+            let filteredApartments = await getApartments();
             setApartments(filteredApartments);
         } catch (error) {
             setSnack("error", error.message);

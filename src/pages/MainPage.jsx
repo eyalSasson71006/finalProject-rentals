@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 
 export default function MainPage() {
-	const { isDark, setIsDark } = useIsDark();
+	const { isDark } = useIsDark();
 	const {
 		handleGetFilterParams,
 		getAllApartments,
@@ -77,6 +77,7 @@ export default function MainPage() {
 				</Typography>
 				<CardsListComponent
 					apartments={apartments
+						.filter((apartment) => apartment.available)
 						.sort((a, b) => b.rating - a.rating)
 						.slice(0, 4)}
 				/>
