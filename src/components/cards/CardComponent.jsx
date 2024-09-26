@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, MenuItem } from "@mui/material";
+import { Box, Card, CardActionArea, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardLikeComponent from "./CardLikeComponent";
@@ -7,6 +7,7 @@ import ROUTES from "../../routes/routesModel";
 import MoreIcon from "../MoreIcon";
 import useApartments from "../../hooks/useApartments";
 import { useCurrentUser } from "../../providers/UserProvider";
+import CardUnavailable from "./CardUnavailable";
 
 export default function CardComponent({ apartment }) {
 	const navigate = useNavigate();
@@ -58,6 +59,7 @@ export default function CardComponent({ apartment }) {
 						position: "absolute",
 					}}
 				/>
+				{!isAvailable && <CardUnavailable />}
 				<Box
 					sx={{
 						position: "absolute",

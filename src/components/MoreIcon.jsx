@@ -15,7 +15,7 @@ export default function MoreIcon({ children, sx }) {
 		setAnchorEl(null);
 	};
 	return (
-		<Box sx={{ ...sx }}>
+		<Box sx={{ ...sx, zIndex: "3" }}>
 			<IconButton
 				aria-label="more"
 				id="long-button"

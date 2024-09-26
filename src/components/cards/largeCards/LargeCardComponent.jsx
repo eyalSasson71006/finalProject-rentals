@@ -10,6 +10,7 @@ import MoreIcon from "../../MoreIcon";
 import MenuItem from "@mui/material/MenuItem";
 import useApartments from "../../../hooks/useApartments";
 import { useCurrentUser } from "../../../providers/UserProvider";
+import CardUnavailable from "../CardUnavailable";
 
 export default function LargeCardComponent({ apartment }) {
 	const { palette } = useTheme();
@@ -52,16 +53,25 @@ export default function LargeCardComponent({ apartment }) {
 		>
 			<Box mr={2}>
 				<Box
-					component="img"
-					src={apartment.image.src}
-					alt={apartment.image.alt}
 					sx={{
+						position: "relative",
 						width: "250px",
-						height: "250px",
-						objectFit: "cover",
-						borderRadius: "10px",
 					}}
-				/>
+				>
+					<Box
+						component="img"
+						src={apartment.image.src}
+						alt={apartment.image.alt}
+						sx={{
+							width: "250px",
+							height: "250px",
+							objectFit: "cover",
+							borderRadius: "10px",
+							position: "absolute",
+						}}
+					/>
+					{!isAvailable && <CardUnavailable />}
+				</Box>
 			</Box>
 			<Box sx={{ width: "50%", mr: "auto" }}>
 				<Link
