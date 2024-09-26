@@ -21,6 +21,7 @@ import Error from "../components/Error";
 import useUsers from "../hooks/useUsers";
 import { useCurrentUser } from "../providers/UserProvider";
 import MoreIcon from "../components/MoreIcon";
+import { handleBrokenApartmentImg, handleBrokenUserImg } from "../helpers/brokenImages";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -87,6 +88,7 @@ export default function ApartmentInfoPage() {
 				<img
 					src={apartment.image.src}
 					alt={apartment.image.alt}
+					onError={handleBrokenApartmentImg}
 					style={{
 						width: "clamp(300px, 100%, 50vw",
 						borderRadius: "12px",
@@ -170,6 +172,7 @@ export default function ApartmentInfoPage() {
 						<img
 							src={userData?.image.src}
 							alt={userData?.image.alt}
+							onError={handleBrokenUserImg}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
 						<Link

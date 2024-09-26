@@ -9,6 +9,7 @@ import Review from "../components/reviews/Review";
 import CardsListToggle from "../components/cards/CardsListToggle";
 import { useCurrentUser } from "../providers/UserProvider";
 import { titleCase } from "../helpers/helperFunctions";
+import { handleBrokenUserImg } from "../helpers/brokenImages";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -84,6 +85,7 @@ export default function UserInfoPage() {
 						<img
 							src={userData.image.src}
 							alt={userData.image.alt}
+							onError={handleBrokenUserImg}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
 						<Typography variant="h5">

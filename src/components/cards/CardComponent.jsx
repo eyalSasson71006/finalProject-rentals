@@ -8,6 +8,7 @@ import MoreIcon from "../MoreIcon";
 import useApartments from "../../hooks/useApartments";
 import { useCurrentUser } from "../../providers/UserProvider";
 import CardUnavailable from "./CardUnavailable";
+import { handleBrokenApartmentImg } from "../../helpers/brokenImages";
 
 export default function CardComponent({ apartment }) {
 	const navigate = useNavigate();
@@ -51,6 +52,7 @@ export default function CardComponent({ apartment }) {
 					component="img"
 					src={apartment.image.src}
 					alt={apartment.image.alt}
+					onError={handleBrokenApartmentImg}
 					sx={{
 						width: "250px",
 						height: "250px",

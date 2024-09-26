@@ -77,9 +77,7 @@ export default function useApartments() {
         try {
             await editApartment(id, normalizeApartment(apartment));
             setSnack("success", "Apartment edited successfully!");
-            setTimeout(() => {
-                navigate(ROUTES.MY_APARTMENTS);
-            }, 2000);
+            navigate(ROUTES.ROOT);
         } catch (error) {
             setSnack("error", error.message);
             setError(error.message);

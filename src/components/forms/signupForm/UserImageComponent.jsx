@@ -1,12 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Input from "../Input";
+import { handleBrokenUserImg } from "../../../helpers/brokenImages";
 
 export default function UserImageComponent({ errors, data, onInputChange }) {
-	const handleBrokenImg = (e) => {
-		e.target.src =
-			"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
-	};
 	return (
 		<Box>
 			<Input
@@ -28,7 +25,7 @@ export default function UserImageComponent({ errors, data, onInputChange }) {
 				<img
 					style={{ width: "40%", borderRadius: "50%" }}
 					src={data.src}
-					onError={handleBrokenImg}
+					onError={handleBrokenUserImg}
 					alt="profile picture"
 				/>
 			</Box>

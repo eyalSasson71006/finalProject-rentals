@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import useApartments from "../../../hooks/useApartments";
 import { useCurrentUser } from "../../../providers/UserProvider";
 import CardUnavailable from "../CardUnavailable";
+import { handleBrokenApartmentImg } from "../../../helpers/brokenImages";
 
 export default function LargeCardComponent({ apartment }) {
 	const { palette } = useTheme();
@@ -62,6 +63,7 @@ export default function LargeCardComponent({ apartment }) {
 						component="img"
 						src={apartment.image.src}
 						alt={apartment.image.alt}
+						onError={handleBrokenApartmentImg}
 						sx={{
 							width: "250px",
 							height: "250px",

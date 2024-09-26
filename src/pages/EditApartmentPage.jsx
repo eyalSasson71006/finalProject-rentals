@@ -61,7 +61,7 @@ export default function EditApartmentPage() {
 			data={data}
 			onInputChange={handleChange}
 		/>,
-	];	
+	];
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 	if (!user || user._id != apartment.owner)

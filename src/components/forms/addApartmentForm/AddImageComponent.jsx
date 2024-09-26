@@ -1,12 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Input from "../Input";
+import { handleBrokenApartmentImg } from "../../../helpers/brokenImages";
 
 export default function AddImageComponent({ errors, data, onInputChange }) {
-	const handleBrokenImg = (e) => {    
-		e.target.src =
-			"https://saterdesign.com/cdn/shop/products/property-placeholder_a9ec7710-1f1e-4654-9893-28c34e3b6399_600x.jpg?v=1500393334";
-	};
 	return (
 		<Box>
 			<Input
@@ -29,7 +26,7 @@ export default function AddImageComponent({ errors, data, onInputChange }) {
 				<img
 					style={{ width: "40%", borderRadius: "15px" }}
 					src={data.src}
-					onError={handleBrokenImg}
+					onError={handleBrokenApartmentImg}
 					alt="apartment preview"
 				/>
 			</Box>
