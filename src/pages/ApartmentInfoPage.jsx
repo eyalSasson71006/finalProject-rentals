@@ -21,13 +21,24 @@ import Error from "../components/Error";
 import useUsers from "../hooks/useUsers";
 import { useCurrentUser } from "../providers/UserProvider";
 import MoreIcon from "../components/MoreIcon";
-import { handleBrokenApartmentImg, handleBrokenUserImg } from "../helpers/brokenImages";
+import {
+	handleBrokenApartmentImg,
+	handleBrokenUserImg,
+} from "../helpers/brokenImages";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
 	const [toggle, setToggle] = useState(false);
 	const [reviews, setReviews] = useState([]);
-	const { getApartment, apartment, isLoading, error } = useApartments();
+	const [isAvailable, setIsAvailable] = useState(true);
+	const {
+		getApartment,
+		handleDelete,
+		toggleAvailability,
+		apartment,
+		isLoading,
+		error,
+	} = useApartments();
 	const { getUserById, userData } = useUsers();
 	const { user } = useCurrentUser();
 	const navigate = useNavigate();
@@ -40,9 +51,17 @@ export default function ApartmentInfoPage() {
 		}
 	};
 
+	const onToggleAvailability = async () => {
+		setIsAvailable(await toggleAvailability(apartment._id));
+	};
+
 	useEffect(() => {
 		getApartment(id);
 	}, [id]);
+
+	useEffect(() => {
+		setIsAvailable(apartment?.available);
+	}, [apartment]);
 
 	useEffect(() => {
 		if (!apartment) return;
@@ -61,8 +80,16 @@ export default function ApartmentInfoPage() {
 				subtitle={apartment.subtitle}
 			/>
 			{apartment.owner == user?._id && (
-				<Box sx={{ position: "absolute", right: "10px", top: "250px" }}>
+				<Box sx={{ position: "absolute", right: "10px", top: "250px", zIndex:"999" }}>
 					<MoreIcon sx={{ mb: "auto" }}>
+						<MenuItem
+							key={"toggle availability"}
+							onClick={onToggleAvailability}
+						>
+							{isAvailable
+								? "Mark as unavailable"
+								: "Mark as available"}
+						</MenuItem>
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>
@@ -84,16 +111,44 @@ export default function ApartmentInfoPage() {
 				closePage={() => setToggle(false)}
 				address={address}
 			/>
-			<Grid2 size={12} sx={{ textAlign: "center" }}>
+			<Grid2
+				size={12}
+				sx={{
+					textAlign: "center",
+					justifyContent: "center",
+					position: "relative",
+				}}
+			>
 				<img
 					src={apartment.image.src}
 					alt={apartment.image.alt}
 					onError={handleBrokenApartmentImg}
 					style={{
-						width: "clamp(300px, 100%, 50vw",
+						width: "clamp(300px, 100%, 50vw)",
 						borderRadius: "12px",
+						position: "relative",
 					}}
 				/>
+				{!isAvailable && <Box
+					sx={{
+						position: "absolute",
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						width: "clamp(300px, 100%, 50vw)",
+						height: "100%",
+						top: "0",
+						right: "0",
+						left: "0",
+						margin: "0 auto",
+						borderRadius: "12px",
+						background: "rgba(0, 0, 0, 0.6)",
+					}}
+				>
+					<Typography sx={{ color: "#fff", fontSize: "2rem" }}>
+						Unavailable
+					</Typography>
+				</Box>}
 			</Grid2>
 			<Grid2
 				container
