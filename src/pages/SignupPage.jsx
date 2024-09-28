@@ -16,11 +16,14 @@ import ROUTES from "../routes/routesModel";
 export default function SignupPage() {
 	const { handleSignup } = useUsers();
 	const { user } = useCurrentUser();
-	const { data, errors, handleChange, onSubmit, validateForm } = useForm(
-		initialSignupForm,
-		signupSchema,
-		handleSignup
-	);
+	const {
+		data,
+		errors,
+		handleChange,
+		onSubmit,
+		validateForm,
+		handleChangeCheckBox,
+	} = useForm(initialSignupForm, signupSchema, handleSignup);
 	const steps = ["Basic Details", "Address", "Add Image"];
 
 	const components = [
@@ -28,6 +31,7 @@ export default function SignupPage() {
 			errors={errors}
 			data={data}
 			onInputChange={handleChange}
+			handleChangeCheckBox={handleChangeCheckBox}
 		/>,
 		<UserAddressComponent
 			errors={errors}

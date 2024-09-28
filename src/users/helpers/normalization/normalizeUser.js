@@ -19,6 +19,7 @@ const normalizeUser = (user) => ({
         houseNumber: user.houseNumber,
         zip: user.zip,
     },
+    isOwner: user.isOwner
 });
 
 export default normalizeUser;

@@ -48,13 +48,14 @@ export default function useApartments() {
         }
         setIsLoading(false);
     }, []);
-
+    
     const addApartment = useCallback(async (apartment) => {
         setIsLoading(true);
         try {
             let data = normalizeApartment(apartment);
             await createApartment(data);
             setIsLoading(false);
+            setSnack("success", "Apartment Added successfully!");
             navigate(ROUTES.ROOT);
             return data;
         } catch (error) {
@@ -67,7 +68,7 @@ export default function useApartments() {
     const handleDelete = useCallback((id) => {
         try {
             deleteApartment(id);
-            setSnack("info", `Apartment ${id} was deleted successfully`);
+            window.location.reload();
         } catch (error) {
             setSnack("error", error.message);
         }

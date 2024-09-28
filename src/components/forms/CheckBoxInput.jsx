@@ -2,7 +2,7 @@ import React from "react";
 import { Checkbox, Grid2, ListItem, ListItemText } from "@mui/material";
 import { camelCaseToText } from "../../helpers/helperFunctions";
 
-export default function CheckBoxInput({ name, handleChange, data }) {	
+export default function CheckBoxInput({ label = "", name, handleChange, data }) {	
 	return (
 		<Grid2 size={{ sm: 12, lg: 6 }}>
 			<ListItem>
@@ -13,7 +13,7 @@ export default function CheckBoxInput({ name, handleChange, data }) {
 					edge="end"
 					sx={{ mr: 1 }}
 				/>
-				<ListItemText primary={camelCaseToText(name)} />
+				<ListItemText primary={label || camelCaseToText(name)} />
 			</ListItem>
 		</Grid2>
 	);
