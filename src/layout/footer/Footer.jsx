@@ -1,6 +1,7 @@
 import {
 	Box,
 	Button,
+	CircularProgress,
 	Divider,
 	IconButton,
 	Typography,
@@ -12,19 +13,20 @@ import useForm from "../../hooks/useForm";
 import initialContactForm from "./helpers/initialContactFrom";
 import contactSchema from "./helpers/contactSchema";
 import { useIsDark } from "../../providers/CustomThemeProvider";
+import useEmail from "../../hooks/useEmail";
 
 const handleSubmit = (data) => {
 	console.log(data);
 };
 
 export default function Footer() {
-	const { palette } = useTheme();
+	const { handleSubmit, loading } = useEmail();
 	const { isDark } = useIsDark();
-	const { data, errors, handleChange, validateForm, onSubmit } = useForm(
-		initialContactForm,
-		contactSchema,
-		handleSubmit
-	);
+	const { data, errors, handleChange, validateForm, onSubmit, handleReset } =
+		useForm(initialContactForm, contactSchema, () => {
+			handleSubmit(data);
+			handleReset();
+		});
 	return (
 		<Box>
 			<Divider />
@@ -105,20 +107,25 @@ export default function Footer() {
 							<Button
 								sx={{
 									width: "fit-content",
+									minWidth: "80px",
 									mt: "10px",
 								}}
-								variant="contained"
 								onClick={onSubmit}
+								variant="contained"
 								disabled={!validateForm()}
 								fullWidth
 							>
-								submit
+								{loading ? (
+									<CircularProgress size={24} />
+								) : (
+									"Submit"
+								)}
 							</Button>
 						</Box>
 					</Box>
 				</Box>
 			</Box>
-			<Divider/>
+			<Divider />
 			<Box
 				sx={{
 					height: "50px",
