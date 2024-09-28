@@ -44,7 +44,7 @@ export default function AddApartmentPage() {
 			onInputChange={handleChange}
 		/>,
 	];
-	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
+	if (!user || !user.isOwner) return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
 			<PageHeadline title={"List apartment"} />

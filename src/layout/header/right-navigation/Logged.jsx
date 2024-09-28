@@ -51,14 +51,16 @@ export default function Logged() {
 				>
 					My account
 				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						navigate(ROUTES.CREATE_APARTMENT);
-						handleClose();
-					}}
-				>
-					List Apartment
-				</MenuItem>
+				{user?.isOwner && (
+					<MenuItem
+						onClick={() => {
+							navigate(ROUTES.CREATE_APARTMENT);
+							handleClose();
+						}}
+					>
+						List Apartment
+					</MenuItem>
+				)}
 				<MenuItem
 					onClick={() => {
 						navigate(ROUTES.FAV_APARTMENTS);
