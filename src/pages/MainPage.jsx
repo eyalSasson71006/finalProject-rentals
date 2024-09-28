@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { useIsDark } from "../providers/CustomThemeProvider";
 import useApartments from "../hooks/useApartments";
@@ -9,6 +9,7 @@ import Error from "../components/Error";
 
 export default function MainPage() {
 	const { isDark } = useIsDark();
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const {
 		handleGetFilterParams,
 		getAllApartments,
@@ -18,9 +19,28 @@ export default function MainPage() {
 		error,
 	} = useApartments();
 
+	const backgroundImages = [
+		"/images/searchBackground1.jpg",
+		"/images/searchBackground2.jpg",
+		"/images/searchBackground3.jpg",
+		"/images/searchBackground4.jpg",
+		"/images/searchBackground5.jpg",
+		"/images/searchBackground6.jpg",
+		"/images/searchBackground7.jpg",
+	];
+
 	useEffect(() => {
 		getAllApartments();
 		handleGetFilterParams();
+
+		// Set a timer to switch the background image
+		const intervalId = setInterval(() => {
+			setCurrentImageIndex(
+				(prevIndex) => (prevIndex + 1) % backgroundImages.length
+			);
+		}, 10_000);
+
+		return () => clearInterval(intervalId);
 	}, []);
 
 	if (isLoading) return <Spinner />;
@@ -30,10 +50,11 @@ export default function MainPage() {
 		<>
 			<Box
 				sx={{
-					backgroundImage: "url('/images/searchBackground1.jpg')",
+					backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
 					backgroundSize: "cover",
 					backgroundRepeat: "no-repeat",
 					backgroundPosition: "center",
+					transition: "background-image 1s ease-in-out",
 					height: "75vh",
 					display: "flex",
 					alignItems: "center",

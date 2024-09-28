@@ -16,7 +16,7 @@ export default function CardLikeComponent({ apartment, color = "white" }) {
 		setLiked(await handleLike(apartment._id));
 	}
 	return (
-		<Box sx={{ padding: "15px 20px" }}>
+		<Box sx={{ padding: "15px 20px", mt:"auto" }}>
 			<IconButton
 				onClick={handleLikeClick}
 				sx={{
