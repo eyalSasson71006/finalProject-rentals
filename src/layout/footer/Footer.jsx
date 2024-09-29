@@ -42,11 +42,10 @@ export default function Footer() {
 				<Box
 					sx={{
 						width: "10%",
-						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
 						textAlign: "center",
-						display: { md: "block", xs: "none" },
+						display: { md: "flex", xs: "none" },
 					}}
 				>
 					<img
