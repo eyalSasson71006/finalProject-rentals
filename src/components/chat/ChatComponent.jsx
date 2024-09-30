@@ -12,10 +12,12 @@ import { useChatProvider } from "../../providers/ChatProvider";
 import { useCurrentUser } from "../../providers/UserProvider";
 import ChatUserComponent from "./ChatUserComponent";
 import MessageComponent from "./MessageComponent";
+import useChats from "../../hooks/useChats";
 
 const ChatComponent = () => {
 	const { chats, currentChat, messages, sendMessage, selectChat } =
 		useChatProvider();
+	const { handleGetMyChats } = useChats();
 	const { user } = useCurrentUser();
 	const [newMessage, setNewMessage] = useState("");
 	const { palette } = useTheme();
@@ -25,6 +27,10 @@ const ChatComponent = () => {
 			setNewMessage("");
 		}
 	};
+
+	useEffect(() => {
+		handleGetMyChats();
+	}, []);
 
 	return (
 		<Box sx={{ display: "flex" }}>
@@ -61,17 +67,21 @@ const ChatComponent = () => {
 			<Box sx={{ width: "70%", p: 2 }}>
 				{currentChat ? (
 					<Box>
-						<Box sx={{ overflow: "auto", maxHeight: "50vh" }}>
-							<List>
-								{messages.map((msg, index) => (
-									<ListItem key={index}>
-										<MessageComponent
-											message={msg}
-											userId={user._id}
-										/>
-									</ListItem>
-								))}
-							</List>
+						<Box
+							sx={{
+								overflow: "auto",
+								maxHeight: "50vh",
+								display: "flex",
+								flexDirection: "column",
+							}}
+						>
+							{messages.map((msg, index) => (
+								<MessageComponent
+									message={msg}
+									userId={user._id}
+									key={index}
+								/>
+							))}
 						</Box>
 						<Box display="flex" mt={2}>
 							<TextField

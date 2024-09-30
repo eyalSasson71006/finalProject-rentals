@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import socket from "../chat/socket";
-import axios from "axios";
 import { getChatById } from "../chat/services/chatsApiService";
+import { useCurrentUser } from "./UserProvider";
 
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
+	const { user } = useCurrentUser();
 	const [chats, setChats] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
@@ -13,7 +14,7 @@ export const ChatProvider = ({ children }) => {
 	useEffect(() => {
 		// Listen for incoming messages
 		socket.on("receiveMessage", ({ chatId, message }) => {
-			if (currentChat === chatId) {
+			if (currentChat == chatId && message.sender != user._id) {
 				setMessages((prev) => [...prev, message]);
 			}
 			// Optionally update chat list
@@ -21,6 +22,7 @@ export const ChatProvider = ({ children }) => {
 
 		// Listen for new chats
 		socket.on("newChat", ({ chatId }) => {
+			console.log("newChat", chatId);
 			setChats((prev) => [...prev, { _id: chatId, participants: [] }]);
 		});
 
@@ -44,13 +46,13 @@ export const ChatProvider = ({ children }) => {
 		socket.emit("sendMessage", { chatId, content });
 		setMessages((prev) => [
 			...prev,
-			{ sender: "You", content, timestamp: new Date() },
+			{ sender: user._id, content, timestamp: new Date() },
 		]);
 	};
 
 	const selectChat = async (chatId) => {
-		setCurrentChat(chatId);		
-		let data = await getChatById(chatId);		
+		setCurrentChat(chatId);
+		let data = await getChatById(chatId);
 		setMessages(await data.messages);
 	};
 
@@ -58,7 +60,10 @@ export const ChatProvider = ({ children }) => {
 		<ChatContext.Provider
 			value={{
 				chats,
+				setChats,
 				currentChat,
+				setCurrentChat,
+				setMessages,
 				messages,
 				createChat,
 				sendMessage,

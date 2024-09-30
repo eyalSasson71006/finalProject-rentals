@@ -7,13 +7,13 @@ export default function MessageComponent({ message, userId }) {
 		const date = new Date(timestamp);
 		return date.getHours() + ":" + date.getMinutes();
 	};
-
+	const isSender = userId == message.sender._id;
 	return (
 		<Box
 			sx={{
 				width: "fit-content",
-				backgroundColor:
-					userId == message.sender ? palette.primary.main : "#f0f0f0",
+				my: 1,
+				backgroundColor: isSender ? palette.primary.main : "#ccc",
 				borderRadius: "10px",
 				padding: "10px 15px",
 				maxWidth: "80%",
@@ -22,18 +22,22 @@ export default function MessageComponent({ message, userId }) {
 				wordWrap: "break-word",
 				position: "relative",
 				boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-				alignSelf: userId == message.sender ? "flex-end" : "flex-start",
+				alignSelf: isSender ? "flex-end" : "flex-start",
 			}}
 		>
 			<Typography
-				sx={{ fontSize: "15px", lineHeight: "1.5", color: "#333" }}
+				sx={{
+					fontSize: "15px",
+					lineHeight: "1.5",
+					color: isSender ? "#fff" : "#333",
+				}}
 			>
 				{message.content}
 			</Typography>
 			<Typography
 				sx={{
 					fontSize: "12px",
-					color: "#999",
+					color: isSender ? "#ccc" : "#777",
 					position: "absolute",
 					bottom: "5px",
 					right: "10px",
