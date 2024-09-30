@@ -19,9 +19,7 @@ export default function useEmail() {
                 userId
             );
             setSnack("success", 'Email sent successfully!');
-            console.log(result.text);
         } catch (error) {
-            console.log(error.text);
             setSnack("error", 'Failed to send email.');
         } finally {
             setLoading(false);

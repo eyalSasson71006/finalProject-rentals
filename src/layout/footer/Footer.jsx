@@ -15,10 +15,6 @@ import contactSchema from "./helpers/contactSchema";
 import { useIsDark } from "../../providers/CustomThemeProvider";
 import useEmail from "../../hooks/useEmail";
 
-const handleSubmit = (data) => {
-	console.log(data);
-};
-
 export default function Footer() {
 	const { handleSubmit, loading } = useEmail();
 	const { isDark } = useIsDark();

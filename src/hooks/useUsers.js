@@ -28,8 +28,6 @@ export default function useUsers() {
             navigate(ROUTES.ROOT);
         } catch (error) {
             setSnack("error", error.message);
-            console.log(error.message);
-
         }
     },[]);
 

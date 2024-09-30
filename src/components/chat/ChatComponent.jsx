@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
 	Box,
 	TextField,
@@ -17,6 +17,8 @@ import useChats from "../../hooks/useChats";
 const ChatComponent = () => {
 	const { chats, currentChat, messages, sendMessage, selectChat } =
 		useChatProvider();
+	const inputRef = useRef(null);
+	const chatBoxRef = useRef(null);
 	const { handleGetMyChats } = useChats();
 	const { user } = useCurrentUser();
 	const [newMessage, setNewMessage] = useState("");
@@ -26,7 +28,13 @@ const ChatComponent = () => {
 			sendMessage(currentChat, newMessage);
 			setNewMessage("");
 		}
+		if (inputRef.current) inputRef.current.focus();
 	};
+
+	useEffect(() => {
+		if (chatBoxRef.current)
+			chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+	}, [messages]);
 
 	useEffect(() => {
 		handleGetMyChats();
@@ -68,9 +76,10 @@ const ChatComponent = () => {
 				{currentChat ? (
 					<Box>
 						<Box
+							ref={chatBoxRef}
 							sx={{
 								overflow: "auto",
-								maxHeight: "50vh",
+								height: "50vh",
 								display: "flex",
 								flexDirection: "column",
 							}}
@@ -85,11 +94,16 @@ const ChatComponent = () => {
 						</Box>
 						<Box display="flex" mt={2}>
 							<TextField
+								autoFocus
+								inputRef={inputRef}
 								fullWidth
 								variant="outlined"
 								placeholder="Type a message..."
 								value={newMessage}
 								onChange={(e) => setNewMessage(e.target.value)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter") handleSend();
+								}}
 							/>
 							<Button
 								variant="contained"

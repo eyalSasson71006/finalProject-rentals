@@ -8,6 +8,7 @@ export default function MessageComponent({ message, userId }) {
 		return date.getHours() + ":" + date.getMinutes();
 	};
 	const isSender = userId == message.sender._id;
+	
 	return (
 		<Box
 			sx={{

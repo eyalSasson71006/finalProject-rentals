@@ -22,7 +22,6 @@ export const ChatProvider = ({ children }) => {
 
 		// Listen for new chats
 		socket.on("newChat", ({ chatId }) => {
-			console.log("newChat", chatId);
 			setChats((prev) => [...prev, { _id: chatId, participants: [] }]);
 		});
 
@@ -46,7 +45,7 @@ export const ChatProvider = ({ children }) => {
 		socket.emit("sendMessage", { chatId, content });
 		setMessages((prev) => [
 			...prev,
-			{ sender: user._id, content, timestamp: new Date() },
+			{ sender: { _id: user._id }, content, timestamp: new Date() },
 		]);
 	};
 
