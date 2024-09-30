@@ -25,6 +25,7 @@ import {
 	handleBrokenApartmentImg,
 	handleBrokenUserImg,
 } from "../helpers/brokenImages";
+import { useChatProvider } from "../providers/ChatProvider";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -39,6 +40,7 @@ export default function ApartmentInfoPage() {
 		isLoading,
 		error,
 	} = useApartments();
+	const { createChat } = useChatProvider();
 	const { getUserById, userData } = useUsers();
 	const { user } = useCurrentUser();
 	const navigate = useNavigate();
@@ -80,7 +82,14 @@ export default function ApartmentInfoPage() {
 				subtitle={apartment.subtitle}
 			/>
 			{apartment.owner == user?._id && (
-				<Box sx={{ position: "absolute", right: "10px", top: "250px", zIndex:"999" }}>
+				<Box
+					sx={{
+						position: "absolute",
+						right: "10px",
+						top: "250px",
+						zIndex: "999",
+					}}
+				>
 					<MoreIcon sx={{ mb: "auto" }}>
 						<MenuItem
 							key={"toggle availability"}
@@ -129,26 +138,28 @@ export default function ApartmentInfoPage() {
 						position: "relative",
 					}}
 				/>
-				{!isAvailable && <Box
-					sx={{
-						position: "absolute",
-						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
-						width: "clamp(300px, 100%, 50vw)",
-						height: "100%",
-						top: "0",
-						right: "0",
-						left: "0",
-						margin: "0 auto",
-						borderRadius: "12px",
-						background: "rgba(0, 0, 0, 0.6)",
-					}}
-				>
-					<Typography sx={{ color: "#fff", fontSize: "2rem" }}>
-						Unavailable
-					</Typography>
-				</Box>}
+				{!isAvailable && (
+					<Box
+						sx={{
+							position: "absolute",
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							width: "clamp(300px, 100%, 50vw)",
+							height: "100%",
+							top: "0",
+							right: "0",
+							left: "0",
+							margin: "0 auto",
+							borderRadius: "12px",
+							background: "rgba(0, 0, 0, 0.6)",
+						}}
+					>
+						<Typography sx={{ color: "#fff", fontSize: "2rem" }}>
+							Unavailable
+						</Typography>
+					</Box>
+				)}
 			</Grid2>
 			<Grid2
 				container
@@ -252,10 +263,14 @@ export default function ApartmentInfoPage() {
 							<StarIcon />
 						</Box>
 						<Button
+							onClick={() => {
+								createChat(userData._id);
+								navigate(ROUTES.CHAT);
+							}}
 							variant="contained"
 							sx={{ width: "100%", my: 2, fontSize: 22 }}
 						>
-							RESERVE
+							MESSAGE
 						</Button>
 					</Box>
 				</Grid2>

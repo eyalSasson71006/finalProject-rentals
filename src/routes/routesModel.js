@@ -9,6 +9,7 @@ const ROUTES = {
     LOGIN: "/login",
     USER_PROFILE: "/user-info",
     EDIT_USER: "/edit-user",
+    CHAT: "/chat",
     ADMIN_CRM: "/admin-crm",
 };
 export default ROUTES;

@@ -13,6 +13,7 @@ import AddApartmentPage from "../pages/AddApartmentPage";
 import EditApartmentPage from "../pages/EditApartmentPage";
 import EditUserPage from "../pages/EditUserPage";
 import ChatComponent from "../components/chat/ChatComponent";
+import ChatPage from "../pages/ChatPage";
 
 export default function Router() {
 	return (
@@ -42,7 +43,7 @@ export default function Router() {
 				path={ROUTES.EDIT_USER + "/:id"}
 				element={<EditUserPage />}
 			/>
-			<Route path="/chat" element={<ChatComponent />} />
+			<Route path={ROUTES.CHAT} element={<ChatPage />} />
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>
 	);

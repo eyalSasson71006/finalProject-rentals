@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import socket from "../chat/socket";
+import axios from "axios";
+import { getChatById } from "../chat/services/chatsApiService";
 
 export const ChatContext = createContext();
 
@@ -22,10 +24,15 @@ export const ChatProvider = ({ children }) => {
 			setChats((prev) => [...prev, { _id: chatId, participants: [] }]);
 		});
 
+		socket.on("chatsList", (chatsList) => {
+			setChats(chatsList);
+		});
+
 		// Cleanup on unmount
 		return () => {
 			socket.off("receiveMessage");
 			socket.off("newChat");
+			socket.off("chatsList");
 		};
 	}, [currentChat]);
 
@@ -42,15 +49,9 @@ export const ChatProvider = ({ children }) => {
 	};
 
 	const selectChat = async (chatId) => {
-		setCurrentChat(chatId);
-		// Fetch chat history from the backend
-		const response = await fetch(`/api/chats/${chatId}`, {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
-			},
-		});
-		const data = await response.json();
-		setMessages(data.messages);
+		setCurrentChat(chatId);		
+		let data = await getChatById(chatId);		
+		setMessages(await data.messages);
 	};
 
 	return (

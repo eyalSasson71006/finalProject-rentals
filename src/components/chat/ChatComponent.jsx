@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Box,
 	TextField,
@@ -8,6 +8,9 @@ import {
 	Typography,
 } from "@mui/material";
 import { useChatProvider } from "../../providers/ChatProvider";
+import useUsers from "../../hooks/useUsers";
+import { useCurrentUser } from "../../providers/UserProvider";
+import ChatUserComponent from "./ChatUserComponent";
 
 const ChatComponent = () => {
 	const {
@@ -18,6 +21,7 @@ const ChatComponent = () => {
 		selectChat,
 		createChat,
 	} = useChatProvider();
+	const { user } = useCurrentUser();
 	const [newMessage, setNewMessage] = useState("");
 
 	const handleSend = () => {
@@ -35,7 +39,7 @@ const ChatComponent = () => {
 				<List>
 					{chats.map((chat) => (
 						<ListItem
-							button
+							component={"button"}
 							key={chat._id}
 							selected={chat._id === currentChat}
 							onClick={() => selectChat(chat._id)}
@@ -44,8 +48,10 @@ const ChatComponent = () => {
 							{/* Assuming you have a way to get participant info */}
 							<Typography>
 								{chat.participants
-									.filter((id) => id !== "currentUserId")
-									.join(", ")}
+									.filter((id) => id !== user._id)
+									.map((id) => (
+										<ChatUserComponent key={id} id={id} />
+									))}
 							</Typography>
 						</ListItem>
 					))}

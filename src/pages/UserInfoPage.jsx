@@ -1,6 +1,6 @@
 import { Box, Button, Grid2, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../components/Spinner";
@@ -10,6 +10,7 @@ import CardsListToggle from "../components/cards/CardsListToggle";
 import { useCurrentUser } from "../providers/UserProvider";
 import { titleCase } from "../helpers/helperFunctions";
 import { handleBrokenUserImg } from "../helpers/brokenImages";
+import ROUTES from "../routes/routesModel";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -24,6 +25,7 @@ export default function UserInfoPage() {
 	const [userApartments, setUserApartments] = useState();
 	const [userReviews, setUserReviews] = useState([]);
 	const { user } = useCurrentUser();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const getData = async () => {
@@ -113,6 +115,9 @@ export default function UserInfoPage() {
 							</Typography>
 						</Box>
 						<Button
+							onClick={() =>
+								navigate(ROUTES.CHAT + "/" + userData._id)
+							}
 							variant="contained"
 							sx={{ width: "100%", my: 2, fontSize: 22 }}
 						>
