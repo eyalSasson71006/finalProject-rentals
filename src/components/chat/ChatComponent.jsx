@@ -6,24 +6,19 @@ import {
 	List,
 	ListItem,
 	Typography,
+	useTheme,
 } from "@mui/material";
 import { useChatProvider } from "../../providers/ChatProvider";
-import useUsers from "../../hooks/useUsers";
 import { useCurrentUser } from "../../providers/UserProvider";
 import ChatUserComponent from "./ChatUserComponent";
+import MessageComponent from "./MessageComponent";
 
 const ChatComponent = () => {
-	const {
-		chats,
-		currentChat,
-		messages,
-		sendMessage,
-		selectChat,
-		createChat,
-	} = useChatProvider();
+	const { chats, currentChat, messages, sendMessage, selectChat } =
+		useChatProvider();
 	const { user } = useCurrentUser();
 	const [newMessage, setNewMessage] = useState("");
-
+	const { palette } = useTheme();
 	const handleSend = () => {
 		if (newMessage.trim() !== "") {
 			sendMessage(currentChat, newMessage);
@@ -32,8 +27,7 @@ const ChatComponent = () => {
 	};
 
 	return (
-		<Box display="flex">
-			{/* Chat List */}
+		<Box sx={{ display: "flex" }}>
 			<Box width="30%" borderRight="1px solid #ccc" p={2}>
 				<Typography variant="h6">Chats</Typography>
 				<List>
@@ -41,50 +35,44 @@ const ChatComponent = () => {
 						<ListItem
 							component={"button"}
 							key={chat._id}
-							selected={chat._id === currentChat}
+							sx={{
+								backgroundColor:
+									chat._id === currentChat
+										? palette.primary.main
+										: "#ddd",
+								my: 1,
+								borderRadius: "15px",
+								border: "none",
+							}}
 							onClick={() => selectChat(chat._id)}
 						>
-							{/* Display participant name */}
-							{/* Assuming you have a way to get participant info */}
-							<Typography>
+							<Box>
 								{chat.participants
 									.filter((id) => id !== user._id)
 									.map((id) => (
 										<ChatUserComponent key={id} id={id} />
 									))}
-							</Typography>
+							</Box>
 						</ListItem>
 					))}
 				</List>
-				{/* Add functionality to create new chat */}
 			</Box>
 
-			{/* Chat Window */}
-			<Box width="70%" p={2}>
+			<Box sx={{ width: "70%", p: 2 }}>
 				{currentChat ? (
-					<>
-						<List>
-							{messages.map((msg, index) => (
-								<ListItem key={index}>
-									<Typography
-										align={
-											msg.sender === "You"
-												? "right"
-												: "left"
-										}
-										variant="body1"
-									>
-										<strong>
-											{msg.sender === "You"
-												? "You"
-												: msg.sender.username}
-											:
-										</strong>{" "}
-										{msg.content}
-									</Typography>
-								</ListItem>
-							))}
-						</List>
+					<Box>
+						<Box sx={{ overflow: "auto", maxHeight: "50vh" }}>
+							<List>
+								{messages.map((msg, index) => (
+									<ListItem key={index}>
+										<MessageComponent
+											message={msg}
+											userId={user._id}
+										/>
+									</ListItem>
+								))}
+							</List>
+						</Box>
 						<Box display="flex" mt={2}>
 							<TextField
 								fullWidth
@@ -92,9 +80,6 @@ const ChatComponent = () => {
 								placeholder="Type a message..."
 								value={newMessage}
 								onChange={(e) => setNewMessage(e.target.value)}
-								onKeyPress={(e) => {
-									if (e.key === "Enter") handleSend();
-								}}
 							/>
 							<Button
 								variant="contained"
@@ -104,7 +89,7 @@ const ChatComponent = () => {
 								Send
 							</Button>
 						</Box>
-					</>
+					</Box>
 				) : (
 					<Typography variant="h6">
 						Select a chat to start messaging

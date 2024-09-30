@@ -10,7 +10,6 @@ export const getChatById = async (chatId) => {
                 ["x-auth-token"]: getToken(),
             },
         });
-        console.log("await response.data");
         return response.data;
     } catch (error) {
         throw new Error(error);
