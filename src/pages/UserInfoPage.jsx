@@ -111,7 +111,7 @@ export default function UserInfoPage() {
 							</Typography>
 							<StarIcon />
 						</Box>
-						{user._id !== userData?._id && (
+						{(user && user._id !== userData?._id) && (
 							<Button
 								onClick={() => {
 									createChat(userData._id);
