@@ -21,8 +21,8 @@ export const ChatProvider = ({ children }) => {
 		});
 
 		// Listen for new chats
-		socket.on("newChat", ({ chatId }) => {
-			setChats((prev) => [...prev, { _id: chatId, participants: [] }]);
+		socket.on("enterChat", ({ chatId }) => {
+			setCurrentChat(chatId);
 		});
 
 		socket.on("chatsList", (chatsList) => {

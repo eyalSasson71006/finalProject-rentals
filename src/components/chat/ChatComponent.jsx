@@ -40,8 +40,12 @@ const ChatComponent = () => {
 		handleGetMyChats();
 	}, []);
 
+	useEffect(() => {
+		if (currentChat) selectChat(currentChat);
+	}, [chats]);
+
 	return (
-		<Box sx={{ display: "flex", mt:3 }}>
+		<Box sx={{ display: "flex", mt: 3 }}>
 			<Box width="30%" borderRight="1px solid #ccc" p={2}>
 				<Typography variant="h6">Chats</Typography>
 				<List>
