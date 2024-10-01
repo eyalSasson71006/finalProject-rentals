@@ -26,6 +26,7 @@ import {
 	handleBrokenUserImg,
 } from "../helpers/brokenImages";
 import { useChatProvider } from "../providers/ChatProvider";
+import { titleCase } from "../helpers/helperFunctions";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -245,33 +246,37 @@ export default function ApartmentInfoPage() {
 							style={{ textDecoration: "none", color: "inherit" }}
 							to={ROUTES.USER_PROFILE + "/" + userData?._id}
 						>
-							<Typography variant="h5">
-								{userData?.name.first} {userData?.name.last}
+							<Typography variant="h5" textAlign="center">
+								{titleCase(userData?.name.first)}{" "}
+								{titleCase(userData?.name.last)}
 							</Typography>
 						</Link>
 						<Box
 							sx={{
 								display: "flex",
 								alignItems: "center",
+								justifyContent: "center",
 								gap: "4px",
 							}}
 						>
-							<Typography variant="h6">Host rating: </Typography>
+							<Typography variant="h6">Rating: </Typography>
 							<Typography variant="h5">
 								{userData?.rating.toFixed(1)}
 							</Typography>
 							<StarIcon />
 						</Box>
-						<Button
-							onClick={() => {
-								createChat(userData._id);
-								navigate(ROUTES.CHAT);
-							}}
-							variant="contained"
-							sx={{ width: "100%", my: 2, fontSize: 22 }}
-						>
-							MESSAGE
-						</Button>
+						{user._id !== userData?._id && (
+							<Button
+								onClick={() => {
+									createChat(userData._id);
+									navigate(ROUTES.CHAT);
+								}}
+								variant="contained"
+								sx={{ width: "100%", my: 2, fontSize: 22 }}
+							>
+								MESSAGE
+							</Button>
+						)}
 					</Box>
 				</Grid2>
 			</Grid2>

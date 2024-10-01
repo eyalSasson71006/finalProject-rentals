@@ -11,6 +11,7 @@ import { useCurrentUser } from "../providers/UserProvider";
 import { titleCase } from "../helpers/helperFunctions";
 import { handleBrokenUserImg } from "../helpers/brokenImages";
 import ROUTES from "../routes/routesModel";
+import { useChatProvider } from "../providers/ChatProvider";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -25,6 +26,7 @@ export default function UserInfoPage() {
 	const [userApartments, setUserApartments] = useState();
 	const [userReviews, setUserReviews] = useState([]);
 	const { user } = useCurrentUser();
+	const { createChat } = useChatProvider();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -90,39 +92,37 @@ export default function UserInfoPage() {
 							onError={handleBrokenUserImg}
 							style={{ width: "200px", borderRadius: "50px" }}
 						/>
-						<Typography variant="h5">
-							{`${userData.name.first} ${userData.name.middle} ${userData.name.last}`}
+						<Typography variant="h5" textAlign={"center"}>
+							{`${titleCase(userData.name.first)} ${titleCase(
+								userData.name.middle
+							)} ${titleCase(userData.name.last)}`}
 						</Typography>
 						<Box
 							sx={{
 								display: "flex",
 								alignItems: "center",
+								justifyContent: "center",
 								gap: "4px",
 							}}
 						>
-							<Typography variant="h6">Host rating: </Typography>
+							<Typography variant="h6">Rating: </Typography>
 							<Typography variant="h5">
 								{userData.rating.toFixed(1)}
 							</Typography>
 							<StarIcon />
 						</Box>
-						<Box>
-							<Typography variant="h6">
-								{userData.phone}
-							</Typography>
-							<Typography variant="h6">
-								{userData.email}
-							</Typography>
-						</Box>
-						<Button
-							onClick={() =>
-								navigate(ROUTES.CHAT + "/" + userData._id)
-							}
-							variant="contained"
-							sx={{ width: "100%", my: 2, fontSize: 22 }}
-						>
-							Message
-						</Button>
+						{user._id !== userData?._id && (
+							<Button
+								onClick={() => {
+									createChat(userData._id);
+									navigate(ROUTES.CHAT);
+								}}
+								variant="contained"
+								sx={{ width: "100%", my: 2, fontSize: 22 }}
+							>
+								Message
+							</Button>
+						)}
 					</Box>
 				</Grid2>
 			</Grid2>

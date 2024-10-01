@@ -41,7 +41,7 @@ const ChatComponent = () => {
 	}, []);
 
 	return (
-		<Box sx={{ display: "flex" }}>
+		<Box sx={{ display: "flex", mt:3 }}>
 			<Box width="30%" borderRight="1px solid #ccc" p={2}>
 				<Typography variant="h6">Chats</Typography>
 				<List>
