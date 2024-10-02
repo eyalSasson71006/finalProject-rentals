@@ -5,6 +5,7 @@ import FilterCheckbox from "./components/FilterCheckbox";
 import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
+import FilterNumberInput from "./components/FilterNumberInput";
 
 export default function FilterResults({ filterParams, resetFunc }) {
 	return (
@@ -17,14 +18,9 @@ export default function FilterResults({ filterParams, resetFunc }) {
 				/>
 			</FilterAccordion>
 
-			<FilterAccordion
-				title={"Bedrooms"}
-				sx={{ display: { xs: "block", md: "none" } }}
-			>
-				<FilterTextfield name="bedrooms" type="number" value={1} />
-			</FilterAccordion>
-			<FilterAccordion title={"Bathrooms"}>
-				<FilterTextfield name="bathrooms" type="number" value={1} />
+			<FilterAccordion title={"Rooms"}>
+				<FilterNumberInput name="bedrooms" value={0} />
+				<FilterNumberInput name="bathrooms" value={0} />
 			</FilterAccordion>
 			<FilterAccordion title={"Amenities"}>
 				<List component="div" disablePadding>

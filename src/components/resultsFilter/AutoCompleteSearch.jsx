@@ -20,7 +20,7 @@ export default function AutoCompleteSearch({
 			options={locations.map((location) => titleCase(location))}
 			id="location"
 			value={value}
-			sx={{ ...sx, width: 300 }}
+			sx={{ ...sx, width: 350 }}
 			onChange={onChange}
 			renderInput={(params) => (
 				<TextField {...params} label="Location" variant="outlined" />

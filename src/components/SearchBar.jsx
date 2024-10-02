@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AutoCompleteSearch from "./resultsFilter/AutoCompleteSearch";
+import FilterNumberInput from "./resultsFilter/components/FilterNumberInput";
 
 export default function SearchBar({ locations, reRender = () => {} }) {
 	const navigate = useNavigate();
@@ -19,8 +20,8 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 	const [search, setSearch] = useState({
 		location: searchParams.get("location") || "",
 		propertyType: searchParams.get("propertyType") || "",
-		bedrooms: searchParams.get("bedrooms") || 1,
-		guests: searchParams.get("guests") || 1,
+		bedrooms: searchParams.get("bedrooms") || 0,
+		guests: searchParams.get("guests") || 0,
 	});
 
 	function handleChange(e) {
@@ -101,7 +102,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 			<FormControl
 				sx={{
 					...textFieldSx,
-					minWidth: "150px",
+					minWidth: "200px",
 					display: { xs: "none", md: "inline-flex" },
 				}}
 			>
@@ -114,7 +115,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 					value={search.propertyType}
 					onChange={handleChange}
 				>
-					{["apartment", "house", "penthouse", "studio"].map(
+					{["Any", "Apartment", "House", "Penthouse", "Studio"].map(
 						(item, index) => (
 							<MenuItem key={item + index} value={item}>
 								{item}
@@ -123,30 +124,6 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 					)}
 				</Select>
 			</FormControl>
-			<TextField
-				sx={{
-					...textFieldSx,
-					width: "90px",
-					display: { xs: "none", md: "inline-flex" },
-				}}
-				type="number"
-				name="bedrooms"
-				label="Bedrooms"
-				value={search.bedrooms}
-				onChange={handleChange}
-			/>
-			<TextField
-				sx={{
-					...textFieldSx,
-					width: "70px",
-					display: { xs: "none", md: "inline-flex" },
-				}}
-				type="number"
-				name="guests"
-				label="Guests"
-				value={search.guests}
-				onChange={handleChange}
-			/>
 			<Button variant="contained" onClick={handleSearch}>
 				<SearchIcon />
 			</Button>

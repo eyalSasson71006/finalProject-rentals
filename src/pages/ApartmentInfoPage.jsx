@@ -184,7 +184,7 @@ export default function ApartmentInfoPage() {
 						<Typography my={1} variant="h5" color="gray">
 							Location: {apartment.address.city},{" "}
 							{apartment.address.country} <br />
-							price: {apartment.price} <br />
+							Price: {apartment.price}$/Night <br />
 						</Typography>
 						<Button onClick={() => setToggle(true)}>
 							OPEN LOCATION ON MAP

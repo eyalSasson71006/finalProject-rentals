@@ -39,7 +39,7 @@ export default function BasicDetailsComponent({
 			/>
 			<Input
 				name="price"
-				label="Price"
+				label="Price/Night"
 				type="number"
 				error={errors.price}
 				onChange={onInputChange}
