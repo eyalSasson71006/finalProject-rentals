@@ -6,11 +6,18 @@ import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 import FilterNumberInput from "./components/FilterNumberInput";
+import SortResultsComponent from "./components/SortResultsComponent";
 
 export default function FilterResults({ filterParams, resetFunc }) {
 	return (
 		<Box my={8} sx={{ position: "sticky", top: "100px" }}>
 			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
+			<FilterAccordion title={"Sort by"}>
+				<SortResultsComponent
+					keys={["Any", "price", "rating"]}
+					name={"sort"}
+				/>
+			</FilterAccordion>
 			<FilterAccordion title={"Price"}>
 				<FilterSlider
 					minValue={filterParams?.minPrice || 0}
