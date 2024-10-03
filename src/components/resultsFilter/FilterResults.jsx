@@ -13,11 +13,14 @@ export default function FilterResults({ filterParams, resetFunc }) {
 			{resetFunc && <Button onClick={resetFunc}>Clear filters</Button>}
 			<FilterAccordion title={"Price"}>
 				<FilterSlider
-					minValue={filterParams.minPrice || 0}
-					maxValue={filterParams.maxPrice || 10_000}
+					minValue={filterParams?.minPrice || 0}
+					maxValue={filterParams?.maxPrice || 10_000}
 				/>
 			</FilterAccordion>
 
+			<FilterAccordion title={"Guests"}>
+				<FilterNumberInput name="guests" value={0} addPlus={false} />
+			</FilterAccordion>
 			<FilterAccordion title={"Rooms"}>
 				<FilterNumberInput name="bedrooms" value={0} />
 				<FilterNumberInput name="bathrooms" value={0} />

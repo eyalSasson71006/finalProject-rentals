@@ -5,9 +5,11 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useSearchParams } from "react-router-dom";
 import { titleCase } from "../../../helpers/helperFunctions";
 
-export default function FilterNumberInput({ name, value = 0 }) {
+export default function FilterNumberInput({ name, value = 0, addPlus = true }) {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [amount, setAmount] = useState(Number(searchParams.get(name)) || value || 0);
+	const [amount, setAmount] = useState(
+		Number(searchParams.get(name)) || value || 0
+	);
 	const { palette } = useTheme();
 
 	useEffect(() => {
@@ -24,7 +26,7 @@ export default function FilterNumberInput({ name, value = 0 }) {
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "space-between",
-                my: 2,
+				my: 2,
 			}}
 		>
 			<Typography>{titleCase(name)}</Typography>
@@ -45,7 +47,9 @@ export default function FilterNumberInput({ name, value = 0 }) {
 					<RemoveIcon color={amount > 0 ? "primary" : "gray"} />
 				</IconButton>
 				<Divider orientation="vertical" variant="middle" flexItem />
-				<Typography>{amount > 0 ? amount + "+" : "Any"}</Typography>
+				<Typography>
+					{amount > 0 ? amount + (addPlus && "+") : "Any"}
+				</Typography>
 				<Divider orientation="vertical" variant="middle" flexItem />
 				<IconButton onClick={() => setAmount((p) => p + 1)}>
 					<AddIcon color="primary" />
