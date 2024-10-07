@@ -5,10 +5,14 @@ export default function MessageComponent({ message, userId }) {
 	const { palette } = useTheme();
 	const convertTimeStamp = (timestamp) => {
 		const date = new Date(timestamp);
-		return date.getHours() + ":" + date.getMinutes();
+		return (
+			date.getHours().toString().padStart(2, "0") +
+			":" +
+			date.getMinutes().toString().padStart(2, "0")
+		);
 	};
 	const isSender = userId == message.sender._id;
-	
+
 	return (
 		<Box
 			sx={{
