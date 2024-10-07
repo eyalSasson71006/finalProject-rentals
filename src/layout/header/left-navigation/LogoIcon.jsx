@@ -10,7 +10,7 @@ export default function LogoIcon() {
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			<Link to={ROUTES.ROOT}>
 				<IconButton>
-					<img src="/images/logo.png" />
+					<img src="/images/logo.svg" style={{width:"50px"}}/>
 				</IconButton>
 			</Link>
 			<Link to={ROUTES.ROOT} style={{ textDecoration: "none" }}>

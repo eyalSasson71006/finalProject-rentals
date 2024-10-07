@@ -13,7 +13,7 @@ const Spinner = ({ size = 80, height = "90vh" }) => {
 			}}
 		>
 			<img
-				src="/images/logo.png"
+				src="/images/logo.svg"
 				alt="spinner"
 				width={size}
 				height={size}

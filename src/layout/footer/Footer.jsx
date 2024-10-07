@@ -47,7 +47,7 @@ export default function Footer() {
 					<img
 						style={{ width: "80px" }}
 						alt="logo"
-						src="/images/logo.png"
+						src="/images/logo.svg"
 					/>
 					<Typography variant="h4" color={isDark ? "#fff" : "#333"}>
 						RentMate
