@@ -29,25 +29,10 @@ export default function useChats() {
         setIsLoading(false);
     }, []);
 
-    const handleGetMyChats = useCallback(async (id) => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            let chats = await getMyChats();
-            setChats(chats);
-            setIsLoading(false);
-            return chats;
-        } catch (error) {
-            setSnack("error", error.message);
-            setError(error.message);
-        }
-        setIsLoading(false);
-    }, []);
 
     return {
         isLoading,
         error,
         getChat,
-        handleGetMyChats
     };
 }

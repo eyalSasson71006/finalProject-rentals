@@ -12,17 +12,16 @@ import { useChatProvider } from "../../providers/ChatProvider";
 import { useCurrentUser } from "../../providers/UserProvider";
 import ChatUserComponent from "./ChatUserComponent";
 import MessageComponent from "./MessageComponent";
-import useChats from "../../hooks/useChats";
 
 const ChatComponent = () => {
 	const { chats, currentChat, messages, sendMessage, selectChat } =
 		useChatProvider();
 	const inputRef = useRef(null);
 	const chatBoxRef = useRef(null);
-	const { handleGetMyChats } = useChats();
 	const { user } = useCurrentUser();
 	const [newMessage, setNewMessage] = useState("");
 	const { palette } = useTheme();
+
 	const handleSend = () => {
 		if (newMessage.trim() !== "") {
 			sendMessage(currentChat, newMessage);
@@ -35,10 +34,6 @@ const ChatComponent = () => {
 		if (chatBoxRef.current)
 			chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
 	}, [messages]);
-
-	useEffect(() => {
-		handleGetMyChats();
-	}, []);
 
 	useEffect(() => {
 		if (currentChat) selectChat(currentChat);
@@ -61,16 +56,11 @@ const ChatComponent = () => {
 								my: 1,
 								borderRadius: "15px",
 								border: "none",
+								display:"block"
 							}}
 							onClick={() => selectChat(chat._id)}
 						>
-							<Box>
-								{chat.participants
-									.filter((id) => id !== user._id)
-									.map((id) => (
-										<ChatUserComponent key={id} id={id} />
-									))}
-							</Box>
+								<ChatUserComponent key={chat._id} chat={chat} />
 						</ListItem>
 					))}
 				</List>

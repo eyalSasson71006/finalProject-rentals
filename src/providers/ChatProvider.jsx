@@ -25,10 +25,13 @@ export const ChatProvider = ({ children }) => {
 			setCurrentChat(chatId);
 		});
 
-		socket.on("chatsList", (chatsList) => {
+		socket.on("chatsList", (chatsList) => {			
 			setChats(chatsList);
 		});
-
+		
+		// Request chats with unread count when the component loads
+		socket.emit("getChatsWithUnreadCount");
+		
 		// Cleanup on unmount
 		return () => {
 			socket.off("receiveMessage");
@@ -51,6 +54,8 @@ export const ChatProvider = ({ children }) => {
 
 	const selectChat = async (chatId) => {
 		setCurrentChat(chatId);
+		socket.emit("selectChat", chatId);
+		socket.emit("markMessagesAsRead", chatId); // Mark as read on the server
 		let data = await getChatById(chatId);
 		setMessages(await data.messages);
 	};
