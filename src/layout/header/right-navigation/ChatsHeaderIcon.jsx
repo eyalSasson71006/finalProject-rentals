@@ -18,7 +18,7 @@ export default function ChatsHeaderIcon() {
         })
         setUnread(sum);
     }, [chats]);
-
+    if(chats.length === 0) return null
 	return (
 		<IconButton onClick={() => navigate(ROUTES.CHAT)}>
 			<Badge badgeContent={unread} color="success">
