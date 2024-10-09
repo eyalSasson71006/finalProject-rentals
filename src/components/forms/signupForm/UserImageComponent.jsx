@@ -23,7 +23,7 @@ export default function UserImageComponent({ errors, data, onInputChange }) {
 				}}
 			>
 				<img
-					style={{ width: "40%", borderRadius: "50%" }}
+					style={{ width: "25vw", height: "25vw", borderRadius: "50%" }}
 					src={data.src}
 					onError={handleBrokenUserImg}
 					alt="profile picture"

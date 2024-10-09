@@ -62,6 +62,7 @@ export default function Footer() {
 							<Input
 								sx={{ mt: 2 }}
 								name="name"
+								id="contactName"
 								label="Name"
 								type="name"
 								error={errors.name}
@@ -71,6 +72,7 @@ export default function Footer() {
 							<Input
 								sx={{ mt: 2 }}
 								name="phone"
+								id="contactPhone"
 								label="Phone"
 								type="phone"
 								error={errors.phone}
@@ -80,6 +82,7 @@ export default function Footer() {
 							<Input
 								sx={{ mt: 2 }}
 								name="email"
+								id="contactEmail"
 								label="Email"
 								type="email"
 								error={errors.email}

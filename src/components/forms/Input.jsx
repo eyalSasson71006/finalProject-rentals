@@ -6,6 +6,7 @@ const Input = ({
 	variant = "outlined",
 	type = "text",
 	name,
+	id = null,
 	data,
 	label,
 	required = true,
@@ -22,7 +23,7 @@ const Input = ({
 				variant={variant}
 				label={label}
 				type={type}
-				id={name}
+				id={id || name}
 				name={name}
 				value={data[name] ? data[name] : ""}
 				required={required}
