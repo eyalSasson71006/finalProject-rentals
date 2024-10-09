@@ -27,6 +27,7 @@ import {
 } from "../../helpers/brokenImages";
 import { useChatProvider } from "../../providers/ChatProvider";
 import { titleCase } from "../../helpers/helperFunctions";
+import UserDetailsSideBar from "../../components/users/userDetailsSideBar";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();
@@ -41,7 +42,6 @@ export default function ApartmentInfoPage() {
 		isLoading,
 		error,
 	} = useApartments();
-	const { createChat } = useChatProvider();
 	const { getUserById, userData } = useUsers();
 	const { user } = useCurrentUser();
 	const navigate = useNavigate();
@@ -235,49 +235,7 @@ export default function ApartmentInfoPage() {
 					</Box>
 				</Grid2>
 				<Grid2 size={"auto"}>
-					<Box sx={{ position: "sticky", top: "100px" }}>
-						<img
-							src={userData?.image.src}
-							alt={userData?.image.alt}
-							onError={handleBrokenUserImg}
-							style={{ width: "200px", borderRadius: "50px" }}
-						/>
-						<Link
-							style={{ textDecoration: "none", color: "inherit" }}
-							to={ROUTES.USER_PROFILE + "/" + userData?._id}
-						>
-							<Typography variant="h5" textAlign="center">
-								{titleCase(userData?.name.first)}{" "}
-								{titleCase(userData?.name.last)}
-							</Typography>
-						</Link>
-						<Box
-							sx={{
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								gap: "4px",
-							}}
-						>
-							<Typography variant="h6">Rating: </Typography>
-							<Typography variant="h5">
-								{userData?.rating.toFixed(1)}
-							</Typography>
-							<StarIcon />
-						</Box>
-						{(user && user._id !== userData?._id) && (
-							<Button
-								onClick={() => {
-									createChat(userData._id);
-									navigate(ROUTES.CHAT);
-								}}
-								variant="contained"
-								sx={{ width: "100%", my: 2, fontSize: 22 }}
-							>
-								MESSAGE
-							</Button>
-						)}
-					</Box>
+					<UserDetailsSideBar userData={userData} />
 				</Grid2>
 			</Grid2>
 		</>

@@ -12,6 +12,7 @@ import { titleCase } from "../../helpers/helperFunctions";
 import { handleBrokenUserImg } from "../../helpers/brokenImages";
 import ROUTES from "../../routes/routesModel";
 import { useChatProvider } from "../../providers/ChatProvider";
+import UserDetailsSideBar from "../../components/users/userDetailsSideBar";
 
 export default function UserInfoPage() {
 	const { id } = useParams();
@@ -26,8 +27,6 @@ export default function UserInfoPage() {
 	const [userApartments, setUserApartments] = useState();
 	const [userReviews, setUserReviews] = useState([]);
 	const { user } = useCurrentUser();
-	const { createChat } = useChatProvider();
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		const getData = async () => {
@@ -85,45 +84,7 @@ export default function UserInfoPage() {
 					</Box>
 				</Grid2>
 				<Grid2 size={"auto"}>
-					<Box sx={{ position: "sticky", top: "100px" }}>
-						<img
-							src={userData.image.src}
-							alt={userData.image.alt}
-							onError={handleBrokenUserImg}
-							style={{ width: "200px", borderRadius: "50px" }}
-						/>
-						<Typography variant="h5" textAlign={"center"}>
-							{`${titleCase(userData.name.first)} ${titleCase(
-								userData.name.middle
-							)} ${titleCase(userData.name.last)}`}
-						</Typography>
-						<Box
-							sx={{
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								gap: "4px",
-							}}
-						>
-							<Typography variant="h6">Rating: </Typography>
-							<Typography variant="h5">
-								{userData.rating.toFixed(1)}
-							</Typography>
-							<StarIcon />
-						</Box>
-						{(user && user._id !== userData?._id) && (
-							<Button
-								onClick={() => {
-									createChat(userData._id);
-									navigate(ROUTES.CHAT);
-								}}
-								variant="contained"
-								sx={{ width: "100%", my: 2, fontSize: 22 }}
-							>
-								Message
-							</Button>
-						)}
-					</Box>
+					<UserDetailsSideBar userData={userData} />
 				</Grid2>
 			</Grid2>
 		</Box>
