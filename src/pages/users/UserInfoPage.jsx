@@ -2,16 +2,16 @@ import { Box, Button, Grid2, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
-import useUsers from "../hooks/useUsers";
-import Spinner from "../components/Spinner";
-import Error from "../components/Error";
-import Review from "../components/reviews/Review";
-import CardsListToggle from "../components/cards/CardsListToggle";
-import { useCurrentUser } from "../providers/UserProvider";
-import { titleCase } from "../helpers/helperFunctions";
-import { handleBrokenUserImg } from "../helpers/brokenImages";
-import ROUTES from "../routes/routesModel";
-import { useChatProvider } from "../providers/ChatProvider";
+import useUsers from "../../hooks/useUsers";
+import Spinner from "../../components/Spinner";
+import Error from "../../components/Error";
+import Review from "../../components/reviews/Review";
+import CardsListToggle from "../../components/cards/CardsListToggle";
+import { useCurrentUser } from "../../providers/UserProvider";
+import { titleCase } from "../../helpers/helperFunctions";
+import { handleBrokenUserImg } from "../../helpers/brokenImages";
+import ROUTES from "../../routes/routesModel";
+import { useChatProvider } from "../../providers/ChatProvider";
 
 export default function UserInfoPage() {
 	const { id } = useParams();

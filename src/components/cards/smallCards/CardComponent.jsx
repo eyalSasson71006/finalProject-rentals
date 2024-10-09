@@ -1,14 +1,14 @@
 import { Box, Card, CardActionArea, MenuItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CardLikeComponent from "./CardLikeComponent";
+import CardLikeComponent from "../CardLikeComponent";
 import CardFooterComponent from "./CardFooterComponent";
-import ROUTES from "../../routes/routesModel";
-import MoreIcon from "../MoreIcon";
-import useApartments from "../../hooks/useApartments";
-import { useCurrentUser } from "../../providers/UserProvider";
-import CardUnavailable from "./CardUnavailable";
-import { handleBrokenApartmentImg } from "../../helpers/brokenImages";
+import ROUTES from "../../../routes/routesModel";
+import MoreIcon from "../../MoreIcon";
+import useApartments from "../../../hooks/useApartments";
+import { useCurrentUser } from "../../../providers/UserProvider";
+import CardUnavailable from "../CardUnavailable";
+import { handleBrokenApartmentImg } from "../../../helpers/brokenImages";
 
 export default function CardComponent({ apartment }) {
 	const navigate = useNavigate();

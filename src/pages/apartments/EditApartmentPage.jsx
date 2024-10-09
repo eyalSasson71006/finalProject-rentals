@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
-import useApartments from "../hooks/useApartments";
-import { useCurrentUser } from "../providers/UserProvider";
+import useApartments from "../../hooks/useApartments";
+import { useCurrentUser } from "../../providers/UserProvider";
 import { Navigate, useParams } from "react-router-dom";
-import useForm from "../hooks/useForm";
-import initialApartmentForm from "../apartments/helpers/initialForms/initialApartmentForm";
-import apartmentSchema from "../apartments/models/apartmentSchema";
-import mapApartmentToModel from "../apartments/helpers/normalization/mapApartmentToModel";
-import ROUTES from "../routes/routesModel";
-import Spinner from "../components/Spinner";
-import Error from "../components/Error";
+import useForm from "../../hooks/useForm";
+import initialApartmentForm from "../../apartments/helpers/initialForms/initialApartmentForm";
+import apartmentSchema from "../../apartments/models/apartmentSchema";
+import mapApartmentToModel from "../../apartments/helpers/normalization/mapApartmentToModel";
+import ROUTES from "../../routes/routesModel";
+import Spinner from "../../components/Spinner";
+import Error from "../../components/Error";
 import { Box } from "@mui/material";
-import StepperForm from "../components/forms/StepperForm";
-import BasicDetailsComponent from "../components/forms/addApartmentForm/BasicDetailsComponent";
-import AmenitiesComponent from "../components/forms/addApartmentForm/AmenitiesComponent";
-import AddImageComponent from "../components/forms/addApartmentForm/AddImageComponent";
-import PageHeadline from "../components/PageHeadline";
+import StepperForm from "../../components/forms/StepperForm";
+import BasicDetailsComponent from "../../components/forms/addApartmentForm/BasicDetailsComponent";
+import AmenitiesComponent from "../../components/forms/addApartmentForm/AmenitiesComponent";
+import AddImageComponent from "../../components/forms/addApartmentForm/AddImageComponent";
+import PageHeadline from "../../components/PageHeadline";
 
 export default function EditApartmentPage() {
 	const { handleEdit, getApartment, apartment, isLoading, error } =

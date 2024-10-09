@@ -1,17 +1,17 @@
 import React from "react";
-import initialSignupForm from "../users/helpers/initialForms/initialSignupForm";
-import signupSchema from "../users/models/signupSchema";
-import useUsers from "../hooks/useUsers";
+import initialSignupForm from "../../users/helpers/initialForms/initialSignupForm";
+import signupSchema from "../../users/models/signupSchema";
+import useUsers from "../../hooks/useUsers";
 import { Box } from "@mui/material";
-import StepperForm from "../components/forms/StepperForm";
-import useForm from "../hooks/useForm";
-import UserBasicDetails from "../components/forms/signupForm/UserBasicDetails";
-import UserAddressComponent from "../components/forms/signupForm/UserAddressComponent";
-import UserImageComponent from "../components/forms/signupForm/UserImageComponent";
-import PageHeadline from "../components/PageHeadline";
-import { useCurrentUser } from "../providers/UserProvider";
+import StepperForm from "../../components/forms/StepperForm";
+import useForm from "../../hooks/useForm";
+import UserBasicDetails from "../../components/forms/signupForm/UserBasicDetails";
+import UserAddressComponent from "../../components/forms/signupForm/UserAddressComponent";
+import UserImageComponent from "../../components/forms/signupForm/UserImageComponent";
+import PageHeadline from "../../components/PageHeadline";
+import { useCurrentUser } from "../../providers/UserProvider";
 import { Navigate } from "react-router-dom";
-import ROUTES from "../routes/routesModel";
+import ROUTES from "../../routes/routesModel";
 
 export default function SignupPage() {
 	const { handleSignup } = useUsers();

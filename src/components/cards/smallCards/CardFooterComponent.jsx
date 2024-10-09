@@ -2,7 +2,7 @@ import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Typography } from "@mui/material";
-import { titleCase } from "../../helpers/helperFunctions";
+import { titleCase } from "../../../helpers/helperFunctions";
 
 export default function CardFooterComponent({ apartment }) {
 	return (

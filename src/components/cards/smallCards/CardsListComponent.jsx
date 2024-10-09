@@ -11,7 +11,7 @@ export default function CardsListComponent({ apartments }) {
 					borderRadius: "20px",
 					border: `1px solid ${palette.primary.main}`,
 					m: 4,
-					width:"70%"
+					width: "70%",
 				}}
 			>
 				<Typography py={5} variant="h5" textAlign={"center"}>

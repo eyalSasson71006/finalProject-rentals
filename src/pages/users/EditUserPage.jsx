@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
-import initialEditUserForm from "../users/helpers/initialForms/initialEditUserForm";
-import useUsers from "../hooks/useUsers";
+import initialEditUserForm from "../../users/helpers/initialForms/initialEditUserForm";
+import useUsers from "../../hooks/useUsers";
 import { Box } from "@mui/material";
-import StepperForm from "../components/forms/StepperForm";
-import useForm from "../hooks/useForm";
-import UserAddressComponent from "../components/forms/signupForm/UserAddressComponent";
-import UserImageComponent from "../components/forms/signupForm/UserImageComponent";
-import PageHeadline from "../components/PageHeadline";
-import { useCurrentUser } from "../providers/UserProvider";
+import StepperForm from "../../components/forms/StepperForm";
+import useForm from "../../hooks/useForm";
+import UserAddressComponent from "../../components/forms/signupForm/UserAddressComponent";
+import UserImageComponent from "../../components/forms/signupForm/UserImageComponent";
+import PageHeadline from "../../components/PageHeadline";
+import { useCurrentUser } from "../../providers/UserProvider";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import mapUserToModel from "../users/helpers/normalization/mapUserToModel";
-import EditUserBasicDetails from "../components/forms/editUserForm/EditUserBasicDetails";
-import ROUTES from "../routes/routesModel";
-import Spinner from "../components/Spinner";
-import Error from "../components/Error";
-import EditUserSchema from "../users/models/EditUserSchema";
+import mapUserToModel from "../../users/helpers/normalization/mapUserToModel";
+import EditUserBasicDetails from "../../components/forms/editUserForm/EditUserBasicDetails";
+import ROUTES from "../../routes/routesModel";
+import Spinner from "../../components/Spinner";
+import Error from "../../components/Error";
+import EditUserSchema from "../../users/models/EditUserSchema";
 
 export default function EditUserPage() {
 	const { handleEditUser, getUserById, isLoading, error } = useUsers();

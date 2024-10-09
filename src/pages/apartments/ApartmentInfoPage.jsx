@@ -8,25 +8,25 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import PageHeadline from "../components/PageHeadline";
+import PageHeadline from "../../components/PageHeadline";
 import StarIcon from "@mui/icons-material/Star";
-import AmenitiesComponent from "../components/AmenitiesComponent";
-import ROUTES from "../routes/routesModel";
-import MapComponent from "../components/map/MapComponent";
-import AddReview from "../components/reviews/AddReview";
-import Review from "../components/reviews/Review";
-import useApartments from "../hooks/useApartments";
-import Spinner from "../components/Spinner";
-import Error from "../components/Error";
-import useUsers from "../hooks/useUsers";
-import { useCurrentUser } from "../providers/UserProvider";
-import MoreIcon from "../components/MoreIcon";
+import AmenitiesComponent from "../../components/AmenitiesComponent";
+import ROUTES from "../../routes/routesModel";
+import MapComponent from "../../components/map/MapComponent";
+import AddReview from "../../components/reviews/AddReview";
+import Review from "../../components/reviews/Review";
+import useApartments from "../../hooks/useApartments";
+import Spinner from "../../components/Spinner";
+import Error from "../../components/Error";
+import useUsers from "../../hooks/useUsers";
+import { useCurrentUser } from "../../providers/UserProvider";
+import MoreIcon from "../../components/MoreIcon";
 import {
 	handleBrokenApartmentImg,
 	handleBrokenUserImg,
-} from "../helpers/brokenImages";
-import { useChatProvider } from "../providers/ChatProvider";
-import { titleCase } from "../helpers/helperFunctions";
+} from "../../helpers/brokenImages";
+import { useChatProvider } from "../../providers/ChatProvider";
+import { titleCase } from "../../helpers/helperFunctions";
 
 export default function ApartmentInfoPage() {
 	const { id } = useParams();

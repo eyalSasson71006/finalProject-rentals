@@ -104,6 +104,9 @@ export default function LargeCardComponent({ apartment }) {
 						apartment.address.country
 					)}`}
 				</Typography>
+				<Typography fontWeight={"bold"}>
+					${apartment.price} Night
+				</Typography>
 			</Box>
 			<Box
 				sx={{

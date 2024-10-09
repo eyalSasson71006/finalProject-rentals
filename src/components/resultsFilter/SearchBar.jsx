@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import ROUTES from "../routes/routesModel";
+import ROUTES from "../../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import AutoCompleteSearch from "./resultsFilter/AutoCompleteSearch";
-import FilterNumberInput from "./resultsFilter/components/FilterNumberInput";
+import AutoCompleteSearch from "../resultsFilter/AutoCompleteSearch";
+import FilterNumberInput from "../resultsFilter/components/FilterNumberInput";
 
 export default function SearchBar({ locations, reRender = () => {} }) {
 	const navigate = useNavigate();

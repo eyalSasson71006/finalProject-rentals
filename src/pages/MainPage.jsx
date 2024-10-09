@@ -1,9 +1,9 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/resultsFilter/SearchBar";
 import { useIsDark } from "../providers/CustomThemeProvider";
 import useApartments from "../hooks/useApartments";
-import CardsListComponent from "../components/cards/CardsListComponent";
+import CardsListComponent from "../components/cards/smallCards/CardsListComponent";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 

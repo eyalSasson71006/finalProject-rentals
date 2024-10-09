@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
-import PageHeadline from "../components/PageHeadline";
-import Spinner from "../components/Spinner";
-import Error from "../components/Error";
-import { useCurrentUser } from "../providers/UserProvider";
-import useApartments from "../hooks/useApartments";
-import CardsListToggle from "../components/cards/CardsListToggle";
+import PageHeadline from "../../components/PageHeadline";
+import Spinner from "../../components/Spinner";
+import Error from "../../components/Error";
+import { useCurrentUser } from "../../providers/UserProvider";
+import useApartments from "../../hooks/useApartments";
+import CardsListToggle from "../../components/cards/CardsListToggle";
 import { Navigate } from "react-router-dom";
-import ROUTES from "../routes/routesModel";
+import ROUTES from "../../routes/routesModel";
 
 export default function FavoritesPage() {
 	const { user } = useCurrentUser();

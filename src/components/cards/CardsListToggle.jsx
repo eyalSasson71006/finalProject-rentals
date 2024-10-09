@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import React, { useState } from "react";
 import VerticalToggleButtons from "./CardsToggleButton";
-import CardsListComponent from "./CardsListComponent";
+import CardsListComponent from "./smallCards/CardsListComponent";
 import LargeCardsListComponent from "./largeCards/LargeCardsListComponent";
 
 export default function CardsListToggle({ apartments }) {

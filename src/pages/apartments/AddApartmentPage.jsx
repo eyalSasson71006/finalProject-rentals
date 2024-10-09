@@ -1,16 +1,16 @@
 import React from "react";
 import { Box } from "@mui/material";
-import StepperForm from "../components/forms/StepperForm";
-import BasicDetailsComponent from "../components/forms/addApartmentForm/BasicDetailsComponent";
-import AmenitiesComponent from "../components/forms/addApartmentForm/AmenitiesComponent";
-import AddImageComponent from "../components/forms/addApartmentForm/AddImageComponent";
-import useForm from "../hooks/useForm";
-import apartmentSchema from "../apartments/models/apartmentSchema";
-import initialApartmentForm from "../apartments/helpers/initialForms/initialApartmentForm";
-import useApartments from "../hooks/useApartments";
-import PageHeadline from "../components/PageHeadline";
-import { useCurrentUser } from "../providers/UserProvider";
-import ROUTES from "../routes/routesModel";
+import StepperForm from "../../components/forms/StepperForm";
+import BasicDetailsComponent from "../../components/forms/addApartmentForm/BasicDetailsComponent";
+import AmenitiesComponent from "../../components/forms/addApartmentForm/AmenitiesComponent";
+import AddImageComponent from "../../components/forms/addApartmentForm/AddImageComponent";
+import useForm from "../../hooks/useForm";
+import apartmentSchema from "../../apartments/models/apartmentSchema";
+import initialApartmentForm from "../../apartments/helpers/initialForms/initialApartmentForm";
+import useApartments from "../../hooks/useApartments";
+import PageHeadline from "../../components/PageHeadline";
+import { useCurrentUser } from "../../providers/UserProvider";
+import ROUTES from "../../routes/routesModel";
 import { Navigate } from "react-router-dom";
 
 export default function AddApartmentPage() {
