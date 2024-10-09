@@ -27,22 +27,24 @@ export default function ChatUserComponent({ chat }) {
 			<Typography variant="h5">
 				{titleCase(userData.name.first)} {titleCase(userData.name.last)}
 			</Typography>
-			<Typography
-				sx={{
-					ml: "auto",
-					backgroundColor: palette.primary.main,
-					borderRadius: "50%",
-					width: "30px",
-					height: "30px",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					color: "white",
-					fontWeight: "bold",
-				}}
-			>
-				{chat.unreadCount}
-			</Typography>
+			{chat.unreadCount > 0 && (
+				<Typography
+					sx={{
+						ml: "auto",
+						backgroundColor: palette.primary.main,
+						borderRadius: "50%",
+						width: "30px",
+						height: "30px",
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						color: "white",
+						fontWeight: "bold",
+					}}
+				>
+					{chat.unreadCount}
+				</Typography>
+			)}
 		</Box>
 	);
 }

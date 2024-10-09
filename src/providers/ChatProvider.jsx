@@ -15,8 +15,9 @@ export const ChatProvider = ({ children }) => {
 		// Listen for incoming messages
 		socket.on("receiveMessage", ({ chatId, message }) => {
 			if (currentChat == chatId && message.sender != user._id) {
-				setMessages((prev) => [...prev, message]);
+				setMessages((prev) => [...prev, message]);				
 			}
+			socket.emit("getChatsWithUnreadCount");
 			// Optionally update chat list
 		});
 
@@ -25,13 +26,13 @@ export const ChatProvider = ({ children }) => {
 			setCurrentChat(chatId);
 		});
 
-		socket.on("chatsList", (chatsList) => {			
+		socket.on("chatsList", (chatsList) => {
 			setChats(chatsList);
 		});
-		
+
 		// Request chats with unread count when the component loads
 		socket.emit("getChatsWithUnreadCount");
-		
+
 		// Cleanup on unmount
 		return () => {
 			socket.off("receiveMessage");
