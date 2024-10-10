@@ -26,6 +26,7 @@ export default function useUsers() {
             setToken(token);
             setUser(getUser());
             navigate(ROUTES.ROOT);
+            window.location.reload();
         } catch (error) {
             setSnack("error", error.message);
         }
