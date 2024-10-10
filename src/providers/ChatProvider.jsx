@@ -12,34 +12,33 @@ export const ChatProvider = ({ children }) => {
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
-		// Listen for incoming messages
-		socket.on("receiveMessage", ({ chatId, message }) => {
-			if (currentChat == chatId && message.sender != user._id) {
-				setMessages((prev) => [...prev, message]);				
-			}
-			socket.emit("getChatsWithUnreadCount");
-			// Optionally update chat list
-		});
-
-		// Listen for new chats
-		socket.on("enterChat", ({ chatId }) => {
-			setCurrentChat(chatId);
-		});
-
 		socket.on("chatsList", (chatsList) => {
 			setChats(chatsList);
 		});
 
-		// Request chats with unread count when the component loads
+		socket.on("receiveMessage", ({ chatId, message }) => {
+			if (currentChat == chatId && message.sender != user._id) {
+				setMessages((prev) => [...prev, message]);
+			}
+			if (currentChat == chatId) {
+				markMessagesAsRead(chatId);
+			} else {
+				socket.emit("getChatsWithUnreadCount");
+			}
+		});
+
+		socket.on("enterChat", ({ chatId }) => {
+			markMessagesAsRead(chatId);
+		});
+
 		socket.emit("getChatsWithUnreadCount");
 
-		// Cleanup on unmount
 		return () => {
 			socket.off("receiveMessage");
-			socket.off("newChat");
+			socket.off("enterChat");
 			socket.off("chatsList");
 		};
-	}, [currentChat]);
+	}, [currentChat, user]);
 
 	const createChat = (recipientId) => {
 		socket.emit("createChat", { recipientId });
@@ -53,10 +52,9 @@ export const ChatProvider = ({ children }) => {
 		]);
 	};
 
-	const selectChat = async (chatId) => {
+	const markMessagesAsRead = async (chatId) => {
 		setCurrentChat(chatId);
-		socket.emit("selectChat", chatId);
-		socket.emit("markMessagesAsRead", chatId); // Mark as read on the server
+		socket.emit("markMessagesAsRead", chatId);
 		let data = await getChatById(chatId);
 		setMessages(await data.messages);
 	};
@@ -72,7 +70,7 @@ export const ChatProvider = ({ children }) => {
 				messages,
 				createChat,
 				sendMessage,
-				selectChat,
+				markMessagesAsRead,
 			}}
 		>
 			{children}

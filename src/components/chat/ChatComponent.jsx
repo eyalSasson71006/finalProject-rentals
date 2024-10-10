@@ -14,7 +14,7 @@ import ChatUserComponent from "./ChatUserComponent";
 import MessageComponent from "./MessageComponent";
 
 const ChatComponent = () => {
-	const { chats, currentChat, messages, sendMessage, selectChat } =
+	const { chats, currentChat, messages, sendMessage, markMessagesAsRead } =
 		useChatProvider();
 	const inputRef = useRef(null);
 	const chatBoxRef = useRef(null);
@@ -36,7 +36,7 @@ const ChatComponent = () => {
 	}, [messages]);
 
 	useEffect(() => {
-		if (currentChat) selectChat(currentChat);
+		if (currentChat) markMessagesAsRead(currentChat);
 	}, [chats]);
 
 	return (
@@ -56,11 +56,11 @@ const ChatComponent = () => {
 								my: 1,
 								borderRadius: "15px",
 								border: "none",
-								display:"block"
+								display: "block",
 							}}
-							onClick={() => selectChat(chat._id)}
+							onClick={() => markMessagesAsRead(chat._id)}
 						>
-								<ChatUserComponent key={chat._id} chat={chat} />
+							<ChatUserComponent key={chat._id} chat={chat} />
 						</ListItem>
 					))}
 				</List>
