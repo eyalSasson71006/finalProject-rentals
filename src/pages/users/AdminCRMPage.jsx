@@ -17,8 +17,13 @@ import PageHeadline from "../../components/PageHeadline";
 import CrmTable from "../../components/users/CrmTable";
 
 export default function AdminCRMPage() {
-	const { isLoading, error, handleGetAllUsers, handleDeleteUser } =
-		useUsers();
+	const {
+		isLoading,
+		error,
+		handleGetAllUsers,
+		handleDeleteUser,
+		handleToggleOwnerUser,
+	} = useUsers();
 	const [allUsers, setAllUsers] = useState();
 	const { user } = useCurrentUser();
 
@@ -47,16 +52,14 @@ export default function AdminCRMPage() {
 							<TableCell>Email</TableCell>
 							<TableCell>Phone</TableCell>
 							<TableCell>Admin?</TableCell>
-							<TableCell>Business?</TableCell>
+							<TableCell>Owner?</TableCell>
 							<TableCell></TableCell>
 						</TableRow>
 					</TableHead>
 					<CrmTable
 						allUsers={allUsers}
 						handleDeleteUser={handleDeleteUser}
-						handleToggleBusinessUser={() =>
-							console.log("Toggle Business status")
-						}
+						handleToggleOwnerUser={handleToggleOwnerUser}
 					/>
 				</Table>
 			</TableContainer>

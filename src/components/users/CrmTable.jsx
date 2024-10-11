@@ -5,7 +5,7 @@ import CrmRow from "./CrmRow";
 export default function CrmTable({
 	allUsers,
 	handleDeleteUser,
-	handleToggleBusinessUser,
+	handleToggleOwnerUser,
 }) {
 	return (
 		<TableBody>
@@ -14,7 +14,7 @@ export default function CrmTable({
 					key={user._id}
 					user={user}
 					handleDeleteUser={handleDeleteUser}
-					handleToggleBusinessUser={handleToggleBusinessUser}
+					handleToggleOwnerUser={handleToggleOwnerUser}
 				/>
 			))}
 		</TableBody>

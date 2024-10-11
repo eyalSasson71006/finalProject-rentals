@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../providers/UserProvider";
-import { deleteUser, editUser, getAllUsersData, getUserData, getUsersApartments, getUsersReviews, login, signup } from "../users/services/usersApiService";
+import { deleteUser, editUser, getAllUsersData, getUserData, getUsersApartments, getUsersReviews, login, signup, toggleOwnerUser } from "../users/services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../users/services/localStorageService";
 import normalizeUser from "../users/helpers/normalization/normalizeUser";
 import ROUTES from "../routes/routesModel";
@@ -125,7 +125,17 @@ export default function useUsers() {
         }
     }, []);
 
-    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews, handleDeleteUser, handleGetAllUsers };
+    const handleToggleOwnerUser = useCallback(async (id) => {
+        try {
+            let userData = await toggleOwnerUser(id);
+            setSnack("success", `User Owner status toggled ${userData.isOwner ? "ON" : "OFF"} successfully!`);
+            return userData;
+        } catch (err) {
+            setSnack("error", err.message);
+        }
+    }, []);
+
+    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews, handleDeleteUser, handleGetAllUsers, handleToggleOwnerUser };
 }
 
 

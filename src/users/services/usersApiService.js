@@ -75,3 +75,14 @@ export const deleteUser = async (id) => {
         throw new Error(err.message);
     }
 };
+
+
+export const toggleOwnerUser = async (id) => {
+
+    try {
+        const response = await axios.patch(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+}; 
