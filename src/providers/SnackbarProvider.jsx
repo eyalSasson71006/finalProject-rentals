@@ -19,6 +19,16 @@ export default function SnackbarProvider({ children }) {
 		setSnackMessage(message);
 	}, []);
 
+	const setSnackError = useCallback((message) => {
+		if (
+			message == "AxiosError: Request failed with status code 429" ||
+			message == "Request failed with status code 429"
+		) {
+			return "Too many requests, please try again after 24 hours.";
+		}
+		return message;
+	}, []);
+
 	return (
 		<>
 			<SnackbarContext.Provider value={setSnack}>
@@ -33,7 +43,7 @@ export default function SnackbarProvider({ children }) {
 				autoHideDuration={5000}
 			>
 				<Alert severity={snackColor} variant={snackVariant}>
-					{snackMessage}
+					{setSnackError(snackMessage)}
 				</Alert>
 			</Snackbar>
 		</>
