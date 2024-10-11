@@ -74,7 +74,8 @@ export default function ApartmentInfoPage() {
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-
+	console.log(user);
+	
 	const address = `${apartment.address.country} ${apartment.address.city} ${apartment.address.street} ${apartment.address.houseNumber} `;
 	return (
 		<>
@@ -92,14 +93,16 @@ export default function ApartmentInfoPage() {
 					}}
 				>
 					<MoreIcon sx={{ mb: "auto" }}>
-						<MenuItem
-							key={"toggle availability"}
-							onClick={onToggleAvailability}
-						>
-							{isAvailable
-								? "Mark as unavailable"
-								: "Mark as available"}
-						</MenuItem>
+						{user.isOwner && (
+							<MenuItem
+								key={"toggle availability"}
+								onClick={onToggleAvailability}
+							>
+								{isAvailable
+									? "Mark as unavailable"
+									: "Mark as available"}
+							</MenuItem>
+						)}
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>

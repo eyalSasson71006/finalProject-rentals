@@ -82,14 +82,16 @@ export default function CardComponent({ apartment }) {
 				{user && <CardLikeComponent apartment={apartment} />}
 				{checkOwner() && (
 					<MoreIcon sx={{ padding: "15px 20px" }}>
-						<MenuItem
-							key={"toggle availability"}
-							onClick={onToggleAvailability}
-						>
-							{isAvailable
-								? "Mark as unavailable"
-								: "Mark as available"}
-						</MenuItem>
+						{user.isOwner && (
+							<MenuItem
+								key={"toggle availability"}
+								onClick={onToggleAvailability}
+							>
+								{isAvailable
+									? "Mark as unavailable"
+									: "Mark as available"}
+							</MenuItem>
+						)}
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>

@@ -42,6 +42,7 @@ export default function LargeCardComponent({ apartment }) {
 				margin: "8px",
 				padding: "15px",
 				width: "700px",
+				minWidth: "535px",
 				height: "280px",
 				borderRadius: "15px",
 				overflow: "hidden",
@@ -118,14 +119,16 @@ export default function LargeCardComponent({ apartment }) {
 			>
 				{checkOwner() && (
 					<MoreIcon sx={{ mb: "auto" }}>
-						<MenuItem
-							key={"toggle availability"}
-							onClick={onToggleAvailability}
-						>
-							{isAvailable
-								? "Mark as unavailable"
-								: "Mark as available"}
-						</MenuItem>
+						{user.isOwner && (
+							<MenuItem
+								key={"toggle availability"}
+								onClick={onToggleAvailability}
+							>
+								{isAvailable
+									? "Mark as unavailable"
+									: "Mark as available"}
+							</MenuItem>
+						)}
 						<MenuItem
 							key={"Edit Apartment"}
 							onClick={() =>
