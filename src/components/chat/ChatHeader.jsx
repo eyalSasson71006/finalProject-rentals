@@ -32,7 +32,7 @@ export default function ChatHeader({ currentChat, setToggle }) {
 	return (
 		<Box
 			sx={{
-				backgroundColor: palette.primary.main,
+				border: `2px solid ${palette.primary.main}`,
 				padding: "10px 20px",
 				display: "flex",
 				alignItems: "center",
