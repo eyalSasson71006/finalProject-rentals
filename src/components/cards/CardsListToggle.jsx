@@ -1,12 +1,25 @@
 import { Box, Container } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VerticalToggleButtons from "./CardsToggleButton";
 import CardsListComponent from "./smallCards/CardsListComponent";
 import LargeCardsListComponent from "./largeCards/LargeCardsListComponent";
+import { useCurrentUser } from "../../providers/UserProvider";
 
 export default function CardsListToggle({ apartments }) {
 	const [view, setView] = useState("small");
-	
+	const [apartmentsList, setApartmentsList] = useState(apartments);
+	const { user } = useCurrentUser();
+
+	useEffect(() => {
+		if (!user || user.isAdmin) return;
+		setApartmentsList(
+			apartments.filter(
+				(apartment) =>
+					apartment.owner == user._id || apartment.available
+			)
+		);
+	}, [user]);
+
 	return (
 		<Container
 			sx={{
@@ -28,9 +41,11 @@ export default function CardsListToggle({ apartments }) {
 			>
 				<VerticalToggleButtons view={view} setView={setView} />
 			</Box>
-			{view == "small" && <CardsListComponent apartments={apartments} />}
+			{view == "small" && (
+				<CardsListComponent apartments={apartmentsList} />
+			)}
 			{view == "large" && (
-				<LargeCardsListComponent apartments={apartments} />
+				<LargeCardsListComponent apartments={apartmentsList} />
 			)}
 		</Container>
 	);

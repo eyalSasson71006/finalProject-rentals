@@ -64,15 +64,7 @@ export default function UserInfoPage() {
 								: titleCase(userData.name.first) + "'s"}{" "}
 							Apartments
 						</Typography>
-						<CardsListToggle
-							apartments={
-								user?._id == id
-									? userApartments
-									: userApartments.filter(
-											(apartment) => apartment.available
-									  )
-							}
-						/>
+						<CardsListToggle apartments={userApartments} />
 					</Box>
 					<Typography variant="h3" mb={3}>{`About ${
 						user?._id == id ? "Me" : titleCase(userData.name.first)

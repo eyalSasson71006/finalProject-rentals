@@ -83,7 +83,7 @@ export default function ApartmentInfoPage() {
 				title={apartment.title}
 				subtitle={apartment.subtitle}
 			/>
-			{apartment.owner == user?._id && (
+			{(apartment.owner == user?._id || user.isAdmin) && (
 				<Box
 					sx={{
 						position: "absolute",

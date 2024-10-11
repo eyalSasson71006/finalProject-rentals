@@ -61,11 +61,7 @@ export default function SearchResults() {
 					/>
 				</Box>
 				<Box sx={{ width: "100%" }}>
-					<CardsListToggle
-						apartments={apartments.filter(
-							(apartment) => apartment.available
-						)}
-					/>
+					<CardsListToggle apartments={apartments} />
 				</Box>
 			</Box>
 		</Box>
