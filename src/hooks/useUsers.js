@@ -13,7 +13,7 @@ export default function useUsers() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
     const [userData, setUserData] = useState();
-    const { setUser, setToken } = useCurrentUser();
+    const { user, setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
     const setSnack = useSnack();
 
@@ -30,7 +30,7 @@ export default function useUsers() {
         } catch (error) {
             setSnack("error", error.message);
         }
-    },[]);
+    }, []);
 
     const handleLogout = useCallback(() => {
         try {
@@ -101,7 +101,17 @@ export default function useUsers() {
         }
     }, []);
 
-    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews };
+    const handleDeleteUser = useCallback(async (id) => {
+        try {
+            await deleteUser(id);
+            if (user?._id == id) handleLogout();
+            setSnack("success", "User Deleted successfully!");
+        } catch (err) {
+            setSnack("error", err.message);
+        }
+    }, []);
+
+    return { userData, setUserData, isLoading, error, handleLogin, handleLogout, handleSignup, handleEditUser, getUserById, handleGetUsersApartments, handleGetUsersReviews, handleDeleteUser };
 }
 
 

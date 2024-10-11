@@ -31,7 +31,7 @@ export const editUser = async (id, newUser) => {
 
 export const getUserData = async (id) => {
     try {
-        const response = await axios.get(`${apiUrl}/${id}`);
+        const response = await axios.get(`${apiUrl}/${id}`);        
         return response.data;
     } catch (err) {
         throw new Error(err.message);
@@ -50,6 +50,15 @@ export const getUsersApartments = async (id) => {
 export const getUsersReviews = async (id) => {
     try {
         const response = await axios.get(`${apiUrl}/users-reviews/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+export const deleteUser = async (id) => {
+    try {
+        const response = await axios.delete(`${apiUrl}/${id}`);
         return response.data;
     } catch (err) {
         throw new Error(err.message);
