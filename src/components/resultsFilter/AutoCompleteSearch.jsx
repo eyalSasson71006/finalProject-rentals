@@ -22,6 +22,7 @@ export default function AutoCompleteSearch({
 			value={value}
 			sx={{ ...sx, width: 350 }}
 			onChange={onChange}
+			disableClearable
 			renderInput={(params) => (
 				<TextField {...params} label="Location" variant="outlined" />
 			)}
