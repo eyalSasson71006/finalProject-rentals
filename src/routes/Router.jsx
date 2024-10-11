@@ -14,6 +14,7 @@ import EditApartmentPage from "../pages/apartments/EditApartmentPage";
 import EditUserPage from "../pages/users/EditUserPage";
 import ChatPage from "../pages/ChatPage";
 import ScrollToTop from "../components/ScrollToTop";
+import AdminCRMPage from "../pages/users/AdminCRMPage";
 
 export default function Router() {
 	return (
@@ -23,6 +24,7 @@ export default function Router() {
 				<Route path={ROUTES.ROOT} element={<MainPage />} />
 				<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 				<Route path={ROUTES.SIGNUP} element={<SignupPage />} />
+				<Route path={ROUTES.ADMIN_CRM} element={<AdminCRMPage />} />
 				<Route
 					path={ROUTES.SEARCH_RESULTS}
 					element={<SearchResults />}

@@ -77,6 +77,14 @@ export default function Logged() {
 				>
 					Edit account
 				</MenuItem>
+				{user?.isAdmin && <MenuItem
+					onClick={() => {
+						navigate(ROUTES.ADMIN_CRM);
+						handleClose();
+					}}
+				>
+					Admin CRM
+				</MenuItem>}
 				<MenuItem
 					onClick={() => {
 						handleLogout();

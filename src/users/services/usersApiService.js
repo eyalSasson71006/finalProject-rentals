@@ -2,6 +2,17 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8181/users";
 
+
+export const getAllUsersData = async () => {
+
+    try {
+        const response = await axios.get(apiUrl);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
 export const login = async (userLogin) => {
     try {
         const response = await axios.post(apiUrl + "/login", userLogin);
