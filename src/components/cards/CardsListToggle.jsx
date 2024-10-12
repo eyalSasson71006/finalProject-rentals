@@ -11,7 +11,13 @@ export default function CardsListToggle({ apartments }) {
 	const { user } = useCurrentUser();
 
 	useEffect(() => {
-		if (!user || user.isAdmin) return;
+		if (!user) {
+			setApartmentsList(
+				apartments.filter((apartment) => apartment.available)
+			);
+			return;
+		}
+		if (user.isAdmin) return;
 		setApartmentsList(
 			apartments.filter(
 				(apartment) =>
@@ -39,7 +45,7 @@ export default function CardsListToggle({ apartments }) {
 					display: { xs: "none", md: "block" },
 				}}
 			>
-				<VerticalToggleButtons view={view} setView={setView} />
+				{apartmentsList.length > 0 && <VerticalToggleButtons view={view} setView={setView} />}
 			</Box>
 			{view == "small" && (
 				<CardsListComponent apartments={apartmentsList} />

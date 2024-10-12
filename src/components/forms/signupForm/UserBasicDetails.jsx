@@ -62,7 +62,7 @@ export default function UserBasicDetails({
 				size={{ xs: 12, sm: 6 }}
 			/>
 			<CheckBoxInput
-				label="I would like to list my properties"
+				label="I would like to signup as an apartment owner"
 				name="isOwner"
 				handleChange={handleChangeCheckBox}
 				data={data}

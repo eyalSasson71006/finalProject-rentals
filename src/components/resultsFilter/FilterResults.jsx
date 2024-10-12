@@ -18,7 +18,7 @@ export default function FilterResults({ filterParams, resetFunc }) {
 					name={"sort"}
 				/>
 			</FilterAccordion>
-			<FilterAccordion title={"Price"}>
+			<FilterAccordion title={"Price/Month"}>
 				<FilterSlider
 					minValue={filterParams?.minPrice || 0}
 					maxValue={filterParams?.maxPrice || 10_000}

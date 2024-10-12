@@ -74,7 +74,6 @@ export default function ApartmentInfoPage() {
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-	console.log(user);
 	
 	const address = `${apartment.address.country} ${apartment.address.city} ${apartment.address.street} ${apartment.address.houseNumber} `;
 	return (
@@ -83,7 +82,7 @@ export default function ApartmentInfoPage() {
 				title={apartment.title}
 				subtitle={apartment.subtitle}
 			/>
-			{(apartment.owner == user?._id || user.isAdmin) && (
+			{(apartment.owner == user?._id || user?.isAdmin) && (
 				<Box
 					sx={{
 						position: "absolute",
@@ -93,7 +92,7 @@ export default function ApartmentInfoPage() {
 					}}
 				>
 					<MoreIcon sx={{ mb: "auto" }}>
-						{user.isOwner && (
+						{user?.isOwner && (
 							<MenuItem
 								key={"toggle availability"}
 								onClick={onToggleAvailability}
@@ -187,7 +186,7 @@ export default function ApartmentInfoPage() {
 						<Typography my={1} variant="h5" color="gray">
 							Location: {apartment.address.city},{" "}
 							{apartment.address.country} <br />
-							Price: {apartment.price}$/Night <br />
+							Price: ${apartment.price} Night <br />
 						</Typography>
 						<Button onClick={() => setToggle(true)}>
 							OPEN LOCATION ON MAP

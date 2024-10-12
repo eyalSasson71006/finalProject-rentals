@@ -17,7 +17,7 @@ export default function BasicDetailsComponent({
 				onChange={onInputChange}
 				data={data}
 				required={true}
-				size={{ xs: 12, sm:6 }}
+				size={{ xs: 12, sm: 6 }}
 			/>
 			<Input
 				name="subtitle"
@@ -26,7 +26,7 @@ export default function BasicDetailsComponent({
 				onChange={onInputChange}
 				data={data}
 				required={true}
-				size={{ xs: 12, sm:6 }}
+				size={{ xs: 12, sm: 6 }}
 			/>
 			<SelectInput
 				name="propertyType"
@@ -35,7 +35,7 @@ export default function BasicDetailsComponent({
 				onChange={onInputChange}
 				data={data}
 				items={["house", "apartment", "penthouse", "studio"]}
-				size={{ xs: 12, sm:6 }}
+				size={{ xs: 12, sm: 6 }}
 			/>
 			<Input
 				name="price"
@@ -45,7 +45,7 @@ export default function BasicDetailsComponent({
 				onChange={onInputChange}
 				data={data}
 				required={true}
-				size={{ xs: 12, sm:6 }}
+				size={{ xs: 12, sm: 6 }}
 			/>
 			<Input
 				name="description"

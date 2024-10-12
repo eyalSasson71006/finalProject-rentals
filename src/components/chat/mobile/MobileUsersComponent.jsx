@@ -22,26 +22,12 @@ export default function MobileUsersComponent({
 					<Typography variant="h6">Chats</Typography>
 					<List>
 						{chats.map((chat) => (
-							<ListItem
-								component={"button"}
+							<ChatUserComponent
 								key={chat._id}
-								sx={{
-									backgroundColor:
-										chat._id === currentChat
-											? palette.primary.main
-											: "#ddd",
-									my: 1,
-									borderRadius: "15px",
-									border: "none",
-									display: "block",
-								}}
-								onClick={() => {
-									markMessagesAsRead(chat._id);
-									setToggle((p) => !p);
-								}}
-							>
-								<ChatUserComponent key={chat._id} chat={chat} />
-							</ListItem>
+								chat={chat}
+								currentChat={currentChat}
+								markMessagesAsRead={markMessagesAsRead}
+							/>
 						))}
 					</List>
 				</Box>

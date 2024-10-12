@@ -1,10 +1,14 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, ListItem, Typography, useTheme } from "@mui/material";
 import React, { useEffect } from "react";
 import useUsers from "../../hooks/useUsers";
 import { titleCase } from "../../helpers/helperFunctions";
 import { useCurrentUser } from "../../providers/UserProvider";
 
-export default function ChatUserComponent({ chat }) {
+export default function ChatUserComponent({
+	chat,
+	currentChat,
+	markMessagesAsRead,
+}) {
 	const { getUserById, userData } = useUsers();
 	const { palette } = useTheme();
 	const { user } = useCurrentUser();
@@ -18,11 +22,29 @@ export default function ChatUserComponent({ chat }) {
 
 	if (!userData) return null;
 	return (
-		<Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+		<ListItem
+			component={"button"}
+			key={chat._id}
+			sx={{
+				backgroundColor:
+					chat._id === currentChat ? palette.primary.main : "#ddd",
+				my: 1,
+				borderRadius: "15px",
+				border: "none",
+				display: "flex",
+				alignItems: "center",
+				gap: "10px",
+			}}
+			onClick={() => markMessagesAsRead(chat._id)}
+		>
 			<img
 				src={userData.image.src}
 				alt={userData.image.alt}
-				style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+				style={{
+					width: "50px",
+					height: "50px",
+					borderRadius: "50%",
+				}}
 			/>
 			<Typography variant="h5">
 				{titleCase(userData.name.first)} {titleCase(userData.name.last)}
@@ -45,6 +67,6 @@ export default function ChatUserComponent({ chat }) {
 					{chat.unreadCount}
 				</Typography>
 			)}
-		</Box>
+		</ListItem>
 	);
 }
