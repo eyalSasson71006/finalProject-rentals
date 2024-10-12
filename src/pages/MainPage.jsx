@@ -57,9 +57,34 @@ export default function MainPage() {
 					transition: "background-image 1s ease-in-out",
 					height: "75vh",
 					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
 					alignItems: "center",
 				}}
 			>
+				<Typography
+					variant="h1"
+					sx={{
+						textShadow: "3px 3px 4px #000",
+						color: "white",
+						mt: -14,
+						fontSize: { xs: "3rem", md: "5rem" },
+					}}
+				>
+					RentMate
+				</Typography>
+				<Typography
+					variant="h2"
+					sx={{
+						textShadow: "3px 3px 4px #000",
+						color: "white",
+						mb: 2,
+						fontSize: { xs: "1.2rem", md: "1.6rem" },
+						textAlign: "center",
+					}}
+				>
+					Find or list your perfect apartment with ease!
+				</Typography>
 				<SearchBar locations={filterParams?.locations} />
 			</Box>
 			<Container sx={{ my: 5, width: "80vw" }}>
@@ -67,22 +92,22 @@ export default function MainPage() {
 					About us
 				</Typography>
 				<Typography variant="body1" fontSize={20}>
-					Welcome to RentMate, the trusted platform that connects
-					apartment owners with renters looking for their perfect
-					home. Whether you're offering a cozy city loft or searching
-					for the ideal place to settle down, we make it easy to find
-					the perfect match. Our mission is to simplify the rental
-					process by creating a seamless experience for both property
-					owners and renters. With RentMate, you can easily list,
-					discover, and rent apartments with confidence. We provide a
-					secure, user-friendly platform where landlords can showcase
-					their properties and renters can search by location, budget,
-					and preferences. At RentMate, we believe in fostering a
-					community where everyone can find their next home,
-					hassle-free. With our advanced search tools and personalized
-					recommendations, you're just a few clicks away from your new
-					space. Start your journey today and discover a new way to
-					rent, with RentMate!
+					Welcome to Rent Mate, the trusted platform designed to
+					connect apartment owners with renters seeking their perfect
+					home. Whether you're listing a modern city loft or looking
+					for the ideal place to call home, Rent Mate makes the
+					process seamless and straightforward. Our mission is to
+					simplify the rental experience for both property owners and
+					renters. With Rent Mate, you can easily list, discover, and
+					rent apartments with confidence. Our platform offers secure
+					and user-friendly features, including advanced search tools
+					to help renters find properties based on location, budget,
+					and preferences. Plus, with our built-in chat app, landlords
+					and potential renters can communicate directly to discuss
+					listings or ask questions. At Rent Mate, we believe in
+					fostering a hassle-free community where finding your next
+					home is just a few clicks away. Start your journey today and
+					explore a new, easier way to rent with Rent Mate!
 				</Typography>
 			</Container>
 			<Box sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}>

@@ -14,6 +14,8 @@ import initialContactForm from "./helpers/initialContactFrom";
 import contactSchema from "./helpers/contactSchema";
 import { useIsDark } from "../../providers/CustomThemeProvider";
 import useEmail from "../../hooks/useEmail";
+import ROUTES from "../../routes/routesModel";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
 	const { handleSubmit, loading } = useEmail();
@@ -52,6 +54,18 @@ export default function Footer() {
 					<Typography variant="h4" color={isDark ? "#fff" : "#333"}>
 						RentMate
 					</Typography>
+					<Link to={ROUTES.ABOUT}>
+						<Button
+							sx={{
+								mt: 2,
+								fontSize: "1.2rem",
+								color: isDark ? "#fff" : "#333",
+								textDecoration: "underline",
+							}}
+						>
+							About page
+						</Button>
+					</Link>
 				</Box>
 				<Box sx={{ width: "70%" }}>
 					<Typography variant="h3" color={"primary"}>
