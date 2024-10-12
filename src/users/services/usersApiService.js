@@ -17,8 +17,8 @@ export const login = async (userLogin) => {
     try {
         const response = await axios.post(apiUrl + "/login", userLogin);
         return response.data;
-    } catch (err) {
-        throw new Error(err.message);
+    } catch (err) {        
+        throw new Error(err.status == 400 ? "Email or password is incorrect" : err.message);``
     }
 };
 
