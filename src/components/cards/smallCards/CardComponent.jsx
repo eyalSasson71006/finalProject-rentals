@@ -14,6 +14,7 @@ export default function CardComponent({ apartment }) {
 	const navigate = useNavigate();
 	const [isAvailable, setIsAvailable] = useState(apartment.available);
 	const { handleDelete, toggleAvailability } = useApartments();
+	const [displayCard, setDisplayCard] = useState(true);
 	const { user } = useCurrentUser();
 
 	const onDelete = () => {
@@ -21,6 +22,7 @@ export default function CardComponent({ apartment }) {
 			confirm("Are you sure you want to delete " + apartment.title + "?")
 		) {
 			handleDelete(apartment._id);
+			setDisplayCard(false);
 		}
 	};
 
@@ -33,82 +35,84 @@ export default function CardComponent({ apartment }) {
 		return false;
 	};
 	return (
-		<Card
-			sx={{
-				margin: "8px",
-				width: "250px",
-				height: "250px",
-				borderRadius: "50px",
-				overflow: "hidden",
-				position: "relative",
-			}}
-		>
-			<CardActionArea
-				onClick={() =>
-					navigate(ROUTES.APARTMENT_INFO + "/" + apartment._id)
-				}
-			>
-				<Box
-					component="img"
-					src={apartment.image.src}
-					alt={apartment.image.alt}
-					onError={handleBrokenApartmentImg}
-					sx={{
-						width: "250px",
-						height: "250px",
-						objectFit: "cover",
-						borderRadius: "40px",
-						position: "absolute",
-					}}
-				/>
-				{!isAvailable && <CardUnavailable />}
-				<Box
-					sx={{
-						position: "absolute",
-						width: "250px",
-						height: "250px",
-						background:
-							"linear-gradient(to bottom, rgba(0, 0, 0, 0) 23%, rgba(0, 0, 0, 0.57) 64%, rgba(0, 0, 0, 0.70) 90%)",
-					}}
-				/>
-			</CardActionArea>
-			<Box
+		<>
+			{displayCard && <Card
 				sx={{
-					display: "flex",
-					justifyContent: "space-between",
-					alignItems: "center",
+					margin: "8px",
+					width: "250px",
+					height: "250px",
+					borderRadius: "50px",
+					overflow: "hidden",
+					position: "relative",
 				}}
 			>
-				{user && <CardLikeComponent apartment={apartment} />}
-				{checkOwner() && (
-					<MoreIcon sx={{ padding: "15px 20px" }}>
-						{user.isOwner && (
+				<CardActionArea
+					onClick={() =>
+						navigate(ROUTES.APARTMENT_INFO + "/" + apartment._id)
+					}
+				>
+					<Box
+						component="img"
+						src={apartment.image.src}
+						alt={apartment.image.alt}
+						onError={handleBrokenApartmentImg}
+						sx={{
+							width: "250px",
+							height: "250px",
+							objectFit: "cover",
+							borderRadius: "40px",
+							position: "absolute",
+						}}
+					/>
+					{!isAvailable && <CardUnavailable />}
+					<Box
+						sx={{
+							position: "absolute",
+							width: "250px",
+							height: "250px",
+							background:
+								"linear-gradient(to bottom, rgba(0, 0, 0, 0) 23%, rgba(0, 0, 0, 0.57) 64%, rgba(0, 0, 0, 0.70) 90%)",
+						}}
+					/>
+				</CardActionArea>
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "space-between",
+						alignItems: "center",
+					}}
+				>
+					{user && <CardLikeComponent apartment={apartment} />}
+					{checkOwner() && (
+						<MoreIcon sx={{ padding: "15px 20px" }}>
+							{user.isOwner && (
+								<MenuItem
+									key={"toggle availability"}
+									onClick={onToggleAvailability}
+								>
+									{isAvailable
+										? "Mark as unavailable"
+										: "Mark as available"}
+								</MenuItem>
+							)}
 							<MenuItem
-								key={"toggle availability"}
-								onClick={onToggleAvailability}
+								key={"Edit Apartment"}
+								onClick={() =>
+									navigate(
+										ROUTES.EDIT_APARTMENT + "/" + apartment._id
+									)
+								}
 							>
-								{isAvailable
-									? "Mark as unavailable"
-									: "Mark as available"}
+								Edit Apartment
 							</MenuItem>
-						)}
-						<MenuItem
-							key={"Edit Apartment"}
-							onClick={() =>
-								navigate(
-									ROUTES.EDIT_APARTMENT + "/" + apartment._id
-								)
-							}
-						>
-							Edit Apartment
-						</MenuItem>
-						<MenuItem key={"Delete Apartment"} onClick={onDelete}>
-							Delete Apartment
-						</MenuItem>
-					</MoreIcon>
-				)}
-			</Box>
-			<CardFooterComponent apartment={apartment} />
-		</Card>
+							<MenuItem key={"Delete Apartment"} onClick={onDelete}>
+								Delete Apartment
+							</MenuItem>
+						</MoreIcon>
+					)}
+				</Box>
+				<CardFooterComponent apartment={apartment} />
+			</Card>}
+		</>
 	);
 }

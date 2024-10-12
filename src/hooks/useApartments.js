@@ -68,7 +68,6 @@ export default function useApartments() {
     const handleDelete = useCallback((id) => {
         try {
             deleteApartment(id);
-            window.location.reload();
         } catch (error) {
             setSnack("error", error.message);
         }
