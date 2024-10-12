@@ -32,7 +32,7 @@ export default function UserDetailsSideBar({ userData }) {
 					)}`}
 				</Typography>
 			</Link>
-			<Box
+			{userData.isOwner && <Box
 				sx={{
 					display: "flex",
 					alignItems: "center",
@@ -45,7 +45,7 @@ export default function UserDetailsSideBar({ userData }) {
 					{userData.rating.toFixed(1)}
 				</Typography>
 				<StarIcon />
-			</Box>
+			</Box>}
 			{user && user._id !== userData?._id && (
 				<Button
 					onClick={() => {

@@ -58,7 +58,7 @@ export default function Footer() {
 						<Button
 							sx={{
 								mt: 2,
-								fontSize: "1.2rem",
+								fontSize: "1rem",
 								color: isDark ? "#fff" : "#333",
 								textDecoration: "underline",
 							}}

@@ -43,14 +43,14 @@ export default function Logged() {
 				</IconButton>
 			</Tooltip>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-				<MenuItem
+				{user?.isOwner && <MenuItem
 					onClick={() => {
 						navigate(ROUTES.USER_PROFILE + "/" + user._id);
 						handleClose();
 					}}
 				>
 					My account
-				</MenuItem>
+				</MenuItem>}
 				{user?.isOwner && (
 					<MenuItem
 						onClick={() => {

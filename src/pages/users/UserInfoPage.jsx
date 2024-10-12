@@ -1,7 +1,6 @@
-import { Box, Button, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import StarIcon from "@mui/icons-material/Star";
+import { useParams } from "react-router-dom";
 import useUsers from "../../hooks/useUsers";
 import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
@@ -9,9 +8,6 @@ import Review from "../../components/reviews/Review";
 import CardsListToggle from "../../components/cards/CardsListToggle";
 import { useCurrentUser } from "../../providers/UserProvider";
 import { titleCase } from "../../helpers/helperFunctions";
-import { handleBrokenUserImg } from "../../helpers/brokenImages";
-import ROUTES from "../../routes/routesModel";
-import { useChatProvider } from "../../providers/ChatProvider";
 import UserDetailsSideBar from "../../components/users/userDetailsSideBar";
 
 export default function UserInfoPage() {
@@ -66,9 +62,13 @@ export default function UserInfoPage() {
 						</Typography>
 						<CardsListToggle apartments={userApartments} />
 					</Box>
-					<Typography variant="h3" mb={3}>{`About ${
-						user?._id == id ? "Me" : titleCase(userData.name.first)
-					}`}</Typography>
+					{userReviews.length > 0 && (
+						<Typography variant="h3" mb={3}>{`About ${
+							user?._id == id
+								? "Me"
+								: titleCase(userData.name.first)
+						}`}</Typography>
+					)}
 					<Box sx={{ maxHeight: "500px", overflowY: "auto" }}>
 						{userReviews.map((review) => (
 							<Review key={review._id} reviewObj={review} />

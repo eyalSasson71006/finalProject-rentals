@@ -64,7 +64,7 @@ export default function EditApartmentPage() {
 	];
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-	if (!user || user._id != apartment.owner)
+	if ((!user || user._id != apartment.owner) && !user?.isAdmin)
 		return <Navigate to={ROUTES.ROOT} replace />;
 	return (
 		<Box>
