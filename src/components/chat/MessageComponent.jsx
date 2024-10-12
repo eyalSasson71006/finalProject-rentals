@@ -11,7 +11,7 @@ export default function MessageComponent({ message, userId }) {
 			date.getMinutes().toString().padStart(2, "0")
 		);
 	};
-	const isSender = userId == message.sender._id;
+	const isSender = userId == message.sender;
 
 	return (
 		<Box
