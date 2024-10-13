@@ -1,4 +1,11 @@
-import { Avatar, Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import {
+	Avatar,
+	Box,
+	Button,
+	TextField,
+	Typography,
+	useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import Rating from "@mui/material/Rating";
@@ -23,15 +30,15 @@ export default function AddReview({ apartmentId, setReviews }) {
 	useEffect(() => {
 		if (!userData) return;
 		setReview({
-			username: userData.name.first + " " + userData.name.last,
-			image: {
-				src: userData.image.src,
-				alt: userData.image.alt,
+			userId: {
+				_id: user._id,
+				name: userData.name,
+				image: userData.image,
 			},
 			text: "",
 			rating: value,
 		});
-	}, [userData]);
+	}, [userData, user]);
 
 	function handleChange(e) {
 		const { name, value, type } = e.target;
