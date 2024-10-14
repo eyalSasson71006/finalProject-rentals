@@ -24,10 +24,10 @@ export const login = async (userLogin) => {
 
 export const signup = async (normalizedUser) => {
     try {        
-        const { data } = await axios.post(apiUrl, normalizedUser);
+        const { data } = await axios.post(apiUrl, normalizedUser);        
         return data;
-    } catch (err) {
-        throw new Error(err.message);
+    } catch (err) {                
+        throw new Error((err.response && err.response.status === 400) ? (err.response.data).split(":")[2] : err.message);
     }
 };
 
