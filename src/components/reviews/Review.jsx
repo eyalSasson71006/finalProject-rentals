@@ -1,9 +1,10 @@
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function Review({ reviewObj }) {
-	const { palette } = useTheme();		
+	const { palette } = useTheme();
+
 	return (
 		<Box
 			sx={{
@@ -16,12 +17,15 @@ export default function Review({ reviewObj }) {
 				gap: 2,
 			}}
 		>
-			<Avatar alt={"profile picture"} src={reviewObj?.userId.image.src} />
+			<Avatar
+				alt={"profile picture"}
+				src={reviewObj?.userId?.image.src || "/images/avatar.png"}
+			/>
 			<Box>
 				<Box sx={{ display: "flex" }}>
 					<Typography fontWeight={"bold"} mr={1}>
-						{reviewObj?.userId.name.first}{" "}
-						{reviewObj?.userId.name.last}
+						{reviewObj?.userId?.name.first || "User"}{" "}
+						{reviewObj?.userId?.name.last || "deleted"}
 					</Typography>
 					<Typography>{reviewObj?.rating}</Typography>
 					<StarIcon sx={{ width: "15px" }} />

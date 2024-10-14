@@ -9,7 +9,6 @@ export default function MobileUsersComponent({
 	toggle,
 	setToggle,
 }) {
-	const { palette } = useTheme();
 	return (
 		<>
 			{!toggle && (
@@ -23,6 +22,7 @@ export default function MobileUsersComponent({
 					<List>
 						{chats.map((chat) => (
 							<ChatUserComponent
+								setToggle={setToggle}
 								key={chat._id}
 								chat={chat}
 								currentChat={currentChat}

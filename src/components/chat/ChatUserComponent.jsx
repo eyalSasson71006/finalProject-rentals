@@ -8,6 +8,7 @@ export default function ChatUserComponent({
 	chat,
 	currentChat,
 	markMessagesAsRead,
+	setToggle = ()=>{},
 }) {
 	const { getUserById, userData } = useUsers();
 	const { palette } = useTheme();
@@ -35,7 +36,10 @@ export default function ChatUserComponent({
 				alignItems: "center",
 				gap: "10px",
 			}}
-			onClick={() => markMessagesAsRead(chat._id)}
+			onClick={() => {
+				markMessagesAsRead(chat._id)
+				setToggle(true)
+			}}
 		>
 			<img
 				src={userData.image.src}
