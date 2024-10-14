@@ -1,16 +1,12 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import "../index.css";
+import { Backdrop } from "@mui/material";
 const Spinner = ({ size = 80, height = "90vh" }) => {
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				minHeight: { height },
-				flexGrow: 1,
-			}}
+		<Backdrop
+			sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+			open={true}
 		>
 			<img
 				src="/images/logo.svg"
@@ -19,7 +15,7 @@ const Spinner = ({ size = 80, height = "90vh" }) => {
 				height={size}
 				className="spinner"
 			/>
-		</Box>
+		</Backdrop>
 	);
 };
 export default Spinner;
