@@ -1,4 +1,5 @@
 import {
+	Box,
 	Paper,
 	Table,
 	TableCell,
@@ -15,6 +16,7 @@ import ROUTES from "../../routes/routesModel";
 import { useCurrentUser } from "../../providers/UserProvider";
 import PageHeadline from "../../components/PageHeadline";
 import CrmTable from "../../components/users/CrmTable";
+import CrmSearchBar from "../../components/users/CrmSearchBar";
 
 export default function AdminCRMPage() {
 	const {
@@ -25,6 +27,7 @@ export default function AdminCRMPage() {
 		handleToggleOwnerUser,
 	} = useUsers();
 	const [allUsers, setAllUsers] = useState();
+	const [search, setSearch] = useState("");
 	const { user } = useCurrentUser();
 
 	useEffect(() => {
@@ -43,6 +46,9 @@ export default function AdminCRMPage() {
 				title={"Admin CRM"}
 				subtitle={"customer relationship management"}
 			/>
+			<Box sx={{ display: "flex", justifyContent: "center" }}>
+				<CrmSearchBar setSearch={setSearch} />
+			</Box>
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="Admin CRM Table">
 					<TableHead>
@@ -57,7 +63,11 @@ export default function AdminCRMPage() {
 						</TableRow>
 					</TableHead>
 					<CrmTable
-						allUsers={allUsers}
+						allUsers={allUsers.filter((user) =>
+							(user.name.first + " " + user.name.last).includes(
+								search
+							)
+						)}
 						handleDeleteUser={handleDeleteUser}
 						handleToggleOwnerUser={handleToggleOwnerUser}
 					/>
