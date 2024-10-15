@@ -30,7 +30,7 @@ export default function BasicDetailsComponent({
 			/>
 			<SelectInput
 				name="propertyType"
-				label="Property Type"
+				label="Property Type *" 
 				error={errors.propertyType}
 				onChange={onInputChange}
 				data={data}

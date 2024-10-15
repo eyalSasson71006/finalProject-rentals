@@ -85,11 +85,30 @@ export default function LargeCardComponent({ apartment }) {
 							style={{ color: palette.primary.main }}
 							to={ROUTES.APARTMENT_INFO + "/" + apartment._id}
 						>
-							<Typography variant="h5">
+							<Typography
+								variant="h5"
+								sx={{
+									display: "-webkit-box",
+									WebkitBoxOrient: "vertical",
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									WebkitLineClamp: 1,
+								}}
+							>
 								{titleCase(apartment.title)}
 							</Typography>
 						</Link>
-						<Typography>{titleCase(apartment.subtitle)}</Typography>
+						<Typography
+							sx={{
+								display: "-webkit-box",
+								WebkitBoxOrient: "vertical",
+								overflow: "hidden",
+								textOverflow: "ellipsis",
+								WebkitLineClamp: 2,
+							}}
+						>
+							{titleCase(apartment.subtitle)}
+						</Typography>
 						<Typography
 							variant="body2"
 							sx={{

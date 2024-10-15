@@ -21,15 +21,40 @@ export default function CardFooterComponent({ apartment }) {
 			<Box sx={{ color: "white" }}>
 				<Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
 					<LocationOnIcon sx={{ width: "0.9rem" }} />
-					<Typography sx={{ fontSize: "0.8rem" }}>
+					<Typography
+						sx={{
+							display: "-webkit-box",
+							WebkitBoxOrient: "vertical",
+							overflow: "hidden",
+							textOverflow: "ellipsis",
+							WebkitLineClamp: 1,
+							fontSize: "0.8rem",
+						}}
+					>
 						{titleCase(apartment.address.city)},{" "}
 						{titleCase(apartment.address.country)}
 					</Typography>
 				</Box>
-				<Typography>{titleCase(apartment.title)}</Typography>
+				<Typography
+					sx={{
+						display: "-webkit-box",
+						WebkitBoxOrient: "vertical",
+						overflow: "hidden",
+						textOverflow: "ellipsis",
+						WebkitLineClamp: 2,
+					}}
+				>
+					{titleCase(apartment.title)}
+				</Typography>
 			</Box>
 			<Box>
-				<Typography color="white" fontSize={"0.7rem"} textAlign={"center"}>${apartment.price} night</Typography>
+				<Typography
+					color="white"
+					fontSize={"0.7rem"}
+					textAlign={"center"}
+				>
+					${apartment.price} night
+				</Typography>
 				<Box
 					sx={{
 						backgroundColor: "#0000006a",
