@@ -72,9 +72,25 @@ export default function DesktopChatComponent({
 					</Box>
 				</Box>
 			) : (
-				<Typography variant="h6">
-					Select a chat to start messaging
-				</Typography>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						height: "60vh",
+						gap: 3,
+					}}
+				>
+					<img
+						src="/images/logo.svg"
+						alt="logo"
+						style={{ opacity: "0.75" }}
+					/>
+					<Typography variant="h5">
+						Select a chat to start messaging...
+					</Typography>
+				</Box>
 			)}
 		</Box>
 	);

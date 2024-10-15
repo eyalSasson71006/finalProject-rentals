@@ -15,7 +15,7 @@ export default function CardFooterComponent({ apartment }) {
 				bottom: "15px",
 				justifyContent: "space-between",
 				boxSizing: "border-box",
-				alignItems: "end",
+				alignItems: "center",
 			}}
 		>
 			<Box sx={{ color: "white" }}>
@@ -28,19 +28,22 @@ export default function CardFooterComponent({ apartment }) {
 				</Box>
 				<Typography>{titleCase(apartment.title)}</Typography>
 			</Box>
-			<Box
-				sx={{
-					backgroundColor: "#0000006a",
-					padding: "5px 10px",
-					borderRadius: "10px",
-					display: "flex",
-					gap: "5px",
-				}}
-			>
-				<StarIcon sx={{ color: "white", width: "20px" }} />
-				<Typography sx={{ color: "white", fontSize: "1.1rem" }}>
-					{apartment.rating.toFixed(1)}
-				</Typography>
+			<Box>
+				<Typography color="white" fontSize={"0.7rem"} textAlign={"center"}>${apartment.price} night</Typography>
+				<Box
+					sx={{
+						backgroundColor: "#0000006a",
+						padding: "2px 10px",
+						borderRadius: "10px",
+						display: "flex",
+						gap: "5px",
+					}}
+				>
+					<StarIcon sx={{ color: "white", width: "20px" }} />
+					<Typography sx={{ color: "white", fontSize: "1.1rem" }}>
+						{apartment.rating.toFixed(1)}
+					</Typography>
+				</Box>
 			</Box>
 		</Box>
 	);
