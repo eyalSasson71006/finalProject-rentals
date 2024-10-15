@@ -12,26 +12,27 @@ import PageHeadline from "../../components/PageHeadline";
 import { useCurrentUser } from "../../providers/UserProvider";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import UserOwnerSelection from "../../components/forms/signupForm/UserOwnerSelection";
 
 export default function SignupPage() {
 	const { handleSignup } = useUsers();
 	const { user } = useCurrentUser();
 	const {
 		data,
+		setData,
 		errors,
 		handleChange,
 		onSubmit,
 		validateForm,
-		handleChangeCheckBox,
 	} = useForm(initialSignupForm, signupSchema, handleSignup);
-	const steps = ["Basic Details", "Address", "Add Image"];
-
+	const steps = ["Profile Type","Basic Details", "Address", "Add Image"];
+	
 	const components = [
+		<UserOwnerSelection setData ={setData}/>,
 		<UserBasicDetails
 			errors={errors}
 			data={data}
 			onInputChange={handleChange}
-			handleChangeCheckBox={handleChangeCheckBox}
 		/>,
 		<UserAddressComponent
 			errors={errors}

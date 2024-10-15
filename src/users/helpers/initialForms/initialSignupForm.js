@@ -13,6 +13,6 @@ const initialSignupForm = {
     street: "",
     houseNumber: 0,
     zip: 0,
-    isOwner: false,
+    isOwner: null,
 };
 export default initialSignupForm;

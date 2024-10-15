@@ -2,14 +2,11 @@ import { Grid2 } from "@mui/material";
 import React from "react";
 import Input from "../Input";
 import PasswordInput from "../PasswordInput";
-import { Check } from "@mui/icons-material";
-import CheckBoxInput from "../CheckBoxInput";
 
 export default function UserBasicDetails({
 	errors,
 	data,
 	onInputChange,
-	handleChangeCheckBox,
 }) {
 	return (
 		<Grid2 container spacing={2} size={{ xs: 12 }}>
@@ -60,12 +57,6 @@ export default function UserBasicDetails({
 				onChange={onInputChange}
 				data={data}
 				size={{ xs: 12, sm: 6 }}
-			/>
-			<CheckBoxInput
-				label="I would like to signup as an apartment owner"
-				name="isOwner"
-				handleChange={handleChangeCheckBox}
-				data={data}
 			/>
 		</Grid2>
 	);
