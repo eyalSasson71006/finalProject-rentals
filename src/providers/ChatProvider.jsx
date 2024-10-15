@@ -53,10 +53,10 @@ export const ChatProvider = ({ children }) => {
 	};
 
 	const markMessagesAsRead = async (chatId) => {
-		setCurrentChat(chatId);
 		socket.emit("markMessagesAsRead", chatId);
 		let data = await getChatById(chatId);
 		setMessages(await data.messages);
+		setCurrentChat(chatId);
 	};
 
 	return (
