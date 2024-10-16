@@ -7,6 +7,13 @@ export function camelCaseToText(str) {
 
 export function titleCase(str) {
     if (!str) return "";
-    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+    return str
+        .toLowerCase()
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 }
 
+export function sortAlphabetically(arr) {
+    return arr?.sort((a, b) => a.localeCompare(b));
+}

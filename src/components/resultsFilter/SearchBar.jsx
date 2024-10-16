@@ -13,6 +13,7 @@ import ROUTES from "../../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AutoCompleteSearch from "../resultsFilter/AutoCompleteSearch";
 import FilterNumberInput from "../resultsFilter/components/FilterNumberInput";
+import { sortAlphabetically } from "../../helpers/helperFunctions";
 
 export default function SearchBar({ locations, reRender = () => {} }) {
 	const navigate = useNavigate();
@@ -97,7 +98,7 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 				initialValue={search.location}
 				sx={textFieldSx}
 				handleChange={handleChange}
-				locations={locations}
+				locations={sortAlphabetically(locations)}
 			/>
 			<FormControl
 				sx={{

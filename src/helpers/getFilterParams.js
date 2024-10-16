@@ -5,10 +5,10 @@ const getFilterParams = (apartments) => {
     apartments?.forEach(apartment => {
         if (apartment.price > maxPrice) maxPrice = apartment.price;
         if (apartment.price < minPrice) minPrice = apartment.price;
-        if (!locations.includes(apartment.address.state)) locations.push(apartment.address.state);
-        if (!locations.includes(apartment.address.country)) locations.push(apartment.address.country);
-        if (!locations.includes(apartment.address.city)) locations.push(apartment.address.city);
-    });
+        if (!locations.includes(apartment.address.state.toLowerCase())) locations.push(apartment.address.state.toLowerCase());
+        if (!locations.includes(apartment.address.country.toLowerCase())) locations.push(apartment.address.country.toLowerCase());
+        if (!locations.includes(apartment.address.city.toLowerCase())) locations.push(apartment.address.city.toLowerCase());
+    });    
     return { maxPrice, minPrice, locations };
 };
 
