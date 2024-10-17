@@ -13,7 +13,7 @@ export default function AmenitiesComponent({ apartment }) {
 				if (amenity[1] && amenity[0] != "_id")
 					return (
 						<Grid2
-							size={6}
+							size={{xs:12, sm:6}}
 							key={amenity[0] + index}
 							sx={{ display: "flex" }}
 						>

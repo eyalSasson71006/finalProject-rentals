@@ -5,14 +5,12 @@ import {
 	InputLabel,
 	MenuItem,
 	Select,
-	TextField,
 } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ROUTES from "../../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AutoCompleteSearch from "../resultsFilter/AutoCompleteSearch";
-import FilterNumberInput from "../resultsFilter/components/FilterNumberInput";
 import { sortAlphabetically } from "../../helpers/helperFunctions";
 
 export default function SearchBar({ locations, reRender = () => {} }) {
@@ -26,23 +24,17 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 	});
 
 	function handleChange(e) {
-		const { name, value, type, innerText } = e.target;
-		let isLocation = innerText ? true : false;
+		const { name, value, type } = e.target;
 
-		let newValue = isLocation
-			? innerText
-			: type === "number"
-			? Number(value)
-			: value;
-		let paramName = isLocation ? "location" : name;
+		let newValue = type === "number" ? Number(value) : value;
 
 		setSearch((prev) => ({
 			...prev,
-			[paramName]: newValue,
+			[name]: newValue,
 		}));
 		setSearchParams((prev) => {
 			const newParams = new URLSearchParams(prev);
-			newParams.set(paramName, newValue);
+			newParams.set(name, newValue);
 			return newParams;
 		});
 	}
@@ -97,7 +89,6 @@ export default function SearchBar({ locations, reRender = () => {} }) {
 			<AutoCompleteSearch
 				initialValue={search.location}
 				sx={textFieldSx}
-				handleChange={handleChange}
 				locations={sortAlphabetically(locations)}
 			/>
 			<FormControl

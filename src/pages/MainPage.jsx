@@ -110,7 +110,7 @@ export default function MainPage() {
 					explore a new, easier way to rent with Rent Mate!
 				</Typography>
 			</Container>
-			<Box sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee" }}>
+			<Box sx={{ py: 5, backgroundColor: isDark ? "#333" : "#eee", display:"grid", placeItems:"center" }}>
 				<Typography
 					variant="h2"
 					sx={{

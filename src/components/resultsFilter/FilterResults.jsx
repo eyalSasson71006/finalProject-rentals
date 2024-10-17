@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Button, List } from "@mui/material";
 import FilterAccordion from "./components/FilterAccordion";
 import FilterCheckbox from "./components/FilterCheckbox";
-import FilterTextfield from "./components/FilterTextfield";
 import FilterSlider from "./components/FilterSlider";
 import amenities from "../../models/amenities";
 import FilterNumberInput from "./components/FilterNumberInput";

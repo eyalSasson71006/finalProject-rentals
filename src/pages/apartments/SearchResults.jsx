@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/resultsFilter/SearchBar";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import FilterResults from "../../components/resultsFilter/FilterResults";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";

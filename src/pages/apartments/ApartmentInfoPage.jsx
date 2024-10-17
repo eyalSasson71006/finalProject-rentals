@@ -2,14 +2,12 @@ import {
 	Box,
 	Button,
 	Grid2,
-	IconButton,
 	MenuItem,
 	Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageHeadline from "../../components/PageHeadline";
-import StarIcon from "@mui/icons-material/Star";
 import AmenitiesComponent from "../../components/AmenitiesComponent";
 import ROUTES from "../../routes/routesModel";
 import MapComponent from "../../components/map/MapComponent";
@@ -21,11 +19,7 @@ import Error from "../../components/Error";
 import useUsers from "../../hooks/useUsers";
 import { useCurrentUser } from "../../providers/UserProvider";
 import MoreIcon from "../../components/MoreIcon";
-import {
-	handleBrokenApartmentImg,
-	handleBrokenUserImg,
-} from "../../helpers/brokenImages";
-import { useChatProvider } from "../../providers/ChatProvider";
+import { handleBrokenApartmentImg } from "../../helpers/brokenImages";
 import { titleCase } from "../../helpers/helperFunctions";
 import UserDetailsSideBar from "../../components/users/userDetailsSideBar";
 
@@ -74,7 +68,7 @@ export default function ApartmentInfoPage() {
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
-	
+
 	const address = `${apartment.address.country} ${apartment.address.city} ${apartment.address.street} ${apartment.address.houseNumber} `;
 	return (
 		<>
@@ -184,9 +178,9 @@ export default function ApartmentInfoPage() {
 						}}
 					>
 						<Typography my={1} variant="h5" color="gray">
-							Location: {apartment.address.city},{" "}
-							{apartment.address.country} <br />
-							Price: ${apartment.price} Night <br />
+							Location: {titleCase(apartment.address.city)},{" "}
+							{titleCase(apartment.address.country)} <br />
+							Price: ${apartment.price} night <br />
 						</Typography>
 						<Button onClick={() => setToggle(true)}>
 							OPEN LOCATION ON MAP

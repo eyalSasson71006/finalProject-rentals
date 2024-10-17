@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { titleCase } from "../../helpers/helperFunctions";
+import { useSearchParams } from "react-router-dom";
 
 export default function AutoCompleteSearch({
 	locations = [],
 	initialValue,
 	sx,
-	handleChange,
 }) {
 	const [value, setValue] = useState(initialValue);
+	const [searchParams, setSearchParams] = useSearchParams();
 	const onChange = (event, newValue) => {
 		setValue(newValue);
-		handleChange(event);
 	};
+
+	useEffect(() => {
+		if (!value) return;
+		setSearchParams((prev) => {
+			const newParams = new URLSearchParams(prev);
+			newParams.set("location", value);
+			return newParams;
+		});
+	}, [value]);
 
 	return (
 		<Autocomplete
