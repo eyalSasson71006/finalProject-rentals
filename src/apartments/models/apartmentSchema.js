@@ -12,7 +12,7 @@ const apartmentSchema = {
     city: Joi.string().min(2).max(256).required(),
     street: Joi.string().min(2).max(256).required(),
     houseNumber: Joi.number().required(),
-    zip: Joi.number().min(0),
+    zip: Joi.number(),
     price: Joi.number().min(0).required(),
     guests: Joi.number().min(1).required(),
     bedrooms: Joi.number().min(1).required(),

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { addReview, changeAvailableStatus, changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments, getApartmentsReviews } from "../apartments/services/apartmentsApiService";
+import { addReview, changeAvailableStatus, changeLikeStatus, createApartment, deleteApartment, editApartment, getApartmentById, getApartments } from "../apartments/services/apartmentsApiService";
 import useAxios from "./useAxios";
 import normalizeApartment from "../apartments/helpers/normalization/normalizeApartment";
 import { useNavigate } from "react-router-dom";
@@ -112,16 +112,6 @@ export default function useApartments() {
         }
     }, [user]);
 
-    const handleGetApartmentsReviews = useCallback(async (id) => {
-        try {
-            let reviews = await getApartmentsReviews(id);
-            return reviews;
-        } catch (error) {
-            setSnack("error", error.message);
-            setError(error.message);
-        }
-    }, []);
-
     const handleGetFilterParams = useCallback(async () => {
         try {
             let allApartments = await getApartments();
@@ -132,5 +122,5 @@ export default function useApartments() {
         }
     }, []);
 
-    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, handleGetApartmentsReviews, filterParams, setFilterParams, toggleAvailability };
+    return { apartments, setApartments, apartment, setApartment, isLoading, setIsLoading, error, setError, getAllApartments, handleGetFilterParams, getApartment, addApartment, handleDelete, handleEdit, handleLike, handleAddReview, filterParams, setFilterParams, toggleAvailability };
 }

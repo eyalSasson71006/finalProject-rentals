@@ -18,7 +18,6 @@ const normalizeApartment = (apartment) => {
         description: apartment.description,
         image: {
             src: apartment.src,
-            alt: apartment.imageAlt,
         },
         amenities: {
             airConditioning: apartment.airConditioning,

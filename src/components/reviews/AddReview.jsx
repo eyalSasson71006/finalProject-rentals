@@ -42,8 +42,8 @@ export default function AddReview({ apartmentId, setReviews }) {
 
 	function handleChange(e) {
 		const { name, value, type } = e.target;
-		if (type == "text" && value.length < 2) {
-			setError("Review must be at least 2 characters long");
+		if ((type == "text" && value.length < 2) || value.length > 1024) {
+			setError("Review must be between 2 and 1024 characters long");
 		} else if (type == "text") {
 			setError(null);
 		}

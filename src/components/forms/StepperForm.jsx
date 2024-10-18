@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -13,8 +13,8 @@ export default function StepperForm({
 	validateForm,
 }) {
 	const { isDark } = useIsDark();
-	const [activeStep, setActiveStep] = React.useState(0);
-	const [skipped, setSkipped] = React.useState(new Set());
+	const [activeStep, setActiveStep] = useState(0);
+	const [skipped, setSkipped] = useState(new Set());
 
 	const isStepSkipped = (step) => {
 		return skipped.has(step);
@@ -36,7 +36,7 @@ export default function StepperForm({
 	};
 
 	return (
-		<Box sx={{ width: "70%", mb: 7 }}>
+		<Box sx={{ width: { xs: "100%", sm: "70%" }, mb: 7 }}>
 			<Stepper activeStep={activeStep}>
 				{steps.map((label, index) => {
 					const stepProps = {};
@@ -51,11 +51,12 @@ export default function StepperForm({
 					);
 				})}
 			</Stepper>
-			<React.Fragment>
+			<>
 				<Box
 					sx={{
 						p: 5,
 						my: 5,
+						mx: 2,
 						backgroundColor: isDark ? "#333" : "#eee",
 						borderRadius: "20px",
 					}}
@@ -80,7 +81,7 @@ export default function StepperForm({
 						<Button onClick={handleNext}>Next</Button>
 					)}
 				</Box>
-			</React.Fragment>
+			</>
 		</Box>
 	);
 }
