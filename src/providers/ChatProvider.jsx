@@ -48,7 +48,7 @@ export const ChatProvider = ({ children }) => {
 		socket.emit("sendMessage", { chatId, content });
 		setMessages((prev) => [
 			...prev,
-			{ sender: { _id: user._id }, content, timestamp: new Date() },
+			{ sender: user._id , content, timestamp: new Date() },
 		]);
 	};
 
